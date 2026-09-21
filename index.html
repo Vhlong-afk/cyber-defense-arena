@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Cyber Defense Arena
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <main class="game-shell">
+
+    <header class="hud">
+
+      <div class="hud-item hp-item">
+
+        <span>
+          CORE HP
+        </span>
+
+        <strong id="hp">
+          100
+        </strong>
+
+        <div class="hp-bar">
+
+          <div
+            id="hpBar"
+            class="hp-bar-fill"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="hud-item">
+
+        <span>
+          SCORE
+        </span>
+
+        <strong id="score">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="hud-item">
+
+        <span>
+          WAVE
+        </span>
+
+        <strong id="wave">
+          1
+        </strong>
+
+      </div>
+
+
+      <div class="hud-item">
+
+        <span>
+          THREATS
+        </span>
+
+        <strong id="threats">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="hud-item combo-item">
+
+        <span>
+          COMBO
+        </span>
+
+        <strong id="combo">
+          x1
+        </strong>
+
+        <small id="streak">
+          0 streak
+        </small>
+
+      </div>
+
+    </header>
+
+
+    <section class="status-bar">
+
+      <span id="dashStatus">
+        DASH READY
+      </span>
+
+      <span id="powerStatus">
+        NO POWER-UP
+      </span>
+
+      <span>
+        WASD move · Mouse aim · Hold LMB fire · Space dash · Esc pause
+      </span>
+
+    </section>
+
+
+    <div class="arena-wrap">
+
+      <canvas
+        id="gameCanvas"
+        width="1280"
+        height="720"
+      ></canvas>
+
+        <div
+        id="startMenu"
+        class="overlay-panel start-panel"
+        >
+
+        <div class="start-kicker">
+            SYSTEM READY
+        </div>
+
+
+        <h1>
+            CYBER DEFENSE ARENA
+        </h1>
+
+
+        <p class="start-subtitle">
+            Defend the network.
+            Destroy incoming threats.
+            Survive every attack wave.
+        </p>
+
+
+        <button
+            id="startBtn"
+            type="button"
+        >
+            START GAME
+        </button>
+
+
+        <div class="controls-grid">
+
+            <div>
+            <strong>WASD</strong>
+            <span>Move</span>
+            </div>
+
+            <div>
+            <strong>MOUSE</strong>
+            <span>Aim</span>
+            </div>
+
+            <div>
+            <strong>LMB</strong>
+            <span>Fire</span>
+            </div>
+
+            <div>
+            <strong>SPACE</strong>
+            <span>Dash</span>
+            </div>
+
+            <div>
+            <strong>ESC</strong>
+            <span>Pause</span>
+            </div>
+
+        </div>
+
+        </div>
+
+
+      <div
+        id="bossHud"
+        class="boss-hud hidden"
+      >
+
+        <div class="boss-label">
+
+          <span>
+            INTRUSION OVERLORD
+          </span>
+
+          <strong id="bossHpText">
+            0 / 0
+          </strong>
+
+        </div>
+
+
+        <div class="boss-bar">
+
+          <div
+            id="bossHpBar"
+            class="boss-bar-fill"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="pausePanel"
+        class="overlay-panel hidden"
+      >
+
+        <h1>
+          PAUSED
+        </h1>
+
+        <p>
+          Press
+          <strong>Esc</strong>
+          to continue
+        </p>
+
+      </div>
+
+
+      <div
+        id="gameOver"
+        class="overlay-panel hidden"
+      >
+
+        <h1>
+          SYSTEM BREACHED
+        </h1>
+
+
+        <p>
+          Final score:
+          <strong id="finalScore">
+            0
+          </strong>
+        </p>
+
+
+        <p>
+          Wave reached:
+          <strong id="finalWave">
+            1
+          </strong>
+        </p>
+
+
+        <p>
+          Best combo:
+          <strong id="finalCombo">
+            x1
+          </strong>
+        </p>
+
+
+        <button
+          id="restartBtn"
+          type="button"
+        >
+          Restart
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script src="game.js"></script>
+
+</body>
+</html>
