@@ -8,9 +8,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    Cyber Defense Arena
-  </title>
+  <title>Cyber Defense Arena</title>
 
   <link
     rel="stylesheet"
@@ -20,565 +18,598 @@
 
 <body>
 
-  <main class="game-shell">
+<main class="game-shell">
 
-    <header class="hud">
+  <!-- =========================
+       MAIN HUD
+  ========================== -->
 
-      <div class="hud-item hp-item">
+  <header class="hud">
 
-        <span>
-          PLAYER HP
-        </span>
+    <div class="hud-item hp-item">
 
-        <strong id="hp">
-          100
-        </strong>
+      <span>PLAYER HP</span>
 
-        <div class="meter">
-          <div
-            id="hpBar"
-            class="meter-fill player-hp-fill"
-          ></div>
-        </div>
+      <strong id="hp">
+        100
+      </strong>
 
-        <small id="lives">
-          LIVES ◆ ◆ ◆
-        </small>
-
+      <div class="meter">
+        <div
+          id="hpBar"
+          class="meter-fill player-hp-fill"
+        ></div>
       </div>
 
+      <small id="lives">
+        LIVES ◆ ◆ ◆
+      </small>
 
-      <div class="hud-item core-item">
+    </div>
 
-        <span>
-          CORE HP
-        </span>
 
-        <strong id="coreHp">
-          1000
-        </strong>
+    <div class="hud-item core-item">
 
-        <div class="meter">
-          <div
-            id="coreHpBar"
-            class="meter-fill core-hp-fill"
-          ></div>
-        </div>
+      <span>CORE HP</span>
 
-        <small id="coreShield">
-          SHIELD 250 / 250
-        </small>
+      <strong id="coreHp">
+        1000
+      </strong>
 
+      <div class="meter">
+        <div
+          id="coreHpBar"
+          class="meter-fill core-hp-fill"
+        ></div>
       </div>
 
+      <small id="coreShield">
+        SHIELD 250 / 250
+      </small>
 
-      <div class="hud-item">
-
-        <span>
-          SCORE
-        </span>
-
-        <strong id="score">
-          0
-        </strong>
-
-        <small id="combo">
-          COMBO x1
-        </small>
-
-      </div>
+    </div>
 
 
-      <div class="hud-item">
+    <div class="hud-item level-item">
 
-        <span>
-          DATA
-        </span>
+      <span>LEVEL</span>
 
-        <strong id="data">
-          0
-        </strong>
+      <strong id="level">
+        1
+      </strong>
 
-        <small id="streak">
-          0 streak
-        </small>
-
-      </div>
-
-
-      <div class="hud-item">
-
-        <span>
-          WAVE
-        </span>
-
-        <strong id="wave">
-          1
-        </strong>
-
-        <small id="threats">
-          0 threats
-        </small>
-
-      </div>
-
-    </header>
-
-
-    <section class="status-bar">
-
-      <span id="dashStatus">
-        DASH READY
-      </span>
-
-      <span id="powerStatus">
-        NO POWER-UP
-      </span>
-
-      <span id="stateStatus">
-        SYSTEM IDLE
-      </span>
-
-    </section>
-
-
-    <div class="arena-wrap">
-
-      <canvas
-        id="gameCanvas"
-        width="1280"
-        height="720"
-      ></canvas>
-
-
-      <div
-        id="bossHud"
-        class="boss-hud hidden"
-      >
-
-        <div class="boss-label">
-
-          <span id="bossName">
-            INTRUSION OVERLORD
-          </span>
-
-          <strong id="bossHpText">
-            0 / 0
-          </strong>
-
-        </div>
-
-        <div class="boss-bar">
-
-          <div
-            id="bossHpBar"
-            class="boss-bar-fill"
-          ></div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        id="startMenu"
-        class="overlay-panel start-panel"
-      >
-
-        <div class="start-kicker">
-          SYSTEM READY
-        </div>
-
-        <h1>
-          CYBER DEFENSE ARENA
-        </h1>
-
-        <p class="start-subtitle">
-          Defend the Core.
-          Build the network.
-          Survive an endless cyber assault.
-        </p>
-
-        <button
-          id="startBtn"
-          class="primary-btn"
-          type="button"
-        >
-          START GAME
-        </button>
-
-
-        <div class="controls-grid">
-
-          <div>
-            <strong>WASD</strong>
-            <span>Move</span>
-          </div>
-
-          <div>
-            <strong>MOUSE</strong>
-            <span>Aim</span>
-          </div>
-
-          <div>
-            <strong>LMB</strong>
-            <span>Fire / Build</span>
-          </div>
-
-          <div>
-            <strong>SPACE</strong>
-            <span>Dash</span>
-          </div>
-
-          <div>
-            <strong>ESC</strong>
-            <span>Pause / Cancel</span>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        id="pausePanel"
-        class="overlay-panel hidden"
-      >
-
-        <div class="start-kicker">
-          SESSION SUSPENDED
-        </div>
-
-        <h1>
-          PAUSED
-        </h1>
-
-        <p>
-          Press
-          <strong>Esc</strong>
-          to continue.
-        </p>
-
-      </div>
-
-
-      <div
-        id="upgradePanel"
-        class="overlay-panel upgrade-panel hidden"
-      >
-
-        <div class="start-kicker">
-          SYSTEM UPGRADE AVAILABLE
-        </div>
-
-        <h2>
-          Choose 1 Upgrade
-        </h2>
-
-        <p class="panel-subtitle">
-          Your choice lasts for this run.
-        </p>
+      <div class="meter">
 
         <div
-          id="upgradeChoices"
-          class="upgrade-choices"
+          id="expBar"
+          class="meter-fill exp-fill"
         ></div>
 
       </div>
 
+      <small id="expText">
+        0 / 45 EXP
+      </small>
 
-      <div
-        id="buildPanel"
-        class="build-panel hidden"
-      >
+    </div>
 
-        <div class="build-head">
 
-          <div>
+    <div class="hud-item">
 
-            <span class="build-kicker">
-              BUILD PHASE
+      <span>SCORE</span>
+
+      <strong id="score">
+        0
+      </strong>
+
+      <small id="combo">
+        COMBO x1
+      </small>
+
+    </div>
+
+
+    <div class="hud-item">
+
+      <span>DATA</span>
+
+      <strong id="data">
+        60
+      </strong>
+
+      <small id="streak">
+        0 streak
+      </small>
+
+    </div>
+
+
+    <div class="hud-item">
+
+      <span>WAVE</span>
+
+      <strong id="wave">
+        1
+      </strong>
+
+      <small id="threats">
+        0 threats
+      </small>
+
+    </div>
+
+  </header>
+
+
+  <section class="status-bar">
+
+    <span id="dashStatus">
+      DASH READY
+    </span>
+
+    <span id="powerStatus">
+      NO POWER-UP
+    </span>
+
+    <span id="stateStatus">
+      SYSTEM IDLE
+    </span>
+
+  </section>
+
+
+  <!-- =========================
+       GAME + EXTERNAL BUILD PANEL
+  ========================== -->
+
+  <div
+    id="gameLayout"
+    class="game-layout"
+  >
+
+    <div class="arena-column">
+
+      <div class="arena-wrap">
+
+        <canvas
+          id="gameCanvas"
+          width="1280"
+          height="720"
+        ></canvas>
+
+
+        <!-- =========================
+             BOSS HUD
+        ========================== -->
+
+        <div
+          id="bossHud"
+          class="boss-hud hidden"
+        >
+
+          <div class="boss-label">
+
+            <span id="bossName">
+              BOSS
             </span>
 
-            <strong id="buildTimer">
-              20.0s
+            <strong id="bossHpText">
+              0 / 0
             </strong>
 
           </div>
 
-          <div class="build-data">
 
-            DATA
+          <div class="boss-bar">
 
-            <strong id="buildData">
-              0
-            </strong>
+            <div
+              id="bossHpBar"
+              class="boss-bar-fill"
+            ></div>
 
           </div>
 
         </div>
 
 
-        <div class="threat-preview">
+        <!-- =========================
+             START MENU
+        ========================== -->
 
-          <span id="nextWaveTitle">
-            WAVE 2
-          </span>
+        <div
+          id="startMenu"
+          class="overlay-panel start-panel"
+        >
 
-          <strong id="nextWaveArchetype">
-            STANDARD ATTACK
-          </strong>
+          <div class="start-kicker">
+            SYSTEM READY
+          </div>
+
+          <h1>
+            CYBER DEFENSE ARENA
+          </h1>
+
+          <p class="start-subtitle">
+            Defend the Core.
+            Build the network.
+            Survive an endless cyber assault.
+          </p>
+
+          <button
+            id="startBtn"
+            class="primary-btn"
+            type="button"
+          >
+            START GAME
+          </button>
+
+
+          <div class="controls-grid">
+
+            <div>
+              <strong>WASD</strong>
+              <span>Move</span>
+            </div>
+
+            <div>
+              <strong>MOUSE</strong>
+              <span>Aim</span>
+            </div>
+
+            <div>
+              <strong>LMB</strong>
+              <span>Fire</span>
+            </div>
+
+            <div>
+              <strong>SPACE</strong>
+              <span>Dash</span>
+            </div>
+
+            <div>
+              <strong>ESC</strong>
+              <span>Pause</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             PAUSE
+        ========================== -->
+
+        <div
+          id="pausePanel"
+          class="overlay-panel hidden"
+        >
+
+          <div class="start-kicker">
+            SESSION SUSPENDED
+          </div>
+
+          <h1>
+            PAUSED
+          </h1>
+
+          <p>
+            Press
+            <strong>Esc</strong>
+            to continue.
+          </p>
+
+        </div>
+
+
+        <!-- =========================
+             LEVEL UP
+        ========================== -->
+
+        <div
+          id="upgradePanel"
+          class="overlay-panel upgrade-panel hidden"
+        >
+
+          <div class="start-kicker">
+            LEVEL UP
+          </div>
+
+          <h2 id="upgradeTitle">
+            SYSTEM UPGRADE AVAILABLE
+          </h2>
+
+          <p class="panel-subtitle">
+            Choose 1 upgrade for this run.
+          </p>
 
           <div
-            id="threatPreviewList"
-            class="threat-preview-list"
+            id="upgradeChoices"
+            class="upgrade-choices"
           ></div>
 
         </div>
 
 
-        <div class="build-options">
-
-          <button
-            type="button"
-            class="build-option"
-            data-build="turret"
-          >
-
-            <strong>
-              AUTO TURRET
-            </strong>
-
-            <span id="turretCost">
-              40 DATA
-            </span>
-
-          </button>
-
-
-          <button
-            type="button"
-            class="build-option"
-            data-build="firewall"
-          >
-
-            <strong>
-              FIREWALL
-            </strong>
-
-            <span id="firewallCost">
-              35 DATA
-            </span>
-
-          </button>
-
-
-          <button
-            type="button"
-            class="build-option"
-            data-build="slow"
-          >
-
-            <strong>
-              SLOW FIELD
-            </strong>
-
-            <span id="slowCost">
-              45 DATA
-            </span>
-
-          </button>
-
-
-          <button
-            type="button"
-            class="build-option"
-            data-build="repair"
-          >
-
-            <strong>
-              REPAIR NODE
-            </strong>
-
-            <span id="repairCost">
-              55 DATA
-            </span>
-
-          </button>
-
-        </div>
-
-
-        <div class="build-actions">
-
-          <button
-            id="upgradeStructureBtn"
-            type="button"
-            disabled
-          >
-            UPGRADE SELECTED
-          </button>
-
-          <button
-            id="readyBtn"
-            class="primary-btn"
-            type="button"
-          >
-            READY
-          </button>
-
-        </div>
-
-
-        <p
-          id="buildHint"
-          class="build-hint"
-        >
-          Select a defense, then click the arena to place it.
-        </p>
-
-      </div>
-
-
-      <div
-        id="endingOverlay"
-        class="ending-overlay hidden"
-        aria-live="polite"
-      >
+        <!-- =========================
+             ENDING EFFECT
+        ========================== -->
 
         <div
-          id="endingReason"
-          class="ending-reason"
+          id="endingOverlay"
+          class="ending-overlay hidden"
         >
-          CORE BREACHED
-        </div>
 
-        <div class="ending-subline">
-          DEFENSE SESSION TERMINATING...
-        </div>
+          <div
+            id="endingReason"
+            class="ending-reason"
+          >
+            CORE BREACHED
+          </div>
 
-      </div>
+          <div class="ending-subline">
+            DEFENSE SESSION TERMINATING...
+          </div>
 
-
-      <div
-        id="gameOver"
-        class="overlay-panel result-panel hidden"
-      >
-
-        <div class="start-kicker">
-          DEFENSE SESSION TERMINATED
         </div>
 
 
-        <h1 id="resultTitle">
-          NETWORK COLLAPSED
-        </h1>
+        <!-- =========================
+             GAME OVER
+        ========================== -->
 
-
-        <p
-          id="resultReason"
-          class="result-reason"
+        <div
+          id="gameOver"
+          class="overlay-panel result-panel hidden"
         >
-          CORE BREACHED
-        </p>
+
+          <div class="result-content">
+
+            <div class="start-kicker">
+              DEFENSE SESSION TERMINATED
+            </div>
+
+            <h1 id="resultTitle">
+              NETWORK COLLAPSED
+            </h1>
+
+            <p
+              id="resultReason"
+              class="result-reason"
+            >
+              CORE BREACHED
+            </p>
 
 
-        <div class="result-hero">
+            <div class="result-hero">
 
-          <div>
+              <div>
 
-            <span>
-              WAVE
-            </span>
+                <span>WAVE</span>
 
-            <strong id="finalWave">
-              1
-            </strong>
+                <strong id="finalWave">
+                  1
+                </strong>
 
-          </div>
+              </div>
 
 
-          <div>
+              <div>
 
-            <span>
-              SCORE
-            </span>
+                <span>SCORE</span>
 
-            <strong id="finalScore">
-              0
-            </strong>
+                <strong id="finalScore">
+                  0
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="result-grid">
+
+              <div>
+                <span>Threats Eliminated</span>
+                <strong id="finalKills">0</strong>
+              </div>
+
+              <div>
+                <span>Elite Threats</span>
+                <strong id="finalElites">0</strong>
+              </div>
+
+              <div>
+                <span>Bosses Destroyed</span>
+                <strong id="finalBosses">0</strong>
+              </div>
+
+              <div>
+                <span>Structures Built</span>
+                <strong id="finalStructures">0</strong>
+              </div>
+
+              <div>
+                <span>Core Damage Taken</span>
+                <strong id="finalCoreDamage">0</strong>
+              </div>
+
+              <div>
+                <span>Best Combo</span>
+                <strong id="finalCombo">x1</strong>
+              </div>
+
+              <div>
+                <span>Survival Time</span>
+                <strong id="finalTime">00:00</strong>
+              </div>
+
+              <div>
+                <span>DATA Collected</span>
+                <strong id="finalData">0</strong>
+              </div>
+
+            </div>
+
+
+            <p class="reboot-line">
+              THE NETWORK WILL REBOOT.
+            </p>
+
+
+            <button
+              id="restartBtn"
+              class="primary-btn"
+              type="button"
+            >
+              TRY AGAIN
+            </button>
 
           </div>
 
         </div>
-
-
-        <div class="result-grid">
-
-          <div>
-            <span>Threats Eliminated</span>
-            <strong id="finalKills">0</strong>
-          </div>
-
-          <div>
-            <span>Elite Threats</span>
-            <strong id="finalElites">0</strong>
-          </div>
-
-          <div>
-            <span>Bosses Destroyed</span>
-            <strong id="finalBosses">0</strong>
-          </div>
-
-          <div>
-            <span>Structures Built</span>
-            <strong id="finalStructures">0</strong>
-          </div>
-
-          <div>
-            <span>Core Damage Taken</span>
-            <strong id="finalCoreDamage">0</strong>
-          </div>
-
-          <div>
-            <span>Best Combo</span>
-            <strong id="finalCombo">x1</strong>
-          </div>
-
-          <div>
-            <span>Survival Time</span>
-            <strong id="finalTime">00:00</strong>
-          </div>
-
-          <div>
-            <span>DATA Collected</span>
-            <strong id="finalData">0</strong>
-          </div>
-
-        </div>
-
-
-        <p class="reboot-line">
-          THE NETWORK WILL REBOOT.
-        </p>
-
-
-        <button
-          id="restartBtn"
-          class="primary-btn"
-          type="button"
-        >
-          TRY AGAIN
-        </button>
 
       </div>
 
     </div>
 
-  </main>
+
+    <!-- =========================
+         BUILD PANEL
+         KHÔNG CÒN NẰM TRÊN CANVAS
+    ========================== -->
+
+    <aside
+      id="buildPanel"
+      class="build-panel hidden"
+    >
+
+      <div class="build-head">
+
+        <div>
+
+          <span class="build-kicker">
+            BUILD PHASE
+          </span>
+
+          <strong id="buildTimer">
+            12.0s
+          </strong>
+
+        </div>
 
 
-  <script src="game.js"></script>
+        <div class="build-data">
+
+          DATA
+
+          <strong id="buildData">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="threat-preview">
+
+        <span id="nextWaveTitle">
+          WAVE 2
+        </span>
+
+        <strong id="nextWaveArchetype">
+          STANDARD ATTACK
+        </strong>
+
+        <div
+          id="threatPreviewList"
+          class="threat-preview-list"
+        ></div>
+
+      </div>
+
+
+      <div class="build-options">
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="turret"
+        >
+          <strong>AUTO TURRET</strong>
+          <span id="turretCost">70 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="firewall"
+        >
+          <strong>FIREWALL</strong>
+          <span id="firewallCost">55 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="slow"
+        >
+          <strong>SLOW FIELD</strong>
+          <span id="slowCost">90 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="repair"
+        >
+          <strong>REPAIR NODE</strong>
+          <span id="repairCost">110 DATA</span>
+        </button>
+
+      </div>
+
+
+      <div class="build-actions">
+
+        <button
+          id="upgradeStructureBtn"
+          type="button"
+          disabled
+        >
+          UPGRADE SELECTED
+        </button>
+
+        <button
+          id="readyBtn"
+          class="primary-btn"
+          type="button"
+        >
+          READY
+        </button>
+
+      </div>
+
+
+      <p
+        id="buildHint"
+        class="build-hint"
+      >
+        Select a defense, then click the arena to place it.
+      </p>
+
+    </aside>
+
+  </div>
+
+</main>
+
+
+<script src="game.js"></script>
 
 </body>
 </html>

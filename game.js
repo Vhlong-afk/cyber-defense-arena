@@ -1,186 +1,140 @@
 'use strict';
 
+
 // ============================================================
 // DOM
 // ============================================================
 
 const canvas =
-  document.querySelector(
-    '#gameCanvas'
-  );
+  document.querySelector('#gameCanvas');
 
 const ctx =
-  canvas.getContext(
-    '2d'
-  );
+  canvas.getContext('2d');
+
+
+const gameLayout =
+  document.querySelector('#gameLayout');
 
 
 const hpText =
-  document.querySelector(
-    '#hp'
-  );
+  document.querySelector('#hp');
 
 const hpBar =
-  document.querySelector(
-    '#hpBar'
-  );
+  document.querySelector('#hpBar');
 
 const livesText =
-  document.querySelector(
-    '#lives'
-  );
+  document.querySelector('#lives');
+
 
 const coreHpText =
-  document.querySelector(
-    '#coreHp'
-  );
+  document.querySelector('#coreHp');
 
 const coreHpBar =
-  document.querySelector(
-    '#coreHpBar'
-  );
+  document.querySelector('#coreHpBar');
 
 const coreShieldText =
-  document.querySelector(
-    '#coreShield'
-  );
+  document.querySelector('#coreShield');
+
+
+const levelText =
+  document.querySelector('#level');
+
+const expText =
+  document.querySelector('#expText');
+
+const expBar =
+  document.querySelector('#expBar');
+
 
 const scoreText =
-  document.querySelector(
-    '#score'
-  );
+  document.querySelector('#score');
 
 const dataText =
-  document.querySelector(
-    '#data'
-  );
+  document.querySelector('#data');
 
 const waveText =
-  document.querySelector(
-    '#wave'
-  );
+  document.querySelector('#wave');
 
 const threatsText =
-  document.querySelector(
-    '#threats'
-  );
+  document.querySelector('#threats');
 
 const comboText =
-  document.querySelector(
-    '#combo'
-  );
+  document.querySelector('#combo');
 
 const streakText =
-  document.querySelector(
-    '#streak'
-  );
+  document.querySelector('#streak');
+
 
 const dashStatus =
-  document.querySelector(
-    '#dashStatus'
-  );
+  document.querySelector('#dashStatus');
 
 const powerStatus =
-  document.querySelector(
-    '#powerStatus'
-  );
+  document.querySelector('#powerStatus');
 
 const stateStatus =
-  document.querySelector(
-    '#stateStatus'
-  );
+  document.querySelector('#stateStatus');
 
 
 const bossHud =
-  document.querySelector(
-    '#bossHud'
-  );
+  document.querySelector('#bossHud');
 
 const bossName =
-  document.querySelector(
-    '#bossName'
-  );
+  document.querySelector('#bossName');
 
 const bossHpText =
-  document.querySelector(
-    '#bossHpText'
-  );
+  document.querySelector('#bossHpText');
 
 const bossHpBar =
-  document.querySelector(
-    '#bossHpBar'
-  );
+  document.querySelector('#bossHpBar');
 
 
 const startMenu =
-  document.querySelector(
-    '#startMenu'
-  );
+  document.querySelector('#startMenu');
 
 const startBtn =
-  document.querySelector(
-    '#startBtn'
-  );
+  document.querySelector('#startBtn');
 
 const pausePanel =
-  document.querySelector(
-    '#pausePanel'
-  );
+  document.querySelector('#pausePanel');
+
 
 const upgradePanel =
-  document.querySelector(
-    '#upgradePanel'
-  );
+  document.querySelector('#upgradePanel');
+
+const upgradeTitle =
+  document.querySelector('#upgradeTitle');
 
 const upgradeChoices =
-  document.querySelector(
-    '#upgradeChoices'
-  );
+  document.querySelector('#upgradeChoices');
+
 
 const buildPanel =
-  document.querySelector(
-    '#buildPanel'
-  );
+  document.querySelector('#buildPanel');
 
 const buildTimerText =
-  document.querySelector(
-    '#buildTimer'
-  );
+  document.querySelector('#buildTimer');
 
 const buildDataText =
-  document.querySelector(
-    '#buildData'
-  );
+  document.querySelector('#buildData');
 
 const nextWaveTitle =
-  document.querySelector(
-    '#nextWaveTitle'
-  );
+  document.querySelector('#nextWaveTitle');
 
 const nextWaveArchetype =
-  document.querySelector(
-    '#nextWaveArchetype'
-  );
+  document.querySelector('#nextWaveArchetype');
 
 const threatPreviewList =
-  document.querySelector(
-    '#threatPreviewList'
-  );
+  document.querySelector('#threatPreviewList');
 
 const buildHint =
-  document.querySelector(
-    '#buildHint'
-  );
+  document.querySelector('#buildHint');
 
 const upgradeStructureBtn =
-  document.querySelector(
-    '#upgradeStructureBtn'
-  );
+  document.querySelector('#upgradeStructureBtn');
 
 const readyBtn =
-  document.querySelector(
-    '#readyBtn'
-  );
+  document.querySelector('#readyBtn');
+
 
 const buildButtons =
   [
@@ -191,84 +145,53 @@ const buildButtons =
 
 
 const endingOverlay =
-  document.querySelector(
-    '#endingOverlay'
-  );
+  document.querySelector('#endingOverlay');
 
 const endingReasonText =
-  document.querySelector(
-    '#endingReason'
-  );
+  document.querySelector('#endingReason');
+
 
 const gameOverPanel =
-  document.querySelector(
-    '#gameOver'
-  );
+  document.querySelector('#gameOver');
 
 const resultTitle =
-  document.querySelector(
-    '#resultTitle'
-  );
+  document.querySelector('#resultTitle');
 
 const resultReason =
-  document.querySelector(
-    '#resultReason'
-  );
+  document.querySelector('#resultReason');
 
 const finalWave =
-  document.querySelector(
-    '#finalWave'
-  );
+  document.querySelector('#finalWave');
 
 const finalScore =
-  document.querySelector(
-    '#finalScore'
-  );
+  document.querySelector('#finalScore');
 
 const finalKills =
-  document.querySelector(
-    '#finalKills'
-  );
+  document.querySelector('#finalKills');
 
 const finalElites =
-  document.querySelector(
-    '#finalElites'
-  );
+  document.querySelector('#finalElites');
 
 const finalBosses =
-  document.querySelector(
-    '#finalBosses'
-  );
+  document.querySelector('#finalBosses');
 
 const finalStructures =
-  document.querySelector(
-    '#finalStructures'
-  );
+  document.querySelector('#finalStructures');
 
 const finalCoreDamage =
-  document.querySelector(
-    '#finalCoreDamage'
-  );
+  document.querySelector('#finalCoreDamage');
 
 const finalCombo =
-  document.querySelector(
-    '#finalCombo'
-  );
+  document.querySelector('#finalCombo');
 
 const finalTime =
-  document.querySelector(
-    '#finalTime'
-  );
+  document.querySelector('#finalTime');
 
 const finalData =
-  document.querySelector(
-    '#finalData'
-  );
+  document.querySelector('#finalData');
 
 const restartBtn =
-  document.querySelector(
-    '#restartBtn'
-  );
+  document.querySelector('#restartBtn');
 
 
 canvas.style.cursor =
@@ -283,151 +206,123 @@ const CONFIG = {
 
   player: {
 
-    radius:
-      18,
+    radius: 18,
 
-    speed:
-      260,
+    speed: 260,
 
-    maxHp:
-      100,
+    maxHp: 100,
 
-    startLives:
-      3,
+    startLives: 3,
 
-    maxLives:
-      5,
+    maxLives: 4,
 
-    respawnMs:
-      3000,
+    respawnMs: 3000,
 
-    respawnInvulnerabilityMs:
-      1800,
+    respawnInvulnerabilityMs: 1800,
 
-    hitInvulnerabilityMs:
-      420,
+    hitInvulnerabilityMs: 420,
 
-    dashSpeed:
-      850,
+    dashSpeed: 850,
 
-    dashDurationMs:
-      135,
+    dashDurationMs: 135,
 
-    dashCooldownMs:
-      1150
+    dashCooldownMs: 1150
   },
 
 
   core: {
 
-    radius:
-      38,
+    radius: 38,
 
-    maxHp:
-      1000,
+    maxHp: 1000,
 
-    maxShield:
-      250,
+    maxShield: 250,
 
-    shieldRechargePerWave:
-      110,
+    shieldRechargeBase: 20,
 
-    criticalRatio:
-      0.10,
+    shieldRechargeCleanBonus: 20,
 
-    noBuildRadius:
-      105
+    cleanShieldWindowMs: 10000,
+
+    criticalRatio: 0.10,
+
+    noBuildRadius: 105
   },
 
 
   weapon: {
 
-    fireIntervalMs:
-      140,
+    fireIntervalMs: 140,
 
-    bulletSpeed:
-      790,
+    bulletSpeed: 790,
 
-    bulletRadius:
-      4,
+    bulletRadius: 4,
 
-    bulletLifeMs:
-      1350,
+    bulletLifeMs: 1350,
 
-    damage:
-      1,
+    damage: 1,
 
-    rapidFireMultiplier:
-      0.52,
+    rapidFireMultiplier: 0.52,
 
-    rapidFireDurationMs:
-      6500
+    rapidFireDurationMs: 6500
+  },
+
+
+  economy: {
+
+    startingData: 60,
+
+    waveClearData: 5
   },
 
 
   waves: {
 
-    baseEnemies:
-      8,
+    baseEnemies: 8,
 
-    perWave:
-      3,
+    perWave: 3,
 
-    maxRegularEnemies:
-      72,
+    maxRegularEnemies: 72,
 
-    baseSpawnIntervalMs:
-      760,
+    baseSpawnIntervalMs: 760,
 
-    minSpawnIntervalMs:
-      280,
+    minSpawnIntervalMs: 280,
 
-    spawnWarningMs:
-      560,
+    spawnWarningMs: 560,
 
-    clearDisplayMs:
-      1200,
+    clearDisplayMs: 1100,
 
-    buildSeconds:
-      20,
+    buildSeconds: 12,
 
-    bossEvery:
-      5
+    bossBuildSeconds: 18,
+
+    bossEvery: 5
   },
 
 
   combo: {
 
-    windowMs:
-      2400,
+    windowMs: 2400,
 
-    killsPerMultiplier:
-      3,
+    killsPerMultiplier: 3,
 
-    maxMultiplier:
-      5
+    maxMultiplier: 5
   },
 
 
   pickups: {
 
-    dropChance:
-      0.16,
+    dropChance: 0.13,
 
-    radius:
-      13,
+    radius: 13,
 
-    lifeMs:
-      12000,
+    lifeMs: 12000,
 
-    playerHeal:
-      25,
+    playerHeal: 25,
 
-    coreRepair:
-      65,
+    coreRepair: 55,
 
-    shieldMaxCharges:
-      2
+    shieldMaxCharges: 2
   },
 
 
@@ -435,147 +330,143 @@ const CONFIG = {
 
     virus: {
 
-      radius:
-        15,
+      radius: 15,
 
-      speed:
-        98,
+      speed: 100,
 
-      hp:
-        1,
+      hp: 1,
 
-      damage:
-        11,
+      damage: 11,
 
-      score:
-        10,
+      score: 10,
 
-      data:
-        4,
+      data: 1,
 
-      color:
-        '#ff5c7a',
+      exp: 5,
 
-      attackMs:
-        900
+      color: '#ff5c7a',
+
+      attackMs: 900
     },
 
 
     runner: {
 
-      radius:
-        11,
+      radius: 11,
 
-      speed:
-        175,
+      speed: 178,
 
-      hp:
-        1,
+      hp: 1,
 
-      damage:
-        14,
+      damage: 14,
 
-      score:
-        15,
+      score: 15,
 
-      data:
-        5,
+      data: 2,
 
-      color:
-        '#ffa94d',
+      exp: 7,
 
-      attackMs:
-        800
+      color: '#ffa94d',
+
+      attackMs: 800
     },
 
 
     tank: {
 
-      radius:
-        24,
+      radius: 24,
 
-      speed:
-        64,
+      speed: 65,
 
-      hp:
-        5,
+      hp: 5,
 
-      damage:
-        22,
+      damage: 22,
 
-      score:
-        38,
+      score: 38,
 
-      data:
-        10,
+      data: 4,
 
-      color:
-        '#b197fc',
+      exp: 15,
 
-      attackMs:
-        720
+      color: '#b197fc',
+
+      attackMs: 720
     },
 
 
     shooter: {
 
-      radius:
-        17,
+      radius: 17,
 
-      speed:
-        84,
+      speed: 86,
 
-      hp:
-        2,
+      hp: 2,
 
-      damage:
-        13,
+      damage: 13,
 
-      score:
-        30,
+      score: 30,
 
-      data:
-        8,
+      data: 3,
 
-      color:
-        '#4dabf7',
+      exp: 11,
 
-      attackMs:
-        1450,
+      color: '#4dabf7',
 
-      range:
-        265,
+      attackMs: 1450,
 
-      projectileSpeed:
-        255
+      range: 275,
+
+      projectileSpeed: 260
     },
 
 
     sapper: {
 
-      radius:
-        16,
+      radius: 16,
 
-      speed:
-        112,
+      speed: 113,
 
-      hp:
-        3,
+      hp: 3,
 
-      damage:
-        28,
+      damage: 28,
 
-      score:
-        42,
+      score: 42,
 
-      data:
-        12,
+      data: 5,
 
-      color:
-        '#51cf66',
+      exp: 14,
 
-      attackMs:
-        560
+      color: '#51cf66',
+
+      attackMs: 560
+    },
+
+
+    hunter: {
+
+      radius: 14,
+
+      speed: 132,
+
+      hp: 3,
+
+      damage: 18,
+
+      score: 40,
+
+      data: 4,
+
+      exp: 14,
+
+      color: '#f06595',
+
+      attackMs: 720,
+
+      burstMultiplier: 2.35,
+
+      burstDurationMs: 520,
+
+      burstCooldownMs: 2700
     }
 
   },
@@ -583,82 +474,17 @@ const CONFIG = {
 
   elite: {
 
-    hpMultiplier:
-      1.8,
+    hpMultiplier: 1.8,
 
-    speedMultiplier:
-      1.28,
+    speedMultiplier: 1.26,
 
-    scoreMultiplier:
-      1.8,
+    scoreMultiplier: 1.8,
 
-    dataMultiplier:
-      1.7,
+    dataMultiplier: 1.5,
 
-    shieldHits:
-      2
-  },
+    expMultiplier: 1.65,
 
-
-  enemyProjectile: {
-
-    radius:
-      6,
-
-    lifeMs:
-      6000
-  },
-
-
-  boss: {
-
-    radius:
-      52,
-
-    baseHp:
-      55,
-
-    hpPerTier:
-      30,
-
-    hpTierCap:
-      8,
-
-    speed:
-      78,
-
-    contactDamage:
-      34,
-
-    score:
-      650,
-
-    data:
-      120,
-
-    shotMs:
-      900,
-
-    radialMs:
-      2900,
-
-    chargeMs:
-      5000,
-
-    chargeWarningMs:
-      650,
-
-    chargeDurationMs:
-      700,
-
-    chargeSpeed:
-      440,
-
-    summonMs:
-      4700,
-
-    projectileSpeed:
-      285
+    shieldHits: 2
   },
 
 
@@ -666,101 +492,73 @@ const CONFIG = {
 
     turret: {
 
-      name:
-        'AUTO TURRET',
+      name: 'AUTO TURRET',
 
-      cost:
-        40,
+      cost: 70,
 
-      radius:
-        19,
+      radius: 19,
 
-      hp:
-        125,
+      hp: 125,
 
-      range:
-        245,
+      range: 245,
 
-      fireMs:
-        620,
+      fireMs: 620,
 
-      damage:
-        1.35,
+      damage: 1.35,
 
-      color:
-        '#63e6ff'
+      color: '#63e6ff'
     },
 
 
     firewall: {
 
-      name:
-        'FIREWALL',
+      name: 'FIREWALL',
 
-      cost:
-        35,
+      cost: 55,
 
-      radius:
-        31,
+      radius: 31,
 
-      hp:
-        310,
+      hp: 310,
 
-      color:
-        '#ff8787'
+      color: '#ff8787'
     },
 
 
     slow: {
 
-      name:
-        'SLOW FIELD',
+      name: 'SLOW FIELD',
 
-      cost:
-        45,
+      cost: 90,
 
-      radius:
-        24,
+      radius: 24,
 
-      hp:
-        105,
+      hp: 105,
 
-      range:
-        118,
+      range: 118,
 
-      slow:
-        0.55,
+      slow: 0.55,
 
-      color:
-        '#74c0fc'
+      color: '#74c0fc'
     },
 
 
     repair: {
 
-      name:
-        'REPAIR NODE',
+      name: 'REPAIR NODE',
 
-      cost:
-        55,
+      cost: 110,
 
-      radius:
-        23,
+      radius: 23,
 
-      hp:
-        105,
+      hp: 105,
 
-      heal:
-        10,
+      heal: 10,
 
-      charges:
-        5,
+      charges: 5,
 
-      pulseMs:
-        4700,
+      pulseMs: 4700,
 
-      color:
-        '#69db7c'
+      color: '#69db7c'
     }
 
   },
@@ -768,53 +566,181 @@ const CONFIG = {
 
   placement: {
 
-    edgePadding:
-      58,
+    edgePadding: 58,
 
-    overlapPadding:
-      12
+    overlapPadding: 12
+  },
+
+
+  enemyProjectile: {
+
+    radius: 6,
+
+    lifeMs: 6000
+  },
+
+
+  bosses: {
+
+    ddos: {
+
+      name: 'DDoS SWARM CORE',
+
+      baseHp: 220,
+
+      speed: 72,
+
+      damage: 18,
+
+      score: 900,
+
+      data: 45,
+
+      exp: 90,
+
+      color: '#ff4d6d',
+
+      turretDamageMultiplier: 0.70
+    },
+
+
+    ransomware: {
+
+      name: 'RANSOMWARE WARDEN',
+
+      baseHp: 300,
+
+      shield: 90,
+
+      speed: 64,
+
+      damage: 22,
+
+      score: 1150,
+
+      data: 60,
+
+      exp: 120,
+
+      color: '#e64980',
+
+      turretDamageMultiplier: 0.55
+    },
+
+
+    rootkit: {
+
+      name: 'ROOTKIT PHANTOM',
+
+      baseHp: 340,
+
+      speed: 92,
+
+      damage: 24,
+
+      score: 1350,
+
+      data: 70,
+
+      exp: 145,
+
+      color: '#9775fa',
+
+      turretDamageMultiplier: 0.45
+    },
+
+
+    zeroday: {
+
+      name: 'ZERO-DAY SINGULARITY',
+
+      baseHp: 500,
+
+      speed: 84,
+
+      damage: 28,
+
+      score: 1800,
+
+      data: 90,
+
+      exp: 190,
+
+      color: '#ff922b',
+
+      turretDamageMultiplier: 0.50
+    }
+
+  },
+
+
+  bossScaling: {
+
+    hpPerCycle: 1.45,
+
+    damagePerCycle: 0.18,
+
+    speedPerCycle: 0.05
   },
 
 
   ending: {
 
-    durationMs:
-      2200
+    durationMs: 2200
   }
 
 };
 
 
 // ============================================================
-// STATE
+// GAME STATES
 // ============================================================
 
 const GAME_STATE =
   Object.freeze({
 
-    MENU:
-      'menu',
+    MENU: 'menu',
 
-    PLAYING:
-      'playing',
+    PLAYING: 'playing',
 
-    PAUSED:
-      'paused',
+    PAUSED: 'paused',
 
-    UPGRADE:
-      'upgrade',
+    UPGRADE: 'upgrade',
 
-    BUILD:
-      'build',
+    BUILD: 'build',
 
-    ENDING:
-      'ending',
+    ENDING: 'ending',
 
-    GAMEOVER:
-      'gameover'
-
+    GAMEOVER: 'gameover'
   });
 
+
+let gameState =
+  GAME_STATE.MENU;
+
+
+function setGameState(
+  state
+) {
+
+  gameState =
+    state;
+
+
+  gameLayout
+    .classList
+    .toggle(
+      'build-active',
+
+      state ===
+      GAME_STATE.BUILD
+    );
+}
+
+
+// ============================================================
+// GLOBAL STATE
+// ============================================================
 
 const keys = {};
 
@@ -827,9 +753,7 @@ const mouse = {
   y:
     canvas.height / 2,
 
-  isDown:
-    false
-
+  isDown: false
 };
 
 
@@ -856,8 +780,9 @@ const core = {
   maxShield:
     CONFIG.core.maxShield,
 
-  flashUntil:
-    0
+  flashUntil: 0,
+
+  lastDamageAt: -Infinity
 };
 
 
@@ -881,120 +806,90 @@ const player = {
   lives:
     CONFIG.player.startLives,
 
-  alive:
-    true,
+  alive: true,
 
-  respawnAt:
-    0,
+  respawnAt: 0,
 
-  invulnerableUntil:
-    0,
+  invulnerableUntil: 0,
 
-  hurtFlashUntil:
-    0,
+  hurtFlashUntil: 0,
 
   angle:
     -Math.PI / 2,
 
-  dashUntil:
-    0,
+  dashUntil: 0,
 
-  dashCooldownUntil:
-    0,
+  dashCooldownUntil: 0,
 
-  dashX:
-    0,
+  dashX: 0,
 
-  dashY:
-    -1,
+  dashY: -1,
 
-  shieldCharges:
-    0,
+  shieldCharges: 0,
 
-  rapidFireUntil:
-    0
+  rapidFireUntil: 0
 };
+
+
+let playerLevel =
+  1;
+
+let playerExp =
+  0;
+
+let pendingLevelUps =
+  0;
 
 
 const runMods = {
 
-  playerSpeed:
-    1,
+  playerSpeed: 1,
 
-  dashCooldown:
-    1,
+  dashCooldown: 1,
 
-  weaponDamage:
-    1,
+  weaponDamage: 1,
 
-  fireRate:
-    1,
+  fireRate: 1,
 
-  bulletSpeed:
-    1,
+  bulletSpeed: 1,
 
-  multishot:
-    0,
+  multishot: 0,
 
-  pierce:
-    0,
+  pierce: 0,
 
-  critChance:
-    0,
+  critChance: 0,
 
-  critMultiplier:
-    2,
+  critMultiplier: 2,
 
-  chainChance:
-    0,
+  chainChance: 0,
 
-  dataMultiplier:
-    1,
+  dataMultiplier: 1,
 
-  pickupBonus:
-    0,
+  pickupBonus: 0,
 
-  coreDamageMultiplier:
-    1,
+  coreDamageMultiplier: 1,
 
-  turretDamage:
-    1,
+  turretDamage: 1,
 
-  defenseHp:
-    1,
+  defenseHp: 1,
 
-  slowMultiplier:
-    1,
+  slowMultiplier: 1,
 
-  repairAmount:
-    1,
+  repairAmount: 1,
 
-  repairChargeBonus:
-    0
+  repairChargeBonus: 0
 };
-
-
-let gameState =
-  GAME_STATE.MENU;
-
-let gameTime =
-  0;
-
-let lastFrameTimestamp =
-  performance.now();
-
-let runStartedAtReal =
-  0;
 
 
 let score =
   0;
 
 let dataCurrency =
-  0;
+  CONFIG.economy.startingData;
 
 let wave =
   1;
+
 
 let currentWavePlan =
   null;
@@ -1021,29 +916,24 @@ let waveClearMessage =
   '';
 
 
-let bullets =
-  [];
+let bullets = [];
 
-let enemies =
-  [];
+let enemies = [];
 
-let enemyProjectiles =
-  [];
+let enemyProjectiles = [];
 
-let particles =
-  [];
+let particles = [];
 
-let floatingTexts =
-  [];
+let floatingTexts = [];
 
-let pickups =
-  [];
+let pickups = [];
 
-let structures =
-  [];
+let structures = [];
 
-let beams =
-  [];
+let beams = [];
+
+let hazards = [];
+
 
 let boss =
   null;
@@ -1084,6 +974,7 @@ let selectedStructureId =
 let buildEndsAtReal =
   0;
 
+
 let nextEntityId =
   1;
 
@@ -1097,29 +988,31 @@ let endingReason =
 let endingResultShown =
   false;
 
+
 let lastStandActive =
   false;
 
 
+let gameTime =
+  0;
+
+let lastFrameTimestamp =
+  performance.now();
+
+
 const stats = {
 
-  kills:
-    0,
+  kills: 0,
 
-  elites:
-    0,
+  elites: 0,
 
-  bosses:
-    0,
+  bosses: 0,
 
-  structuresBuilt:
-    0,
+  structuresBuilt: 0,
 
-  coreDamageTaken:
-    0,
+  coreDamageTaken: 0,
 
-  dataCollected:
-    0
+  dataCollected: 0
 };
 
 
@@ -1202,10 +1095,12 @@ function tone(
 
   oscillator.frequency
     .exponentialRampToValueAtTime(
+
       Math.max(
         30,
         endFrequency
       ),
+
       now +
       durationMs /
       1000
@@ -1221,7 +1116,9 @@ function tone(
 
   gain.gain
     .exponentialRampToValueAtTime(
+
       0.0001,
+
       now +
       durationMs /
       1000
@@ -1244,6 +1141,7 @@ function tone(
 
 
   oscillator.stop(
+
     now +
     durationMs /
     1000
@@ -1253,103 +1151,112 @@ function tone(
 
 const sfx = {
 
-  shoot:
-    () =>
-      tone(
-        520,
-        55,
-        'square',
-        0.012,
-        310
-      ),
+  shoot() {
+
+    tone(
+      520,
+      55,
+      'square',
+      .012,
+      310
+    );
+  },
 
 
-  hit:
-    () =>
-      tone(
-        180,
-        70,
-        'square',
-        0.014,
-        100
-      ),
+  hit() {
+
+    tone(
+      180,
+      70,
+      'square',
+      .014,
+      100
+    );
+  },
 
 
-  kill:
-    () =>
-      tone(
-        260,
-        90,
-        'sawtooth',
-        0.015,
-        520
-      ),
+  kill() {
+
+    tone(
+      260,
+      90,
+      'sawtooth',
+      .015,
+      520
+    );
+  },
 
 
-  hurt:
-    () =>
-      tone(
-        120,
-        150,
-        'sawtooth',
-        0.03,
-        55
-      ),
+  hurt() {
+
+    tone(
+      120,
+      150,
+      'sawtooth',
+      .03,
+      55
+    );
+  },
 
 
-  pickup:
-    () =>
-      tone(
-        460,
-        130,
-        'sine',
-        0.022,
-        900
-      ),
+  pickup() {
+
+    tone(
+      460,
+      130,
+      'sine',
+      .022,
+      900
+    );
+  },
 
 
-  dash:
-    () =>
-      tone(
-        280,
-        110,
-        'sawtooth',
-        0.015,
-        120
-      ),
+  dash() {
+
+    tone(
+      280,
+      110,
+      'sawtooth',
+      .015,
+      120
+    );
+  },
 
 
-  boss:
-    () =>
-      tone(
-        85,
-        520,
-        'sawtooth',
-        0.042,
-        48
-      ),
+  boss() {
+
+    tone(
+      85,
+      520,
+      'sawtooth',
+      .042,
+      48
+    );
+  },
 
 
-  build:
-    () =>
-      tone(
-        410,
-        100,
-        'square',
-        0.012,
-        650
-      ),
+  build() {
+
+    tone(
+      410,
+      100,
+      'square',
+      .012,
+      650
+    );
+  },
 
 
-  upgrade:
-    () =>
-      tone(
-        520,
-        200,
-        'sine',
-        0.02,
-        980
-      )
+  upgrade() {
+
+    tone(
+      520,
+      200,
+      'sine',
+      .02,
+      980
+    );
+  }
 
 };
 
@@ -1403,6 +1310,7 @@ window.addEventListener(
 
 
       if (!event.repeat) {
+
         tryDash();
       }
     }
@@ -1508,7 +1416,8 @@ window.addEventListener(
   event => {
 
     if (
-      event.button === 0
+      event.button ===
+      0
     ) {
 
       mouse.isDown =
@@ -1518,8 +1427,8 @@ window.addEventListener(
 );
 
 
-canvas.addEventListener(
-  'mouseleave',
+window.addEventListener(
+  'blur',
   () => {
 
     mouse.isDown =
@@ -1528,8 +1437,8 @@ canvas.addEventListener(
 );
 
 
-window.addEventListener(
-  'blur',
+canvas.addEventListener(
+  'mouseleave',
   () => {
 
     mouse.isDown =
@@ -1563,8 +1472,9 @@ function togglePause() {
     GAME_STATE.PLAYING
   ) {
 
-    gameState =
-      GAME_STATE.PAUSED;
+    setGameState(
+      GAME_STATE.PAUSED
+    );
 
 
     mouse.isDown =
@@ -1587,8 +1497,9 @@ function togglePause() {
     GAME_STATE.PAUSED
   ) {
 
-    gameState =
-      GAME_STATE.PLAYING;
+    setGameState(
+      GAME_STATE.PLAYING
+    );
 
 
     pausePanel
@@ -1597,6 +1508,97 @@ function togglePause() {
         'hidden'
       );
   }
+}
+
+
+// ============================================================
+// LEVEL / EXP
+// ============================================================
+
+function expNeeded(
+  level
+) {
+
+  return Math.round(
+
+    45 *
+    Math.pow(
+      1.28,
+      level - 1
+    ) +
+
+    12 *
+    (
+      level - 1
+    )
+  );
+}
+
+
+function addExp(
+  amount
+) {
+
+  playerExp +=
+    amount;
+
+
+  let needed =
+    expNeeded(
+      playerLevel
+    );
+
+
+  while (
+    playerExp >=
+    needed
+  ) {
+
+    playerExp -=
+      needed;
+
+
+    playerLevel++;
+
+
+    pendingLevelUps++;
+
+
+    needed =
+      expNeeded(
+        playerLevel
+      );
+  }
+}
+
+
+function checkPendingLevelUp() {
+
+  if (
+    pendingLevelUps <=
+      0 ||
+    gameState !==
+      GAME_STATE.PLAYING
+  ) {
+
+    return;
+  }
+
+
+  setGameState(
+    GAME_STATE.UPGRADE
+  );
+
+
+  mouse.isDown =
+    false;
+
+
+  upgradeTitle.textContent =
+    `LEVEL ${playerLevel}`;
+
+
+  showUpgradeChoices();
 }
 
 
@@ -1625,21 +1627,10 @@ function tryDash() {
     0;
 
 
-  if (keys.w) {
-    dy -= 1;
-  }
-
-  if (keys.s) {
-    dy += 1;
-  }
-
-  if (keys.a) {
-    dx -= 1;
-  }
-
-  if (keys.d) {
-    dx += 1;
-  }
+  if (keys.w) dy--;
+  if (keys.s) dy++;
+  if (keys.a) dx--;
+  if (keys.d) dx++;
 
 
   if (
@@ -1687,8 +1678,7 @@ function tryDash() {
     gameTime +
     CONFIG.player
       .dashCooldownMs *
-    runMods
-      .dashCooldown;
+    runMods.dashCooldown;
 
 
   player.invulnerableUntil =
@@ -1717,9 +1707,7 @@ function updatePlayer(
 
     if (
       gameTime >=
-        player.respawnAt &&
-      gameState ===
-        GAME_STATE.PLAYING
+        player.respawnAt
     ) {
 
       respawnPlayer();
@@ -1732,8 +1720,10 @@ function updatePlayer(
 
   player.angle =
     Math.atan2(
+
       mouse.y -
       player.y,
+
       mouse.x -
       player.x
     );
@@ -1760,10 +1750,11 @@ function updatePlayer(
 
     if (
       Math.random() <
-      0.65
+      .65
     ) {
 
       createParticle(
+
         player.x,
         player.y,
 
@@ -1802,21 +1793,10 @@ function updatePlayer(
       0;
 
 
-    if (keys.w) {
-      moveY -= 1;
-    }
-
-    if (keys.s) {
-      moveY += 1;
-    }
-
-    if (keys.a) {
-      moveX -= 1;
-    }
-
-    if (keys.d) {
-      moveX += 1;
-    }
+    if (keys.w) moveY--;
+    if (keys.s) moveY++;
+    if (keys.a) moveX--;
+    if (keys.d) moveX++;
 
 
     if (
@@ -1834,8 +1814,7 @@ function updatePlayer(
       const speed =
         CONFIG.player
           .speed *
-        runMods
-          .playerSpeed;
+        runMods.playerSpeed;
 
 
       player.x +=
@@ -1919,15 +1898,6 @@ function damagePlayer(
     );
 
 
-    tone(
-      700,
-      140,
-      'sine',
-      0.022,
-      280
-    );
-
-
     return true;
   }
 
@@ -1970,7 +1940,8 @@ function damagePlayer(
 
 
   if (
-    player.hp <= 0
+    player.hp <=
+    0
   ) {
 
     handlePlayerDeath();
@@ -2021,6 +1992,7 @@ function handlePlayerDeath() {
       'DEFENDER PROCESS TERMINATED'
     );
 
+
     return;
   }
 
@@ -2029,20 +2001,6 @@ function handlePlayerDeath() {
     gameTime +
     CONFIG.player
       .respawnMs;
-
-
-  addFloatingText(
-    core.x,
-    core.y + 85,
-    `RESPAWN IN ${
-      (
-        CONFIG.player
-          .respawnMs /
-        1000
-      ).toFixed(0)
-    }s`,
-    '#9befff'
-  );
 }
 
 
@@ -2057,21 +2015,12 @@ function respawnPlayer() {
 
 
   player.x =
-    clamp(
-      core.x,
-      player.radius,
-      canvas.width -
-      player.radius
-    );
+    core.x;
 
 
   player.y =
-    clamp(
-      core.y + 125,
-      player.radius,
-      canvas.height -
-      player.radius
-    );
+    core.y +
+    125;
 
 
   player.invulnerableUntil =
@@ -2091,15 +2040,6 @@ function respawnPlayer() {
     '#63e6ff',
     22,
     3.4
-  );
-
-
-  tone(
-    330,
-    220,
-    'sine',
-    0.02,
-    760
   );
 }
 
@@ -2143,19 +2083,11 @@ function drawPlayer() {
 
 
     ctx.strokeStyle =
-      'rgba(116,192,252,.9)';
+      '#74c0fc';
 
 
     ctx.lineWidth =
       3;
-
-
-    ctx.shadowColor =
-      '#74c0fc';
-
-
-    ctx.shadowBlur =
-      14;
 
 
     ctx.stroke();
@@ -2168,36 +2100,13 @@ function drawPlayer() {
   ) {
 
     ctx.globalAlpha =
-      0.58 +
+      .62 +
       Math.sin(
         performance.now() *
         .03
       ) *
-      .28;
+      .25;
   }
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    0,
-    0,
-    player.radius + 6,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.strokeStyle =
-    'rgba(99,230,255,.28)';
-
-
-  ctx.lineWidth =
-    2;
-
-
-  ctx.stroke();
 
 
   ctx.fillStyle =
@@ -2209,18 +2118,6 @@ function drawPlayer() {
     -5,
     28,
     10
-  );
-
-
-  ctx.fillStyle =
-    '#d8fbff';
-
-
-  ctx.fillRect(
-    25,
-    -3,
-    12,
-    6
   );
 
 
@@ -2314,73 +2211,8 @@ function drawPlayer() {
       '#ffe066';
 
 
-    ctx.shadowColor =
-      '#ffe066';
-
-
-    ctx.shadowBlur =
-      20;
-
-
     ctx.fill();
   }
-
-
-  ctx.restore();
-}
-
-
-function drawRespawnStatus() {
-
-  if (
-    player.alive ||
-    gameState !==
-      GAME_STATE.PLAYING
-  ) {
-
-    return;
-  }
-
-
-  const seconds =
-    Math.max(
-      0,
-      (
-        player.respawnAt -
-        gameTime
-      ) /
-      1000
-    );
-
-
-  ctx.save();
-
-
-  ctx.textAlign =
-    'center';
-
-
-  ctx.font =
-    'bold 24px monospace';
-
-
-  ctx.fillStyle =
-    '#b8f6ff';
-
-
-  ctx.shadowColor =
-    '#63e6ff';
-
-
-  ctx.shadowBlur =
-    14;
-
-
-  ctx.fillText(
-    `DEFENDER REBOOT ${seconds.toFixed(1)}s`,
-    canvas.width / 2,
-    canvas.height - 60
-  );
 
 
   ctx.restore();
@@ -2404,6 +2236,10 @@ function damageCore(
 
     return;
   }
+
+
+  core.lastDamageAt =
+    gameTime;
 
 
   let amount =
@@ -2435,15 +2271,6 @@ function damageCore(
 
     amount -=
       absorbed;
-
-
-    burstAt(
-      core.x,
-      core.y,
-      '#74c0fc',
-      8,
-      2.2
-    );
   }
 
 
@@ -2477,23 +2304,16 @@ function damageCore(
         screenShake,
         8
       );
-
-
-    sfx.hurt();
   }
 
 
-  const criticalNow =
+  if (
     core.hp >
       0 &&
     core.hp /
       core.maxHp <=
       CONFIG.core
-        .criticalRatio;
-
-
-  if (
-    criticalNow &&
+        .criticalRatio &&
     !lastStandActive
   ) {
 
@@ -2503,7 +2323,7 @@ function damageCore(
 
     addFloatingText(
       core.x,
-      core.y - 80,
+      core.y - 78,
       'LAST STAND',
       '#ff4d6d'
     );
@@ -2513,7 +2333,7 @@ function damageCore(
       160,
       500,
       'sawtooth',
-      0.034,
+      .034,
       70
     );
   }
@@ -2535,15 +2355,6 @@ function healCore(
   amount
 ) {
 
-  if (
-    core.hp <=
-    0
-  ) {
-
-    return 0;
-  }
-
-
   const before =
     core.hp;
 
@@ -2559,20 +2370,6 @@ function healCore(
   const healed =
     core.hp -
     before;
-
-
-  if (
-    healed >
-    0
-  ) {
-
-    addFloatingText(
-      core.x,
-      core.y - 50,
-      `+${Math.round(healed)} CORE`,
-      '#69db7c'
-    );
-  }
 
 
   if (
@@ -2611,15 +2408,11 @@ function drawCore() {
     0
   ) {
 
-    const ratio =
-      core.shield /
-      core.maxShield;
-
-
     ctx.beginPath();
 
 
     ctx.arc(
+
       0,
       0,
 
@@ -2637,23 +2430,11 @@ function drawCore() {
 
 
     ctx.strokeStyle =
-      `rgba(116,192,252,${
-        0.25 +
-        ratio *
-        0.55
-      })`;
+      'rgba(116,192,252,.6)';
 
 
     ctx.lineWidth =
       4;
-
-
-    ctx.shadowColor =
-      '#74c0fc';
-
-
-    ctx.shadowBlur =
-      18;
 
 
     ctx.stroke();
@@ -2662,7 +2443,7 @@ function drawCore() {
 
   ctx.rotate(
     visualTime *
-    0.00025
+    .00025
   );
 
 
@@ -2678,7 +2459,7 @@ function drawCore() {
 
   ctx.rotate(
     -visualTime *
-    0.0005
+    .0005
   );
 
 
@@ -2705,14 +2486,7 @@ function drawCore() {
   ctx.arc(
     0,
     0,
-
-    18 +
-    Math.sin(
-      visualTime *
-      .006
-    ) *
-    2,
-
+    18,
     0,
     Math.PI * 2
   );
@@ -2727,34 +2501,11 @@ function drawCore() {
 
 
   ctx.shadowColor =
-    lastStandActive
-
-      ? '#ff4d6d'
-
-      : '#63e6ff';
+    ctx.fillStyle;
 
 
   ctx.shadowBlur =
     24;
-
-
-  ctx.fill();
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    0,
-    0,
-    7,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.fillStyle =
-    '#f1fdff';
 
 
   ctx.fill();
@@ -2770,11 +2521,10 @@ function drawCore() {
 
 function currentFireInterval() {
 
-  let interval =
+  let value =
     CONFIG.weapon
       .fireIntervalMs *
-    runMods
-      .fireRate;
+    runMods.fireRate;
 
 
   if (
@@ -2782,13 +2532,13 @@ function currentFireInterval() {
     player.rapidFireUntil
   ) {
 
-    interval *=
+    value *=
       CONFIG.weapon
         .rapidFireMultiplier;
   }
 
 
-  return interval;
+  return value;
 }
 
 
@@ -2806,6 +2556,7 @@ function shoot() {
 
   const baseAngle =
     Math.atan2(
+
       mouse.y -
       player.y,
 
@@ -2814,25 +2565,21 @@ function shoot() {
     );
 
 
-  const total =
+  const count =
     1 +
     runMods.multishot;
 
 
-  const spreadStep =
-    0.09;
-
-
   for (
     let i = 0;
-    i < total;
+    i < count;
     i++
   ) {
 
     const centered =
       i -
       (
-        total -
+        count -
         1
       ) /
       2;
@@ -2841,33 +2588,28 @@ function shoot() {
     const angle =
       baseAngle +
       centered *
-      spreadStep;
-
-
-    const muzzle =
-      34;
-
-
-    const startX =
-      player.x +
-      Math.cos(
-        angle
-      ) *
-      muzzle;
-
-
-    const startY =
-      player.y +
-      Math.sin(
-        angle
-      ) *
-      muzzle;
+      .09;
 
 
     const crit =
       Math.random() <
-      runMods
-        .critChance;
+      runMods.critChance;
+
+
+    const x =
+      player.x +
+      Math.cos(
+        angle
+      ) *
+      34;
+
+
+    const y =
+      player.y +
+      Math.sin(
+        angle
+      ) *
+      34;
 
 
     bullets.push({
@@ -2878,17 +2620,15 @@ function shoot() {
       owner:
         'player',
 
-      x:
-        startX,
+      x,
 
-      y:
-        startY,
+      y,
 
       prevX:
-        startX,
+        x,
 
       prevY:
-        startY,
+        y,
 
       vx:
         Math.cos(
@@ -2896,8 +2636,7 @@ function shoot() {
         ) *
         CONFIG.weapon
           .bulletSpeed *
-        runMods
-          .bulletSpeed,
+        runMods.bulletSpeed,
 
       vy:
         Math.sin(
@@ -2905,8 +2644,7 @@ function shoot() {
         ) *
         CONFIG.weapon
           .bulletSpeed *
-        runMods
-          .bulletSpeed,
+        runMods.bulletSpeed,
 
       radius:
         CONFIG.weapon
@@ -2915,12 +2653,13 @@ function shoot() {
       damage:
         CONFIG.weapon
           .damage *
-        runMods
-          .weaponDamage *
+        runMods.weaponDamage *
         (
           crit
+
             ? runMods
                 .critMultiplier
+
             : 1
         ),
 
@@ -2937,18 +2676,12 @@ function shoot() {
 
           ? '#ff922b'
 
-          : gameTime <
-            player.rapidFireUntil
-
-            ? '#69db7c'
-
-            : '#ffe066',
+          : '#ffe066',
 
       expiresAt:
         gameTime +
         CONFIG.weapon
           .bulletLifeMs
-
     });
   }
 
@@ -3023,99 +2756,22 @@ function updateBullets(
       bullet =>
 
         gameTime <
-          bullet.expiresAt &&
+        bullet.expiresAt &&
 
         bullet.x >
-          -60 &&
+        -70 &&
 
         bullet.x <
-          canvas.width +
-          60 &&
+        canvas.width +
+        70 &&
 
         bullet.y >
-          -60 &&
+        -70 &&
 
         bullet.y <
-          canvas.height +
-          60
+        canvas.height +
+        70
     );
-}
-
-
-function drawBullets() {
-
-  ctx.save();
-
-
-  for (
-    const bullet
-    of bullets
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      bullet.prevX,
-      bullet.prevY
-    );
-
-
-    ctx.lineTo(
-      bullet.x,
-      bullet.y
-    );
-
-
-    ctx.strokeStyle =
-      bullet.color;
-
-
-    ctx.lineWidth =
-      bullet.owner ===
-      'turret'
-
-        ? 3
-
-        : 4;
-
-
-    ctx.lineCap =
-      'round';
-
-
-    ctx.shadowColor =
-      bullet.color;
-
-
-    ctx.shadowBlur =
-      11;
-
-
-    ctx.stroke();
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      bullet.x,
-      bullet.y,
-      bullet.radius,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      '#fff';
-
-
-    ctx.fill();
-  }
-
-
-  ctx.restore();
 }
 
 
@@ -3141,15 +2797,18 @@ function waveTotal(
 ) {
 
   return Math.min(
+
     CONFIG.waves
       .maxRegularEnemies,
 
     CONFIG.waves
       .baseEnemies +
+
     (
       number -
       1
     ) *
+
     CONFIG.waves
       .perWave
   );
@@ -3174,6 +2833,11 @@ function generateWavePlan(
       boss:
         true,
 
+      bossType:
+        getBossType(
+          number
+        ),
+
       archetype:
         'BOSS SIGNAL',
 
@@ -3181,18 +2845,9 @@ function generateWavePlan(
         {},
 
       eliteChance:
-        Math.min(
-          0.12,
-          number *
-          0.004
-        )
-
+        0
     };
   }
-
-
-  let archetype =
-    'STANDARD ATTACK';
 
 
   const available =
@@ -3237,6 +2892,17 @@ function generateWavePlan(
 
   if (
     number >=
+    7
+  ) {
+
+    available.push(
+      'HUNTER STRIKE'
+    );
+  }
+
+
+  if (
+    number >=
     8
   ) {
 
@@ -3246,7 +2912,7 @@ function generateWavePlan(
   }
 
 
-  archetype =
+  const archetype =
     available[
       Math.floor(
         Math.random() *
@@ -3263,77 +2929,65 @@ function generateWavePlan(
 
   let eliteChance =
     Math.min(
-      0.06 +
+      .05 +
       number *
-      0.007,
-      0.22
+      .006,
+      .20
     );
 
 
   let weights = {
 
-    virus:
-      .48,
+    virus: .42,
 
-    runner:
-      .22,
+    runner: .20,
 
-    tank:
-      .14,
+    tank: .13,
 
-    shooter:
-      .10,
+    shooter: .10,
 
-    sapper:
-      .06
+    sapper: .07,
 
+    hunter: .08
   };
 
 
   if (
-    number ===
-    1
+    number === 1
   ) {
 
     weights = {
 
-      virus:
-        1,
+      virus: 1,
 
-      runner:
-        0,
+      runner: 0,
 
-      tank:
-        0,
+      tank: 0,
 
-      shooter:
-        0,
+      shooter: 0,
 
-      sapper:
-        0
+      sapper: 0,
+
+      hunter: 0
     };
 
   } else if (
-    number ===
-    2
+    number === 2
   ) {
 
     weights = {
 
-      virus:
-        .72,
+      virus: .72,
 
-      runner:
-        .28,
+      runner: .28,
 
-      tank:
-        0,
+      tank: 0,
 
-      shooter:
-        0,
+      shooter: 0,
 
-      sapper:
-        0
+      sapper: 0,
+
+      hunter: 0
     };
 
   } else if (
@@ -3344,26 +2998,23 @@ function generateWavePlan(
     total =
       Math.round(
         total *
-        1.22
+        1.20
       );
 
 
     weights = {
 
-      virus:
-        .62,
+      virus: .55,
 
-      runner:
-        .38,
+      runner: .32,
 
-      tank:
-        0,
+      hunter: .13,
 
-      shooter:
-        0,
+      tank: 0,
 
-      sapper:
-        0
+      shooter: 0,
+
+      sapper: 0
     };
 
   } else if (
@@ -3373,20 +3024,17 @@ function generateWavePlan(
 
     weights = {
 
-      virus:
-        .38,
+      virus: .30,
 
-      runner:
-        .16,
+      runner: .12,
 
-      tank:
-        .38,
+      tank: .42,
 
-      shooter:
-        .08,
+      shooter: .08,
 
-      sapper:
-        0
+      sapper: .08,
+
+      hunter: 0
     };
 
   } else if (
@@ -3396,20 +3044,17 @@ function generateWavePlan(
 
     weights = {
 
-      virus:
-        .34,
+      virus: .25,
 
-      runner:
-        .16,
+      runner: .12,
 
-      tank:
-        .12,
+      tank: .10,
 
-      shooter:
-        .38,
+      shooter: .40,
 
-      sapper:
-        0
+      sapper: .03,
+
+      hunter: .10
     };
 
   } else if (
@@ -3419,20 +3064,37 @@ function generateWavePlan(
 
     weights = {
 
-      virus:
-        .25,
+      virus: .20,
 
-      runner:
-        .10,
+      runner: .08,
 
-      tank:
-        .24,
+      tank: .27,
 
-      shooter:
-        .14,
+      shooter: .10,
 
-      sapper:
-        .27
+      sapper: .28,
+
+      hunter: .07
+    };
+
+  } else if (
+    archetype ===
+    'HUNTER STRIKE'
+  ) {
+
+    weights = {
+
+      virus: .22,
+
+      runner: .18,
+
+      tank: .08,
+
+      shooter: .15,
+
+      sapper: .07,
+
+      hunter: .30
     };
 
   } else if (
@@ -3443,39 +3105,21 @@ function generateWavePlan(
     total =
       Math.max(
         8,
+
         Math.round(
           total *
-          .68
+          .7
         )
       );
 
 
     eliteChance =
       Math.min(
-        .48,
-        .28 +
+        .45,
+        .26 +
         number *
         .01
       );
-
-
-    weights = {
-
-      virus:
-        .34,
-
-      runner:
-        .18,
-
-      tank:
-        .20,
-
-      shooter:
-        .16,
-
-      sapper:
-        .12
-    };
   }
 
 
@@ -3499,11 +3143,14 @@ function generateWavePlan(
   }
 
 
-  const counts =
-    allocateCounts(
-      total,
-      weights
-    );
+  if (
+    number <
+    7
+  ) {
+
+    weights.hunter =
+      0;
+  }
 
 
   return {
@@ -3516,10 +3163,13 @@ function generateWavePlan(
 
     archetype,
 
-    counts,
+    counts:
+      allocateCounts(
+        total,
+        weights
+      ),
 
     eliteChance
-
   };
 }
 
@@ -3552,13 +3202,13 @@ function allocateCounts(
         sum,
         [
           ,
-          weight
+          value
         ]
       ) =>
         sum +
-        weight,
+        value,
       0
-    ) || 1;
+    );
 
 
   const counts =
@@ -3569,48 +3219,41 @@ function allocateCounts(
     0;
 
 
-  for (
-    let i = 0;
-    i < entries.length;
-    i++
-  ) {
+  entries.forEach(
+    (
+      [
+        type,
+        weight
+      ],
+      index
+    ) => {
 
-    const [
-      type,
-      weight
-    ] =
-      entries[i];
+      const count =
+        index ===
+        entries.length -
+        1
 
+          ? total -
+            assigned
 
-    const normalized =
-      weight /
-      weightTotal;
-
-
-    const count =
-      i ===
-      entries.length -
-      1
-
-        ? total -
-          assigned
-
-        : Math.floor(
-            total *
-            normalized
-          );
+          : Math.floor(
+              total *
+              weight /
+              weightTotal
+            );
 
 
-    counts[type] =
-      Math.max(
-        0,
-        count
-      );
+      counts[type] =
+        Math.max(
+          0,
+          count
+        );
 
 
-    assigned +=
-      counts[type];
-  }
+      assigned +=
+        counts[type];
+    }
+  );
 
 
   return counts;
@@ -3648,19 +3291,17 @@ function makeWaveQueue(
   }
 
 
-  shuffle(
+  return shuffle(
     queue
   );
-
-
-  return queue;
 }
 
 
 function beginWaveCombat() {
 
-  gameState =
-    GAME_STATE.PLAYING;
+  setGameState(
+    GAME_STATE.PLAYING
+  );
 
 
   waveState =
@@ -3674,36 +3315,12 @@ function beginWaveCombat() {
     );
 
 
-  upgradePanel
-    .classList
-    .add(
-      'hidden'
-    );
-
-
   clearBuildSelection();
 
 
   waveBannerUntil =
     gameTime +
     1600;
-
-
-  waveClearUntil =
-    0;
-
-
-  waveClearMessage =
-    '';
-
-
-  if (!currentWavePlan) {
-
-    currentWavePlan =
-      generateWavePlan(
-        wave
-      );
-  }
 
 
   if (
@@ -3735,15 +3352,6 @@ function beginWaveCombat() {
       spawnIntervalForWave() +
       250;
   }
-
-
-  tone(
-    360,
-    160,
-    'sine',
-    0.017,
-    520
-  );
 }
 
 
@@ -3756,6 +3364,7 @@ function spawnIntervalForWave() {
 
     CONFIG.waves
       .baseSpawnIntervalMs -
+
     (
       wave -
       1
@@ -3777,7 +3386,7 @@ function updateWaveSystem() {
       waveClearUntil
     ) {
 
-      enterUpgradeState();
+      enterBuildState();
     }
 
 
@@ -3789,21 +3398,24 @@ function updateWaveSystem() {
 
 
   if (
-    currentWavePlan?.boss
+    currentWavePlan.boss
   ) {
 
     if (
       !boss &&
       pendingBossAt &&
       gameTime >=
-        pendingBossAt
+      pendingBossAt
     ) {
 
       pendingBossAt =
         0;
 
 
-      spawnBoss();
+      spawnBoss(
+        currentWavePlan
+          .bossType
+      );
     }
 
 
@@ -3860,6 +3472,171 @@ function updateWaveSystem() {
 }
 
 
+function finishWave() {
+
+  if (
+    waveState !==
+    'active'
+  ) {
+
+    return;
+  }
+
+
+  waveState =
+    'cleared';
+
+
+  mouse.isDown =
+    false;
+
+
+  waveClearUntil =
+    gameTime +
+    CONFIG.waves
+      .clearDisplayMs;
+
+
+  let recharge =
+    CONFIG.core
+      .shieldRechargeBase;
+
+
+  const clean =
+    gameTime -
+    core.lastDamageAt >=
+    CONFIG.core
+      .cleanShieldWindowMs;
+
+
+  if (clean) {
+
+    recharge +=
+      CONFIG.core
+        .shieldRechargeCleanBonus;
+  }
+
+
+  const shieldBefore =
+    core.shield;
+
+
+  core.shield =
+    Math.min(
+      core.maxShield,
+      core.shield +
+      recharge
+    );
+
+
+  const gainedShield =
+    core.shield -
+    shieldBefore;
+
+
+  dataCurrency +=
+    CONFIG.economy
+      .waveClearData;
+
+
+  stats.dataCollected +=
+    CONFIG.economy
+      .waveClearData;
+
+
+  waveClearMessage =
+    `SHIELD +${Math.round(gainedShield)} · DATA +${CONFIG.economy.waveClearData}`;
+
+
+  if (
+    !player.alive &&
+    player.lives >
+      0
+  ) {
+
+    respawnPlayer();
+  }
+
+
+  tone(
+    520,
+    220,
+    'sine',
+    .02,
+    860
+  );
+}
+
+
+function enterBuildState() {
+
+  wave++;
+
+
+  currentWavePlan =
+    generateWavePlan(
+      wave
+    );
+
+
+  setGameState(
+    GAME_STATE.BUILD
+  );
+
+
+  waveState =
+    'prepare';
+
+
+  const seconds =
+    currentWavePlan.boss
+
+      ? CONFIG.waves
+          .bossBuildSeconds
+
+      : CONFIG.waves
+          .buildSeconds;
+
+
+  buildEndsAtReal =
+    performance.now() +
+    seconds *
+    1000;
+
+
+  buildPanel
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  renderThreatPreview();
+
+
+  updateBuildUi();
+}
+
+
+function startNextWaveFromBuild() {
+
+  if (
+    gameState !==
+    GAME_STATE.BUILD
+  ) {
+
+    return;
+  }
+
+
+  beginWaveCombat();
+}
+
+
+// ============================================================
+// SPAWN
+// ============================================================
+
 function queueEnemySpawn(
   type
 ) {
@@ -3878,18 +3655,14 @@ function queueEnemySpawn(
       Math.random() <
       (
         currentWavePlan
-          ?.eliteChance ||
+          .eliteChance ||
         0
       ),
-
-    createdAt:
-      gameTime,
 
     readyAt:
       gameTime +
       CONFIG.waves
         .spawnWarningMs
-
   });
 }
 
@@ -3927,188 +3700,6 @@ function updatePendingSpawns() {
 }
 
 
-function finishWave() {
-
-  if (
-    waveState !==
-      'active' ||
-    gameState !==
-      GAME_STATE.PLAYING
-  ) {
-
-    return;
-  }
-
-
-  waveState =
-    'cleared';
-
-
-  mouse.isDown =
-    false;
-
-
-  waveClearUntil =
-    gameTime +
-    CONFIG.waves
-      .clearDisplayMs;
-
-
-  const shieldGain =
-    Math.min(
-
-      CONFIG.core
-        .shieldRechargePerWave,
-
-      core.maxShield -
-      core.shield
-    );
-
-
-  core.shield +=
-    shieldGain;
-
-
-  const clearData =
-    12 +
-    wave *
-    3;
-
-
-  dataCurrency +=
-    clearData;
-
-
-  stats.dataCollected +=
-    clearData;
-
-
-  waveClearMessage =
-    `${
-      shieldGain >
-      0
-
-        ? `CORE SHIELD +${Math.round(shieldGain)}`
-
-        : 'CORE SHIELD FULL'
-    } · DATA +${clearData}`;
-
-
-  tone(
-    520,
-    220,
-    'sine',
-    0.02,
-    860
-  );
-}
-
-
-function enterUpgradeState() {
-
-  if (
-    gameState !==
-    GAME_STATE.PLAYING
-  ) {
-
-    return;
-  }
-
-
-  gameState =
-    GAME_STATE.UPGRADE;
-
-
-  mouse.isDown =
-    false;
-
-
-  showUpgradeChoices();
-}
-
-
-function enterBuildState() {
-
-  wave++;
-
-
-  currentWavePlan =
-    generateWavePlan(
-      wave
-    );
-
-
-  gameState =
-    GAME_STATE.BUILD;
-
-
-  waveState =
-    'prepare';
-
-
-  buildEndsAtReal =
-    performance.now() +
-    CONFIG.waves
-      .buildSeconds *
-    1000;
-
-
-  buildPanel
-    .classList
-    .remove(
-      'hidden'
-    );
-
-
-  renderThreatPreview();
-
-
-  updateBuildUi();
-}
-
-
-function startNextWaveFromBuild() {
-
-  if (
-    gameState !==
-    GAME_STATE.BUILD
-  ) {
-
-    return;
-  }
-
-
-  beginWaveCombat();
-}
-
-
-function getThreatCount() {
-
-  if (
-    currentWavePlan?.boss
-  ) {
-
-    return (
-      boss ||
-      pendingBossAt
-
-        ? 1
-
-        : 0
-    ) +
-    enemies.length +
-    pendingSpawns.length;
-  }
-
-
-  return (
-    waveQueue.length +
-    pendingSpawns.length +
-    enemies.length
-  );
-}
-
-
 function createSpawnPoint() {
 
   const side =
@@ -4123,47 +3714,40 @@ function createSpawnPoint() {
 
 
   if (
-    side === 0
+    side ===
+    0
   ) {
 
     const x =
       random(
         45,
-        canvas.width -
-        45
+        canvas.width - 45
       );
 
 
     return {
 
-      spawnX:
-        x,
+      spawnX: x,
 
       spawnY:
         -margin,
 
-      warningX:
-        x,
+      warningX: x,
 
-      warningY:
-        22,
-
-      warningAngle:
-        Math.PI / 2
-
+      warningY: 22
     };
   }
 
 
   if (
-    side === 1
+    side ===
+    1
   ) {
 
     const y =
       random(
         45,
-        canvas.height -
-        45
+        canvas.height - 45
       );
 
 
@@ -4173,55 +3757,40 @@ function createSpawnPoint() {
         canvas.width +
         margin,
 
-      spawnY:
-        y,
+      spawnY: y,
 
       warningX:
-        canvas.width -
-        22,
+        canvas.width - 22,
 
-      warningY:
-        y,
-
-      warningAngle:
-        Math.PI
-
+      warningY: y
     };
   }
 
 
   if (
-    side === 2
+    side ===
+    2
   ) {
 
     const x =
       random(
         45,
-        canvas.width -
-        45
+        canvas.width - 45
       );
 
 
     return {
 
-      spawnX:
-        x,
+      spawnX: x,
 
       spawnY:
         canvas.height +
         margin,
 
-      warningX:
-        x,
+      warningX: x,
 
       warningY:
-        canvas.height -
-        22,
-
-      warningAngle:
-        -Math.PI /
-        2
-
+        canvas.height - 22
     };
   }
 
@@ -4229,8 +3798,7 @@ function createSpawnPoint() {
   const y =
     random(
       45,
-      canvas.height -
-      45
+      canvas.height - 45
     );
 
 
@@ -4239,57 +3807,50 @@ function createSpawnPoint() {
     spawnX:
       -margin,
 
-    spawnY:
-      y,
+    spawnY: y,
 
-    warningX:
-      22,
+    warningX: 22,
 
-    warningY:
-      y,
-
-    warningAngle:
-      0
-
+    warningY: y
   };
 }
 
 
 // ============================================================
-// ENEMIES + TARGETING
+// ENEMIES
 // ============================================================
 
 function spawnEnemy(
-  spawnData
+  spawn
 ) {
 
   const base =
     CONFIG.enemies[
-      spawnData.type
+      spawn.type
     ];
 
 
   const hpScale =
     1 +
     Math.min(
-      .8,
+      .7,
       (
         wave -
         1
       ) *
-      .025
+      .022
     );
 
 
   const speedScale =
     1 +
     Math.min(
-      .45,
+      .38,
       (
         wave -
         1
       ) *
-      .018
+      .015
     );
 
 
@@ -4299,13 +3860,13 @@ function spawnEnemy(
       nextEntityId++,
 
     type:
-      spawnData.type,
+      spawn.type,
 
     x:
-      spawnData.spawnX,
+      spawn.spawnX,
 
     y:
-      spawnData.spawnY,
+      spawn.spawnY,
 
     radius:
       base.radius,
@@ -4315,18 +3876,12 @@ function spawnEnemy(
       speedScale,
 
     hp:
-      Math.max(
-        1,
-        base.hp *
-        hpScale
-      ),
+      base.hp *
+      hpScale,
 
     maxHp:
-      Math.max(
-        1,
-        base.hp *
-        hpScale
-      ),
+      base.hp *
+      hpScale,
 
     damage:
       base.damage,
@@ -4336,6 +3891,19 @@ function spawnEnemy(
 
     dataReward:
       base.data,
+
+    expReward:
+      base.exp,
+
+    elite:
+      spawn.elite ||
+      false,
+
+    eliteType:
+      null,
+
+    shieldHits:
+      0,
 
     hitFlashUntil:
       0,
@@ -4348,35 +3916,26 @@ function spawnEnemy(
 
     spin:
       random(
-        -2.2,
-        2.2
+        -2,
+        2
       ),
-
-    strafeDir:
-      Math.random() <
-      .5
-
-        ? -1
-
-        : 1,
 
     nextAttackAt:
       gameTime +
       random(
         300,
-        800
+        750
       ),
 
-    elite:
-      spawnData.elite ||
-      false,
+    nextBurstAt:
+      gameTime +
+      random(
+        1300,
+        2300
+      ),
 
-    eliteType:
-      null,
-
-    shieldHits:
+    burstUntil:
       0
-
   };
 
 
@@ -4426,7 +3985,6 @@ function spawnEnemyInsideArena(
     elite:
       Math.random() <
       eliteChance
-
   });
 }
 
@@ -4472,6 +4030,11 @@ function applyEliteModifier(
       .dataMultiplier;
 
 
+  enemy.expReward *=
+    CONFIG.elite
+      .expMultiplier;
+
+
   if (
     enemy.eliteType ===
     'overclocked'
@@ -4489,7 +4052,7 @@ function applyEliteModifier(
   ) {
 
     enemy.hp *=
-      1.45;
+      1.4;
 
 
     enemy.maxHp =
@@ -4513,7 +4076,7 @@ function getEnemyTarget(
   enemy
 ) {
 
-  const aliveStructures =
+  const validStructures =
     structures.filter(
       structure =>
         structure.hp >
@@ -4523,48 +4086,27 @@ function getEnemyTarget(
 
   if (
     enemy.type ===
-      'sapper' ||
-    enemy.type ===
-      'tank'
+    'hunter'
   ) {
-
-    const target =
-      nearestEntity(
-        enemy.x,
-        enemy.y,
-        aliveStructures
-      );
-
-
-    if (target) {
-
-      return {
-
-        kind:
-          'structure',
-
-        entity:
-          target
-
-      };
-    }
-
 
     return {
 
       kind:
-        'core',
+        player.alive
+          ? 'player'
+          : 'core',
 
       entity:
-        core
-
+        player.alive
+          ? player
+          : core
     };
   }
 
 
   if (
     enemy.type ===
-    'shooter'
+    'runner'
   ) {
 
     if (
@@ -4573,7 +4115,7 @@ function getEnemyTarget(
         enemy,
         player
       ) <
-      450
+      520
     ) {
 
       return {
@@ -4583,7 +4125,6 @@ function getEnemyTarget(
 
         entity:
           player
-
       };
     }
 
@@ -4595,51 +4136,109 @@ function getEnemyTarget(
 
       entity:
         core
-
     };
   }
 
 
-  const blockingFirewall =
-    nearestEntity(
+  if (
+    enemy.type ===
+    'virus'
+  ) {
 
-      enemy.x,
-      enemy.y,
-
-      aliveStructures.filter(
-        structure =>
-          structure.type ===
-          'firewall'
+    if (
+      player.alive &&
+      distance(
+        enemy,
+        player
+      ) <
+      360 &&
+      distance(
+        enemy,
+        player
+      ) <
+      distance(
+        enemy,
+        core
       )
+    ) {
 
-    );
+      return {
+
+        kind:
+          'player',
+
+        entity:
+          player
+      };
+    }
+
+
+    return {
+
+      kind:
+        'core',
+
+      entity:
+        core
+    };
+  }
 
 
   if (
-    blockingFirewall &&
-    distance(
-      enemy,
-      blockingFirewall
-    ) <
-    175 &&
-    distance(
-      enemy,
-      blockingFirewall
-    ) <
-    distance(
-      enemy,
-      core
-    )
+    enemy.type ===
+    'shooter'
   ) {
 
     return {
 
       kind:
-        'structure',
+        player.alive
+          ? 'player'
+          : 'core',
 
       entity:
-        blockingFirewall
+        player.alive
+          ? player
+          : core
+    };
+  }
 
+
+  if (
+    enemy.type ===
+      'tank' ||
+    enemy.type ===
+      'sapper'
+  ) {
+
+    const structure =
+      nearestEntity(
+        enemy.x,
+        enemy.y,
+        validStructures
+      );
+
+
+    if (structure) {
+
+      return {
+
+        kind:
+          'structure',
+
+        entity:
+          structure
+      };
+    }
+
+
+    return {
+
+      kind:
+        'core',
+
+      entity:
+        core
     };
   }
 
@@ -4651,7 +4250,6 @@ function getEnemyTarget(
 
     entity:
       core
-
   };
 }
 
@@ -4660,7 +4258,7 @@ function enemySpeedMultiplier(
   enemy
 ) {
 
-  let multiplier =
+  let result =
     1;
 
 
@@ -4670,10 +4268,19 @@ function enemySpeedMultiplier(
   ) {
 
     if (
-      structure.type ===
-        'slow' &&
-      structure.hp >
-        0 &&
+      structure.type !==
+        'slow' ||
+      structure.hp <=
+        0 ||
+      structure.disabledUntil >
+        gameTime
+    ) {
+
+      continue;
+    }
+
+
+    if (
       distance(
         enemy,
         structure
@@ -4681,9 +4288,9 @@ function enemySpeedMultiplier(
       structure.effectRange
     ) {
 
-      multiplier =
+      result =
         Math.min(
-          multiplier,
+          result,
           structure.slowAmount
         );
     }
@@ -4698,12 +4305,12 @@ function enemySpeedMultiplier(
     .5
   ) {
 
-    multiplier *=
-      1.45;
+    result *=
+      1.4;
   }
 
 
-  return multiplier;
+  return result;
 }
 
 
@@ -4716,35 +4323,50 @@ function updateEnemies(
     of enemies
   ) {
 
+    if (
+      enemy.type ===
+      'hunter' &&
+      gameTime >=
+      enemy.nextBurstAt
+    ) {
+
+      enemy.burstUntil =
+        gameTime +
+        CONFIG.enemies
+          .hunter
+          .burstDurationMs;
+
+
+      enemy.nextBurstAt =
+        gameTime +
+        CONFIG.enemies
+          .hunter
+          .burstCooldownMs;
+
+
+      burstAt(
+        enemy.x,
+        enemy.y,
+        '#f06595',
+        7,
+        1.7
+      );
+    }
+
+
     const target =
       getEnemyTarget(
         enemy
       );
 
 
-    if (
-      !target?.entity
-    ) {
-
-      continue;
-    }
-
-
-    const tx =
-      target.entity.x;
-
-
-    const ty =
-      target.entity.y;
-
-
     const dx =
-      tx -
+      target.entity.x -
       enemy.x;
 
 
     const dy =
-      ty -
+      target.entity.y -
       enemy.y;
 
 
@@ -4762,15 +4384,10 @@ function updateEnemies(
       );
 
 
-    const targetRadius =
-      target.entity.radius ||
-      20;
-
-
     const touching =
       dist <=
       enemy.radius +
-      targetRadius +
+      target.entity.radius +
       3;
 
 
@@ -4779,7 +4396,7 @@ function updateEnemies(
       'shooter'
     ) {
 
-      const desiredRange =
+      const range =
         CONFIG.enemies
           .shooter
           .range;
@@ -4791,7 +4408,7 @@ function updateEnemies(
 
       if (
         dist >
-        desiredRange +
+        range +
         35
       ) {
 
@@ -4800,16 +4417,16 @@ function updateEnemies(
 
       } else if (
         dist <
-        desiredRange -
+        range -
         35
       ) {
 
         direction =
-          -.8;
+          -.7;
       }
 
 
-      const moveSpeed =
+      const speed =
         enemy.speed *
         enemySpeedMultiplier(
           enemy
@@ -4820,7 +4437,7 @@ function updateEnemies(
         Math.cos(
           angle
         ) *
-        moveSpeed *
+        speed *
         direction *
         dt;
 
@@ -4829,32 +4446,8 @@ function updateEnemies(
         Math.sin(
           angle
         ) *
-        moveSpeed *
+        speed *
         direction *
-        dt;
-
-
-      enemy.x +=
-        Math.cos(
-          angle +
-          Math.PI /
-          2
-        ) *
-        moveSpeed *
-        .24 *
-        enemy.strafeDir *
-        dt;
-
-
-      enemy.y +=
-        Math.sin(
-          angle +
-          Math.PI /
-          2
-        ) *
-        moveSpeed *
-        .24 *
-        enemy.strafeDir *
         dt;
 
 
@@ -4867,7 +4460,6 @@ function updateEnemies(
 
           enemy.x,
           enemy.y,
-
           angle,
 
           CONFIG.enemies
@@ -4876,9 +4468,7 @@ function updateEnemies(
 
           enemy.damage,
 
-          '#4dabf7',
-
-          5
+          '#4dabf7'
         );
 
 
@@ -4886,35 +4476,42 @@ function updateEnemies(
           gameTime +
           CONFIG.enemies
             .shooter
-            .attackMs *
-          Math.max(
-            .65,
-            1 -
-            wave *
-            .012
-          ) +
-          random(
-            0,
-            220
-          );
+            .attackMs;
       }
 
-    } else if (
-      !touching
-    ) {
 
-      const moveSpeed =
+      continue;
+    }
+
+
+    if (!touching) {
+
+      let speed =
         enemy.speed *
         enemySpeedMultiplier(
           enemy
         );
 
 
+      if (
+        enemy.type ===
+          'hunter' &&
+        gameTime <
+        enemy.burstUntil
+      ) {
+
+        speed *=
+          CONFIG.enemies
+            .hunter
+            .burstMultiplier;
+      }
+
+
       enemy.x +=
         Math.cos(
           angle
         ) *
-        moveSpeed *
+        speed *
         dt;
 
 
@@ -4922,7 +4519,7 @@ function updateEnemies(
         Math.sin(
           angle
         ) *
-        moveSpeed *
+        speed *
         dt;
 
     } else if (
@@ -4930,31 +4527,10 @@ function updateEnemies(
       enemy.nextAttackAt
     ) {
 
-      if (
-        target.kind ===
-        'core'
-      ) {
-
-        damageCore(
-          enemy.damage
-        );
-
-      } else if (
-        target.kind ===
-        'player'
-      ) {
-
-        damagePlayer(
-          enemy.damage
-        );
-
-      } else {
-
-        damageStructure(
-          target.entity,
-          enemy.damage
-        );
-      }
+      attackEnemyTarget(
+        enemy,
+        target
+      );
 
 
       enemy.nextAttackAt =
@@ -4978,14 +4554,6 @@ function updateEnemies(
         createExplosion(
           enemy
         );
-
-      } else {
-
-        screenShake =
-          Math.max(
-            screenShake,
-            3
-          );
       }
     }
 
@@ -5005,6 +4573,43 @@ function updateEnemies(
 }
 
 
+function attackEnemyTarget(
+  enemy,
+  target
+) {
+
+  if (
+    target.kind ===
+    'player'
+  ) {
+
+    damagePlayer(
+      enemy.damage
+    );
+
+  } else if (
+    target.kind ===
+    'structure'
+  ) {
+
+    damageStructure(
+      target.entity,
+      enemy.damage
+    );
+
+  } else {
+
+    damageCore(
+      enemy.damage
+    );
+  }
+}
+
+
+// ============================================================
+// ENEMY PROJECTILES
+// ============================================================
+
 function fireEnemyProjectile(
   x,
   y,
@@ -5012,13 +4617,10 @@ function fireEnemyProjectile(
   speed,
   damage,
   color = '#ff8787',
-  radius = CONFIG.enemyProjectile.radius
+  radius = 6
 ) {
 
   enemyProjectiles.push({
-
-    id:
-      nextEntityId++,
 
     x,
 
@@ -5038,15 +4640,14 @@ function fireEnemyProjectile(
 
     damage,
 
-    radius,
-
     color,
+
+    radius,
 
     expiresAt:
       gameTime +
       CONFIG.enemyProjectile
         .lifeMs
-
   });
 }
 
@@ -5076,415 +4677,91 @@ function updateEnemyProjectiles(
       projectile =>
 
         gameTime <
-          projectile.expiresAt &&
+        projectile.expiresAt &&
 
         projectile.x >
-          -90 &&
+        -90 &&
 
         projectile.x <
-          canvas.width +
-          90 &&
+        canvas.width + 90 &&
 
         projectile.y >
-          -90 &&
+        -90 &&
 
         projectile.y <
-          canvas.height +
-          90
+        canvas.height + 90
     );
 }
 
 
-function drawEnemyProjectiles() {
+// ============================================================
+// BOSSES
+// ============================================================
 
-  ctx.save();
-
-
-  for (
-    const projectile
-    of enemyProjectiles
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      projectile.x,
-      projectile.y,
-      projectile.radius,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      projectile.color;
-
-
-    ctx.shadowColor =
-      projectile.color;
-
-
-    ctx.shadowBlur =
-      14;
-
-
-    ctx.fill();
-  }
-
-
-  ctx.restore();
-}
-
-
-function drawEnemy(
-  enemy
+function getBossType(
+  waveNumber
 ) {
 
-  ctx.save();
-
-
-  ctx.translate(
-    enemy.x,
-    enemy.y
-  );
-
-
-  ctx.rotate(
-    enemy.rotation
-  );
-
-
-  const baseColor =
-    CONFIG.enemies[
-      enemy.type
-    ].color;
-
-
-  const color =
-    gameTime <
-    enemy.hitFlashUntil
-
-      ? '#ffffff'
-
-      : baseColor;
-
-
-  if (
-    enemy.elite
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      0,
-      0,
-
-      enemy.radius +
-      8 +
-      Math.sin(
-        performance.now() *
-        .01
-      ) *
-      2,
-
-      0,
-      Math.PI * 2
+  const bossNumber =
+    Math.floor(
+      waveNumber /
+      5
     );
 
 
-    ctx.strokeStyle =
-      enemy.eliteType ===
-      'shielded'
-
-        ? '#74c0fc'
-
-        : '#ffd43b';
-
-
-    ctx.lineWidth =
-      3;
-
-
-    ctx.shadowColor =
-      ctx.strokeStyle;
-
-
-    ctx.shadowBlur =
-      12;
-
-
-    ctx.stroke();
-  }
-
-
-  if (
-    enemy.type ===
-    'runner'
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      enemy.radius + 5,
-      0
-    );
-
-
-    ctx.lineTo(
-      -enemy.radius,
-      -enemy.radius * .8
-    );
-
-
-    ctx.lineTo(
-      -enemy.radius * .42,
-      0
-    );
-
-
-    ctx.lineTo(
-      -enemy.radius,
-      enemy.radius * .8
-    );
-
-
-    ctx.closePath();
-
-
-    ctx.fillStyle =
-      color;
-
-
-    ctx.shadowColor =
-      baseColor;
-
-
-    ctx.shadowBlur =
-      14;
-
-
-    ctx.fill();
-
-  } else if (
-    enemy.type ===
-    'shooter'
-  ) {
-
-    ctx.fillStyle =
-      color;
-
-
-    ctx.shadowColor =
-      baseColor;
-
-
-    ctx.shadowBlur =
-      16;
-
-
-    ctx.fillRect(
-      -enemy.radius * .72,
-      -enemy.radius * .72,
-      enemy.radius * 1.44,
-      enemy.radius * 1.44
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      0,
-      0,
-      5,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      '#d0ebff';
-
-
-    ctx.fill();
-
-  } else if (
-    enemy.type ===
-    'sapper'
-  ) {
-
-    drawPolygon(
-      0,
-      0,
-      enemy.radius,
-      5,
-      color,
-      false
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      -5,
-      -8
-    );
-
-
-    ctx.lineTo(
-      7,
-      0
-    );
-
-
-    ctx.lineTo(
-      -5,
-      8
-    );
-
-
-    ctx.closePath();
-
-
-    ctx.fillStyle =
-      '#0b3d1b';
-
-
-    ctx.fill();
-
-  } else {
-
-    drawStarShape(
-      0,
-      0,
-
-      enemy.radius,
-
-      enemy.radius *
-      (
-        enemy.type ===
-        'tank'
-
-          ? .72
-
-          : .68
-      ),
-
-      enemy.type ===
-      'tank'
-
-        ? 8
-
-        : 12,
-
-      color
-    );
-  }
-
-
-  if (
-    enemy.shieldHits >
-    0
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      0,
-      0,
-      enemy.radius + 5,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.strokeStyle =
-      '#74c0fc';
-
-
-    ctx.lineWidth =
-      2;
-
-
-    ctx.stroke();
-  }
-
-
-  ctx.restore();
-
-
-  if (
-    enemy.maxHp >
-      1 &&
-    enemy.hp <
-      enemy.maxHp
-  ) {
-
-    drawSmallHpBar(
-      enemy.x,
-
-      enemy.y -
-      enemy.radius -
-      12,
-
-      42,
-
-      enemy.hp /
-      enemy.maxHp,
-
-      baseColor
-    );
-  }
-}
-
-
-function drawEnemies() {
-
-  for (
-    const enemy
-    of enemies
-  ) {
-
-    drawEnemy(
-      enemy
-    );
-  }
-}
-
-
-// ============================================================
-// BOSS
-// ============================================================
-
-function spawnBoss() {
-
-  const tier =
-    Math.max(
-      1,
-      Math.floor(
-        wave /
-        CONFIG.waves
-          .bossEvery
-      )
-    );
-
-
-  const maxHp =
-    CONFIG.boss
-      .baseHp +
-    Math.min(
-      CONFIG.boss
-        .hpTierCap,
-      tier -
+  const index =
+    (
+      bossNumber -
       1
-    ) *
-    CONFIG.boss
-      .hpPerTier;
+    ) %
+    4;
+
+
+  return [
+    'ddos',
+    'ransomware',
+    'rootkit',
+    'zeroday'
+  ][index];
+}
+
+
+function bossCycle(
+  waveNumber
+) {
+
+  return Math.floor(
+    (
+      waveNumber -
+      5
+    ) /
+    20
+  );
+}
+
+
+function spawnBoss(
+  type
+) {
+
+  const base =
+    CONFIG.bosses[
+      type
+    ];
+
+
+  const cycle =
+    bossCycle(
+      wave
+    );
+
+
+  const hpScale =
+    Math.pow(
+      CONFIG.bossScaling
+        .hpPerCycle,
+      cycle
+    );
 
 
   boss = {
@@ -5492,81 +4769,131 @@ function spawnBoss() {
     id:
       nextEntityId++,
 
+    type,
+
+    name:
+      base.name,
+
     x:
       canvas.width / 2,
 
     y:
-      90,
+      95,
 
-    radius:
-      CONFIG.boss
-        .radius,
+    radius: 52,
 
     hp:
-      maxHp,
+      base.baseHp *
+      hpScale,
 
-    maxHp,
+    maxHp:
+      base.baseHp *
+      hpScale,
 
-    phase:
-      1,
+    shield:
+      type ===
+      'ransomware'
 
-    rotation:
-      0,
+        ? base.shield *
+          hpScale
 
-    hitFlashUntil:
-      0,
+        : 0,
+
+    maxShield:
+      type ===
+      'ransomware'
+
+        ? base.shield *
+          hpScale
+
+        : 0,
+
+    speed:
+      base.speed *
+      (
+        1 +
+        cycle *
+        CONFIG.bossScaling
+          .speedPerCycle
+      ),
+
+    damage:
+      base.damage *
+      (
+        1 +
+        cycle *
+        CONFIG.bossScaling
+          .damagePerCycle
+      ),
+
+    score:
+      base.score,
+
+    dataReward:
+      base.data,
+
+    expReward:
+      base.exp,
+
+    color:
+      base.color,
+
+    turretDamageMultiplier:
+      base
+        .turretDamageMultiplier,
+
+    phase: 1,
+
+    lastPhase: 1,
+
+    rotation: 0,
+
+    hitFlashUntil: 0,
+
+    stealthUntil: 0,
 
     nextShotAt:
-      gameTime +
-      700,
+      gameTime + 800,
 
     nextRadialAt:
-      gameTime +
-      2100,
-
-    nextChargeAt:
-      gameTime +
-      3300,
+      gameTime + 2200,
 
     nextSummonAt:
-      gameTime +
-      3700,
+      gameTime + 2800,
+
+    nextAbilityAt:
+      gameTime + 3300,
+
+    nextTeleportAt:
+      gameTime + 2600,
+
+    nextEmpAt:
+      gameTime + 3800,
 
     mode:
-      'hunt',
+      'normal',
 
-    modeUntil:
-      0,
+    modeUntil: 0,
 
-    chargeX:
-      0,
+    chargeX: 0,
 
-    chargeY:
-      0,
+    chargeY: 0,
 
-    chargeTargetX:
-      core.x,
-
-    chargeTargetY:
-      core.y,
-
-    contactCooldownUntil:
-      0
-
+    contactCooldownUntil: 0
   };
-
-
-  screenShake =
-    15;
 
 
   burstAt(
     boss.x,
     boss.y,
-    '#ff4d6d',
-    38,
+    boss.color,
+    40,
     5
   );
+
+
+  screenShake =
+    15;
 
 
   sfx.boss();
@@ -5601,650 +4928,80 @@ function updateBoss(
         : 3;
 
 
-  boss.rotation +=
-    dt *
-    (
-      boss.phase ===
-      3
-
-        ? 1.5
-
-        : .9
-    );
-
-
   if (
-    boss.mode ===
-    'chargeWarning'
+    boss.phase !==
+    boss.lastPhase
   ) {
 
     if (
-      gameTime >=
-      boss.modeUntil
+      boss.type ===
+      'ransomware'
     ) {
 
-      const dx =
-        boss.chargeTargetX -
-        boss.x;
-
-
-      const dy =
-        boss.chargeTargetY -
-        boss.y;
-
-
-      const len =
-        Math.hypot(
-          dx,
-          dy
-        ) || 1;
-
-
-      boss.chargeX =
-        dx /
-        len;
-
-
-      boss.chargeY =
-        dy /
-        len;
-
-
-      boss.mode =
-        'charge';
-
-
-      boss.modeUntil =
-        gameTime +
-        CONFIG.boss
-          .chargeDurationMs;
-
-
-      screenShake =
+      boss.shield =
         Math.max(
-          screenShake,
-          7
+          boss.shield,
+
+          boss.maxShield *
+          .45
         );
     }
 
 
-    return;
-  }
-
-
-  if (
-    boss.mode ===
-    'charge'
-  ) {
-
-    boss.x +=
-      boss.chargeX *
-      CONFIG.boss
-        .chargeSpeed *
-      dt;
-
-
-    boss.y +=
-      boss.chargeY *
-      CONFIG.boss
-        .chargeSpeed *
-      dt;
-
-
-    if (
-      Math.random() <
-      .7
-    ) {
-
-      createParticle(
-        boss.x,
-        boss.y,
-
-        -boss.chargeX *
-        random(
-          60,
-          150
-        ),
-
-        -boss.chargeY *
-        random(
-          60,
-          150
-        ),
-
-        '#ff6b81',
-
-        random(
-          3,
-          6
-        ),
-
-        random(
-          220,
-          360
-        )
-      );
-    }
-
-
-    handleBossContact();
-
-
-    if (
-      gameTime >=
-      boss.modeUntil
-    ) {
-
-      boss.mode =
-        'hunt';
-
-
-      boss.nextChargeAt =
-        gameTime +
-        CONFIG.boss
-          .chargeMs *
-        (
-          boss.phase ===
-          3
-
-            ? .75
-
-            : 1
-        );
-    }
-
-
-    clampBoss();
-
-
-    return;
-  }
-
-
-  let target =
-    core;
-
-
-  if (
-    boss.phase ===
-      1 &&
-    player.alive
-  ) {
-
-    target =
-      player;
-  }
-
-
-  if (
-    boss.phase ===
-    3
-  ) {
-
-    target =
-      nearestEntity(
-        boss.x,
-        boss.y,
-        structures
-      ) ||
-      core;
-  }
-
-
-  const dx =
-    target.x -
-    boss.x;
-
-
-  const dy =
-    target.y -
-    boss.y;
-
-
-  const dist =
-    Math.hypot(
-      dx,
-      dy
-    ) || 1;
-
-
-  const angle =
-    Math.atan2(
-      dy,
-      dx
-    );
-
-
-  const speed =
-    CONFIG.boss
-      .speed *
-    (
-      1 +
-      (
-        boss.phase -
-        1
-      ) *
-      .12
-    );
-
-
-  if (
-    dist >
-    230
-  ) {
-
-    boss.x +=
-      Math.cos(
-        angle
-      ) *
-      speed *
-      dt;
-
-
-    boss.y +=
-      Math.sin(
-        angle
-      ) *
-      speed *
-      dt;
-
-  } else {
-
-    boss.x +=
-      Math.cos(
-        angle +
-        Math.PI /
-        2
-      ) *
-      speed *
-      .42 *
-      dt;
-
-
-    boss.y +=
-      Math.sin(
-        angle +
-        Math.PI /
-        2
-      ) *
-      speed *
-      .42 *
-      dt;
-  }
-
-
-  if (
-    gameTime >=
-    boss.nextShotAt
-  ) {
-
-    const aimTarget =
-      boss.phase ===
-        1 &&
-      player.alive
-
-        ? player
-
-        : core;
-
-
-    const aim =
-      Math.atan2(
-        aimTarget.y -
-        boss.y,
-
-        aimTarget.x -
-        boss.x
-      );
-
-
-    const spreads =
-      boss.phase ===
-      3
-
-        ? [
-            -.2,
-            -.1,
-            0,
-            .1,
-            .2
-          ]
-
-        : [
-            -.12,
-            0,
-            .12
-          ];
-
-
-    for (
-      const spread
-      of spreads
-    ) {
-
-      fireEnemyProjectile(
-        boss.x,
-        boss.y,
-
-        aim +
-        spread,
-
-        CONFIG.boss
-          .projectileSpeed,
-
-        boss.phase ===
-        3
-
-          ? 13
-
-          : 11,
-
-        '#ff6b81',
-
-        7
-      );
-    }
-
-
-    boss.nextShotAt =
-      gameTime +
-      CONFIG.boss
-        .shotMs *
-      (
-        boss.phase ===
-        3
-
-          ? .68
-
-          : 1
-      );
-  }
-
-
-  if (
-    gameTime >=
-    boss.nextRadialAt
-  ) {
-
-    const count =
-      boss.phase ===
-      3
-
-        ? 18
-
-        : 12;
-
-
-    for (
-      let i = 0;
-      i < count;
-      i++
-    ) {
-
-      const shotAngle =
-        boss.rotation +
-        Math.PI *
-        2 *
-        i /
-        count;
-
-
-      fireEnemyProjectile(
-        boss.x,
-        boss.y,
-
-        shotAngle,
-
-        CONFIG.boss
-          .projectileSpeed *
-        .78,
-
-        9,
-
-        '#c77dff',
-
-        6
-      );
-    }
-
-
-    boss.nextRadialAt =
-      gameTime +
-      CONFIG.boss
-        .radialMs *
-      (
-        boss.phase ===
-        3
-
-          ? .78
-
-          : 1
-      );
+    boss.lastPhase =
+      boss.phase;
 
 
     screenShake =
-      Math.max(
-        screenShake,
-        5
-      );
+      10;
   }
 
 
-  if (
-    gameTime >=
-    boss.nextChargeAt
-  ) {
-
-    const chargeTarget =
-      boss.phase ===
-      3
-
-        ? (
-            nearestEntity(
-              boss.x,
-              boss.y,
-              structures
-            ) ||
-            core
-          )
-
-        : core;
-
-
-    boss.mode =
-      'chargeWarning';
-
-
-    boss.modeUntil =
-      gameTime +
-      CONFIG.boss
-        .chargeWarningMs;
-
-
-    boss.chargeTargetX =
-      chargeTarget.x;
-
-
-    boss.chargeTargetY =
-      chargeTarget.y;
-
-
-    tone(
-      160,
-      300,
-      'sawtooth',
-      0.027,
-      90
+  boss.rotation +=
+    dt *
+    (
+      .7 +
+      boss.phase *
+      .15
     );
-  }
 
 
   if (
-    boss.phase >=
-      2 &&
-    gameTime >=
-      boss.nextSummonAt
+    boss.type ===
+    'ddos'
   ) {
 
-    const summonCount =
-      boss.phase ===
-      3
+    updateDdosBoss(
+      dt
+    );
 
-        ? 4
+  } else if (
+    boss.type ===
+    'ransomware'
+  ) {
 
-        : 2;
+    updateRansomwareBoss(
+      dt
+    );
 
+  } else if (
+    boss.type ===
+    'rootkit'
+  ) {
 
-    for (
-      let i = 0;
-      i < summonCount;
-      i++
-    ) {
+    updateRootkitBoss(
+      dt
+    );
 
-      const angle2 =
-        Math.PI *
-        2 *
-        i /
-        summonCount;
+  } else {
 
-
-      spawnEnemyInsideArena(
-
-        Math.random() <
-        .55
-
-          ? 'runner'
-
-          : 'virus',
-
-        boss.x +
-        Math.cos(
-          angle2
-        ) *
-        70,
-
-        boss.y +
-        Math.sin(
-          angle2
-        ) *
-        70,
-
-        .12
-      );
-    }
-
-
-    boss.nextSummonAt =
-      gameTime +
-      CONFIG.boss
-        .summonMs;
+    updateZeroDayBoss(
+      dt
+    );
   }
 
 
   handleBossContact();
-
-
-  clampBoss();
-}
-
-
-function handleBossContact() {
-
-  if (
-    !boss ||
-    gameTime <
-    boss.contactCooldownUntil
-  ) {
-
-    return;
-  }
-
-
-  if (
-    player.alive &&
-    distance(
-      boss,
-      player
-    ) <=
-    boss.radius +
-    player.radius
-  ) {
-
-    damagePlayer(
-      CONFIG.boss
-        .contactDamage
-    );
-
-
-    boss.contactCooldownUntil =
-      gameTime +
-      650;
-
-
-    return;
-  }
-
-
-  if (
-    distance(
-      boss,
-      core
-    ) <=
-    boss.radius +
-    core.radius
-  ) {
-
-    damageCore(
-      CONFIG.boss
-        .contactDamage
-    );
-
-
-    boss.contactCooldownUntil =
-      gameTime +
-      650;
-
-
-    return;
-  }
-
-
-  const structure =
-    structures.find(
-      structure =>
-        structure.hp >
-          0 &&
-        distance(
-          boss,
-          structure
-        ) <=
-        boss.radius +
-        structure.radius
-    );
-
-
-  if (structure) {
-
-    damageStructure(
-      structure,
-      CONFIG.boss
-        .contactDamage *
-      1.25
-    );
-
-
-    boss.contactCooldownUntil =
-      gameTime +
-      650;
-  }
-}
-
-
-function clampBoss() {
-
-  if (!boss) {
-    return;
-  }
 
 
   boss.x =
@@ -6266,225 +5023,1015 @@ function clampBoss() {
 }
 
 
-function drawBoss() {
+function updateDdosBoss(
+  dt
+) {
+
+  const target =
+    player.alive
+      ? player
+      : core;
+
+
+  moveBossToward(
+    target,
+    dt,
+    270
+  );
+
+
+  if (
+    gameTime >=
+    boss.nextShotAt
+  ) {
+
+    bossFireFan(
+      target,
+      boss.phase === 3
+        ? 7
+        : 5,
+      .10,
+      290,
+      9
+    );
+
+
+    boss.nextShotAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 560
+          : 780
+      );
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextRadialAt
+  ) {
+
+    bossRadial(
+      boss.phase ===
+      3
+        ? 18
+        : 12,
+      235,
+      8,
+      '#c77dff'
+    );
+
+
+    boss.nextRadialAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 1900
+          : 2700
+      );
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextSummonAt
+  ) {
+
+    bossSummon(
+      boss.phase ===
+      3
+        ? 6
+        : 4,
+      [
+        'virus',
+        'runner'
+      ]
+    );
+
+
+    boss.nextSummonAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 2600
+          : 3400
+      );
+  }
+}
+
+
+function updateRansomwareBoss(
+  dt
+) {
+
+  moveBossToward(
+    core,
+    dt,
+    250
+  );
+
+
+  if (
+    gameTime >=
+    boss.nextShotAt
+  ) {
+
+    bossFireFan(
+      core,
+      boss.phase === 3
+        ? 5
+        : 3,
+      .13,
+      250,
+      11
+    );
+
+
+    boss.nextShotAt =
+      gameTime +
+      900;
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextAbilityAt
+  ) {
+
+    let target =
+      player.alive
+        ? player
+        : core;
+
+
+    if (
+      structures.length >
+      0 &&
+      Math.random() <
+      .5
+    ) {
+
+      target =
+        structures[
+          Math.floor(
+            Math.random() *
+            structures.length
+          )
+        ];
+    }
+
+
+    createHazard(
+      target.x,
+      target.y,
+      75,
+      4500,
+      7,
+      '#e64980'
+    );
+
+
+    if (
+      structures.length >
+      0
+    ) {
+
+      const structure =
+        structures[
+          Math.floor(
+            Math.random() *
+            structures.length
+          )
+        ];
+
+
+      structure.disabledUntil =
+        Math.max(
+          structure.disabledUntil,
+          gameTime + 3000
+        );
+
+
+      addFloatingText(
+        structure.x,
+        structure.y - 35,
+        'ENCRYPTED',
+        '#e64980'
+      );
+    }
+
+
+    boss.nextAbilityAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 3300
+          : 4400
+      );
+  }
+
+
+  if (
+    boss.phase >=
+      2 &&
+    gameTime >=
+    boss.nextSummonAt
+  ) {
+
+    bossSummon(
+      boss.phase ===
+      3
+        ? 4
+        : 2,
+      [
+        'sapper',
+        'virus'
+      ]
+    );
+
+
+    boss.nextSummonAt =
+      gameTime +
+      4200;
+  }
+}
+
+
+function updateRootkitBoss(
+  dt
+) {
+
+  const target =
+    player.alive
+      ? player
+      : core;
+
+
+  moveBossToward(
+    target,
+    dt,
+    180
+  );
+
+
+  if (
+    gameTime >=
+    boss.nextTeleportAt
+  ) {
+
+    const angle =
+      random(
+        0,
+        Math.PI * 2
+      );
+
+
+    const range =
+      random(
+        170,
+        260
+      );
+
+
+    boss.x =
+      clamp(
+
+        target.x +
+        Math.cos(
+          angle
+        ) *
+        range,
+
+        boss.radius,
+
+        canvas.width -
+        boss.radius
+      );
+
+
+    boss.y =
+      clamp(
+
+        target.y +
+        Math.sin(
+          angle
+        ) *
+        range,
+
+        boss.radius,
+
+        canvas.height -
+        boss.radius
+      );
+
+
+    boss.stealthUntil =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 1600
+          : 1200
+      );
+
+
+    boss.nextTeleportAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 2300
+          : 3200
+      );
+
+
+    burstAt(
+      boss.x,
+      boss.y,
+      '#9775fa',
+      18,
+      2.5
+    );
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextShotAt
+  ) {
+
+    bossFireFan(
+      target,
+      boss.phase ===
+      3
+        ? 5
+        : 3,
+      .16,
+      320,
+      11
+    );
+
+
+    boss.nextShotAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 620
+          : 900
+      );
+  }
+
+
+  if (
+    boss.phase >=
+      2 &&
+    gameTime >=
+    boss.nextSummonAt
+  ) {
+
+    bossSummon(
+      3,
+      [
+        'hunter',
+        'runner'
+      ]
+    );
+
+
+    boss.nextSummonAt =
+      gameTime +
+      3900;
+  }
+}
+
+
+function updateZeroDayBoss(
+  dt
+) {
+
+  if (
+    boss.mode ===
+    'charge'
+  ) {
+
+    boss.x +=
+      boss.chargeX *
+      430 *
+      dt;
+
+
+    boss.y +=
+      boss.chargeY *
+      430 *
+      dt;
+
+
+    if (
+      gameTime >=
+      boss.modeUntil
+    ) {
+
+      boss.mode =
+        'normal';
+    }
+
+
+    return;
+  }
+
+
+  moveBossToward(
+    core,
+    dt,
+    220
+  );
+
+
+  if (
+    gameTime >=
+    boss.nextShotAt
+  ) {
+
+    bossFireFan(
+      player.alive
+        ? player
+        : core,
+      boss.phase === 3
+        ? 7
+        : 5,
+      .11,
+      310,
+      12
+    );
+
+
+    boss.nextShotAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 520
+          : 760
+      );
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextRadialAt
+  ) {
+
+    bossRadial(
+      boss.phase ===
+      3
+        ? 20
+        : 14,
+      260,
+      10,
+      '#ff922b'
+    );
+
+
+    boss.nextRadialAt =
+      gameTime +
+      2300;
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextEmpAt
+  ) {
+
+    for (
+      const structure
+      of structures
+    ) {
+
+      structure.disabledUntil =
+        Math.max(
+          structure.disabledUntil,
+          gameTime +
+          (
+            boss.phase ===
+            3
+              ? 2500
+              : 1800
+          )
+        );
+    }
+
+
+    addFloatingText(
+      core.x,
+      core.y - 90,
+      'NETWORK EMP',
+      '#ff922b'
+    );
+
+
+    boss.nextEmpAt =
+      gameTime +
+      (
+        boss.phase ===
+        3
+          ? 3800
+          : 5000
+      );
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextSummonAt
+  ) {
+
+    bossSummon(
+      boss.phase ===
+      3
+        ? 5
+        : 3,
+      [
+        'hunter',
+        'sapper',
+        'shooter'
+      ]
+    );
+
+
+    boss.nextSummonAt =
+      gameTime +
+      3900;
+  }
+
+
+  if (
+    gameTime >=
+    boss.nextAbilityAt
+  ) {
+
+    const target =
+      structures.length >
+      0
+
+        ? nearestEntity(
+            boss.x,
+            boss.y,
+            structures
+          )
+
+        : core;
+
+
+    const dx =
+      target.x -
+      boss.x;
+
+
+    const dy =
+      target.y -
+      boss.y;
+
+
+    const len =
+      Math.hypot(
+        dx,
+        dy
+      ) || 1;
+
+
+    boss.chargeX =
+      dx /
+      len;
+
+
+    boss.chargeY =
+      dy /
+      len;
+
+
+    boss.mode =
+      'charge';
+
+
+    boss.modeUntil =
+      gameTime +
+      650;
+
+
+    boss.nextAbilityAt =
+      gameTime +
+      4800;
+  }
+}
+
+
+function moveBossToward(
+  target,
+  dt,
+  desiredRange
+) {
+
+  const dx =
+    target.x -
+    boss.x;
+
+
+  const dy =
+    target.y -
+    boss.y;
+
+
+  const dist =
+    Math.hypot(
+      dx,
+      dy
+    ) || 1;
+
+
+  if (
+    dist <=
+    desiredRange
+  ) {
+
+    return;
+  }
+
+
+  boss.x +=
+    dx /
+    dist *
+    boss.speed *
+    dt;
+
+
+  boss.y +=
+    dy /
+    dist *
+    boss.speed *
+    dt;
+}
+
+
+function bossFireFan(
+  target,
+  count,
+  spacing,
+  speed,
+  damage
+) {
+
+  const center =
+    Math.atan2(
+
+      target.y -
+      boss.y,
+
+      target.x -
+      boss.x
+    );
+
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const offset =
+      i -
+      (
+        count -
+        1
+      ) /
+      2;
+
+
+    fireEnemyProjectile(
+      boss.x,
+      boss.y,
+
+      center +
+      offset *
+      spacing,
+
+      speed,
+
+      damage,
+
+      boss.color,
+
+      7
+    );
+  }
+}
+
+
+function bossRadial(
+  count,
+  speed,
+  damage,
+  color
+) {
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const angle =
+      Math.PI *
+      2 *
+      i /
+      count +
+      boss.rotation;
+
+
+    fireEnemyProjectile(
+      boss.x,
+      boss.y,
+      angle,
+      speed,
+      damage,
+      color,
+      6
+    );
+  }
+}
+
+
+function bossSummon(
+  count,
+  types
+) {
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const angle =
+      Math.PI *
+      2 *
+      i /
+      count;
+
+
+    const type =
+      types[
+        Math.floor(
+          Math.random() *
+          types.length
+        )
+      ];
+
+
+    spawnEnemyInsideArena(
+
+      type,
+
+      boss.x +
+      Math.cos(
+        angle
+      ) *
+      80,
+
+      boss.y +
+      Math.sin(
+        angle
+      ) *
+      80,
+
+      .08
+    );
+  }
+}
+
+
+function handleBossContact() {
+
+  if (
+    !boss ||
+    gameTime <
+    boss.contactCooldownUntil
+  ) {
+
+    return;
+  }
+
+
+  if (
+    player.alive &&
+    distance(
+      boss,
+      player
+    ) <
+    boss.radius +
+    player.radius
+  ) {
+
+    damagePlayer(
+      boss.damage
+    );
+
+
+    boss.contactCooldownUntil =
+      gameTime +
+      650;
+
+
+    return;
+  }
+
+
+  if (
+    distance(
+      boss,
+      core
+    ) <
+    boss.radius +
+    core.radius
+  ) {
+
+    damageCore(
+      boss.damage
+    );
+
+
+    boss.contactCooldownUntil =
+      gameTime +
+      650;
+
+
+    return;
+  }
+
+
+  const structure =
+    structures.find(
+      item =>
+        distance(
+          boss,
+          item
+        ) <
+        boss.radius +
+        item.radius
+    );
+
+
+  if (structure) {
+
+    damageStructure(
+      structure,
+      boss.damage *
+      1.2
+    );
+
+
+    boss.contactCooldownUntil =
+      gameTime +
+      650;
+  }
+}
+
+
+function damageBoss(
+  bullet
+) {
 
   if (!boss) {
     return;
   }
 
 
-  ctx.save();
-
-
-  ctx.translate(
-    boss.x,
-    boss.y
-  );
-
-
-  ctx.rotate(
-    boss.rotation
-  );
-
-
-  const color =
+  if (
+    boss.type ===
+      'rootkit' &&
     gameTime <
-    boss.hitFlashUntil
+      boss.stealthUntil &&
+    bullet.owner ===
+      'turret'
+  ) {
 
-      ? '#ffffff'
-
-      : '#ff4d6d';
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    0,
-    0,
-
-    boss.radius +
-    11 +
-    Math.sin(
-      performance.now() *
-      .006
-    ) *
-    4,
-
-    0,
-    Math.PI * 2
-  );
+    return;
+  }
 
 
-  ctx.strokeStyle =
-    'rgba(199,125,255,.65)';
-
-
-  ctx.lineWidth =
-    4;
-
-
-  ctx.shadowColor =
-    '#c77dff';
-
-
-  ctx.shadowBlur =
-    25;
-
-
-  ctx.stroke();
-
-
-  drawStarShape(
-    0,
-    0,
-    boss.radius,
-    boss.radius * .7,
-    16,
-    color
-  );
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    0,
-    0,
-    16,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.fillStyle =
-    '#2b0a3d';
-
-
-  ctx.fill();
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    0,
-    0,
-    7,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.fillStyle =
-    '#f8f0fc';
-
-
-  ctx.fill();
-
-
-  ctx.restore();
+  let damage =
+    bullet.damage;
 
 
   if (
-    boss.mode ===
-    'chargeWarning'
+    bullet.owner ===
+    'turret'
   ) {
 
-    ctx.save();
+    damage *=
+      boss
+        .turretDamageMultiplier;
+  }
 
 
-    ctx.setLineDash(
-      [
-        10,
-        8
-      ]
-    );
+  if (
+    boss.type ===
+      'rootkit' &&
+    bullet.owner ===
+      'player' &&
+    gameTime <
+      boss.stealthUntil
+  ) {
+
+    boss.stealthUntil =
+      0;
 
 
-    ctx.beginPath();
-
-
-    ctx.moveTo(
+    addFloatingText(
       boss.x,
-      boss.y
+      boss.y - 55,
+      'REVEALED',
+      '#d0bfff'
     );
+  }
 
 
-    ctx.lineTo(
-      boss.chargeTargetX,
-      boss.chargeTargetY
-    );
+  if (
+    boss.shield >
+    0
+  ) {
+
+    const blocked =
+      Math.min(
+        boss.shield,
+        damage
+      );
 
 
-    ctx.strokeStyle =
-      'rgba(255,77,109,.8)';
+    boss.shield -=
+      blocked;
 
 
-    ctx.lineWidth =
-      3;
+    damage -=
+      blocked;
+  }
 
 
-    ctx.shadowColor =
-      '#ff4d6d';
+  boss.hp -=
+    damage;
 
 
-    ctx.shadowBlur =
-      12;
+  boss.hitFlashUntil =
+    gameTime +
+    70;
 
 
-    ctx.stroke();
+  if (
+    boss.hp <=
+    0
+  ) {
 
-
-    ctx.restore();
+    killBoss();
   }
 }
 
 
 function killBoss() {
 
-  if (!boss) {
+  const deadBoss =
+    boss;
+
+
+  if (!deadBoss) {
     return;
   }
 
 
-  const deathX =
-    boss.x;
-
-
-  const deathY =
-    boss.y;
-
-
   burstAt(
-    deathX,
-    deathY,
-    '#ff4d6d',
-    60,
+    deadBoss.x,
+    deadBoss.y,
+    deadBoss.color,
+    70,
     6
   );
 
 
-  burstAt(
-    deathX,
-    deathY,
-    '#c77dff',
-    40,
-    5
-  );
-
-
   registerKill(
-    CONFIG.boss
-      .score,
 
-    CONFIG.boss
-      .data,
+    deadBoss.score,
 
-    deathX,
+    deadBoss.dataReward,
 
-    deathY -
-    30,
+    deadBoss.expReward,
+
+    deadBoss.x,
+
+    deadBoss.y - 40,
 
     true,
 
@@ -6496,46 +6043,127 @@ function killBoss() {
 
 
   spawnPickup(
-    deathX - 45,
-    deathY,
+    deadBoss.x,
+    deadBoss.y,
     'core'
-  );
-
-
-  spawnPickup(
-    deathX,
-    deathY + 28,
-    'rapid'
-  );
-
-
-  spawnPickup(
-    deathX + 45,
-    deathY,
-    'shield'
-  );
-
-
-  screenShake =
-    20;
-
-
-  tone(
-    95,
-    650,
-    'sawtooth',
-    0.05,
-    35
   );
 
 
   boss =
     null;
+
+
+  screenShake =
+    20;
 }
 
 
 // ============================================================
-// DEFENSES + BUILD PHASE
+// HAZARDS
+// ============================================================
+
+function createHazard(
+  x,
+  y,
+  radius,
+  durationMs,
+  damage,
+  color
+) {
+
+  hazards.push({
+
+    x,
+
+    y,
+
+    radius,
+
+    damage,
+
+    color,
+
+    expiresAt:
+      gameTime +
+      durationMs,
+
+    nextTickAt:
+      gameTime +
+      500
+  });
+}
+
+
+function updateHazards() {
+
+  for (
+    const hazard
+    of hazards
+  ) {
+
+    if (
+      gameTime <
+      hazard.nextTickAt
+    ) {
+
+      continue;
+    }
+
+
+    hazard.nextTickAt =
+      gameTime +
+      650;
+
+
+    if (
+      player.alive &&
+      distance(
+        hazard,
+        player
+      ) <
+      hazard.radius
+    ) {
+
+      damagePlayer(
+        hazard.damage
+      );
+    }
+
+
+    for (
+      const structure
+      of structures
+    ) {
+
+      if (
+        distance(
+          hazard,
+          structure
+        ) <
+        hazard.radius
+      ) {
+
+        damageStructure(
+          structure,
+          hazard.damage *
+          .55
+        );
+      }
+    }
+  }
+
+
+  hazards =
+    hazards.filter(
+      hazard =>
+        gameTime <
+        hazard.expiresAt
+    );
+}
+
+
+// ============================================================
+// DEFENSE
 // ============================================================
 
 function defenseCost(
@@ -6562,8 +6190,7 @@ function createStructure(
 
   const maxHp =
     base.hp *
-    runMods
-      .defenseHp;
+    runMods.defenseHp;
 
 
   return {
@@ -6580,22 +6207,22 @@ function createStructure(
     radius:
       base.radius,
 
-    level:
-      1,
+    level: 1,
 
     hp:
       maxHp,
 
     maxHp,
 
-    rotation:
-      0,
+    disabledUntil: 0,
+
+    rotation: 0,
 
     nextActionAt:
       gameTime +
       random(
         200,
-        700
+        600
       ),
 
     effectRange:
@@ -6625,532 +6252,7 @@ function createStructure(
             .repairChargeBonus
 
         : 0
-
   };
-}
-
-
-function handleBuildCanvasClick() {
-
-  if (
-    selectedBuildType
-  ) {
-
-    const cost =
-      defenseCost(
-        selectedBuildType
-      );
-
-
-    const check =
-      canPlaceStructure(
-        selectedBuildType,
-        mouse.x,
-        mouse.y
-      );
-
-
-    if (!check.ok) {
-
-      buildHint.textContent =
-        check.reason;
-
-
-      tone(
-        120,
-        80,
-        'square',
-        0.012,
-        80
-      );
-
-
-      return;
-    }
-
-
-    if (
-      dataCurrency <
-      cost
-    ) {
-
-      buildHint.textContent =
-        'Not enough DATA.';
-
-
-      tone(
-        120,
-        80,
-        'square',
-        0.012,
-        80
-      );
-
-
-      return;
-    }
-
-
-    dataCurrency -=
-      cost;
-
-
-    structures.push(
-      createStructure(
-        selectedBuildType,
-        mouse.x,
-        mouse.y
-      )
-    );
-
-
-    stats.structuresBuilt++;
-
-
-    sfx.build();
-
-
-    burstAt(
-      mouse.x,
-      mouse.y,
-
-      CONFIG.defenses[
-        selectedBuildType
-      ].color,
-
-      14,
-      2.4
-    );
-
-
-    updateBuildUi();
-
-
-    return;
-  }
-
-
-  const clicked =
-    structures
-
-      .filter(
-        structure =>
-          structure.hp >
-          0
-      )
-
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          distancePoint(
-            mouse.x,
-            mouse.y,
-            a.x,
-            a.y
-          ) -
-          distancePoint(
-            mouse.x,
-            mouse.y,
-            b.x,
-            b.y
-          )
-      )[0];
-
-
-  if (
-    clicked &&
-    distancePoint(
-      mouse.x,
-      mouse.y,
-      clicked.x,
-      clicked.y
-    ) <=
-    clicked.radius +
-    12
-  ) {
-
-    selectedStructureId =
-      clicked.id;
-
-
-    buildHint.textContent =
-      `${
-        CONFIG.defenses[
-          clicked.type
-        ].name
-      } selected - Level ${clicked.level}.`;
-
-  } else {
-
-    selectedStructureId =
-      null;
-
-
-    buildHint.textContent =
-      'Select a defense, then click the arena to place it.';
-  }
-
-
-  updateBuildUi();
-}
-
-
-function canPlaceStructure(
-  type,
-  x,
-  y
-) {
-
-  const radius =
-    CONFIG.defenses[
-      type
-    ].radius;
-
-
-  const pad =
-    CONFIG.placement
-      .edgePadding;
-
-
-  if (
-    x <
-      pad +
-      radius ||
-    x >
-      canvas.width -
-      pad -
-      radius ||
-    y <
-      pad +
-      radius ||
-    y >
-      canvas.height -
-      pad -
-      radius
-  ) {
-
-    return {
-
-      ok:
-        false,
-
-      reason:
-        'Too close to the arena edge.'
-
-    };
-  }
-
-
-  if (
-    distancePoint(
-      x,
-      y,
-      core.x,
-      core.y
-    ) <
-    CONFIG.core
-      .noBuildRadius +
-    radius
-  ) {
-
-    return {
-
-      ok:
-        false,
-
-      reason:
-        'Core safety zone - build farther away.'
-
-    };
-  }
-
-
-  for (
-    const structure
-    of structures
-  ) {
-
-    if (
-      structure.hp <=
-      0
-    ) {
-
-      continue;
-    }
-
-
-    if (
-      distancePoint(
-        x,
-        y,
-        structure.x,
-        structure.y
-      ) <
-      radius +
-      structure.radius +
-      CONFIG.placement
-        .overlapPadding
-    ) {
-
-      return {
-
-        ok:
-          false,
-
-        reason:
-          'Defense overlaps another structure.'
-
-      };
-    }
-  }
-
-
-  return {
-
-    ok:
-      true,
-
-    reason:
-      ''
-
-  };
-}
-
-
-function selectBuildType(
-  type
-) {
-
-  if (
-    gameState !==
-    GAME_STATE.BUILD
-  ) {
-
-    return;
-  }
-
-
-  selectedBuildType =
-    selectedBuildType ===
-    type
-
-      ? null
-
-      : type;
-
-
-  selectedStructureId =
-    null;
-
-
-  buildHint.textContent =
-    selectedBuildType
-
-      ? `${
-          CONFIG.defenses[
-            type
-          ].name
-        }: click a green location to place.`
-
-      : 'Select a defense, then click the arena to place it.';
-
-
-  updateBuildUi();
-}
-
-
-function clearBuildSelection() {
-
-  selectedBuildType =
-    null;
-
-
-  selectedStructureId =
-    null;
-
-
-  buildButtons.forEach(
-    button =>
-      button
-        .classList
-        .remove(
-          'selected'
-        )
-  );
-
-
-  if (buildHint) {
-
-    buildHint.textContent =
-      'Select a defense, then click the arena to place it.';
-  }
-
-
-  if (
-    upgradeStructureBtn
-  ) {
-
-    upgradeStructureBtn.disabled =
-      true;
-  }
-}
-
-
-function selectedStructure() {
-
-  return (
-    structures.find(
-      structure =>
-        structure.id ===
-          selectedStructureId &&
-        structure.hp >
-          0
-    ) ||
-    null
-  );
-}
-
-
-function structureUpgradeCost(
-  structure
-) {
-
-  const base =
-    CONFIG.defenses[
-      structure.type
-    ].cost;
-
-
-  return Math.round(
-    base *
-    (
-      .7 +
-      structure.level *
-      .45
-    )
-  );
-}
-
-
-function upgradeSelectedStructure() {
-
-  const structure =
-    selectedStructure();
-
-
-  if (
-    !structure ||
-    structure.level >=
-      3
-  ) {
-
-    return;
-  }
-
-
-  const cost =
-    structureUpgradeCost(
-      structure
-    );
-
-
-  if (
-    dataCurrency <
-    cost
-  ) {
-
-    buildHint.textContent =
-      'Not enough DATA to upgrade this defense.';
-
-
-    return;
-  }
-
-
-  dataCurrency -=
-    cost;
-
-
-  structure.level++;
-
-
-  const oldMax =
-    structure.maxHp;
-
-
-  structure.maxHp *=
-    1.32;
-
-
-  structure.hp =
-    Math.min(
-      structure.maxHp,
-
-      structure.hp +
-      (
-        structure.maxHp -
-        oldMax
-      ) +
-      structure.maxHp *
-      .15
-    );
-
-
-  if (
-    structure.type ===
-    'slow'
-  ) {
-
-    structure.effectRange *=
-      1.12;
-
-
-    structure.slowAmount =
-      Math.max(
-        .3,
-        structure.slowAmount *
-        .9
-      );
-  }
-
-
-  if (
-    structure.type ===
-    'repair'
-  ) {
-
-    structure.repairCharges +=
-      2;
-  }
-
-
-  burstAt(
-    structure.x,
-    structure.y,
-
-    CONFIG.defenses[
-      structure.type
-    ].color,
-
-    18,
-    2.6
-  );
-
-
-  sfx.upgrade();
-
-
-  buildHint.textContent =
-    `${
-      CONFIG.defenses[
-        structure.type
-      ].name
-    } upgraded to Level ${structure.level}.`;
-
-
-  updateBuildUi();
 }
 
 
@@ -7163,25 +6265,25 @@ function updateStructures(
     of structures
   ) {
 
-    if (
-      structure.hp <=
-      0
-    ) {
-
-      continue;
-    }
-
-
     structure.rotation +=
       dt *
       .8;
 
 
     if (
+      structure.disabledUntil >
+      gameTime
+    ) {
+
+      continue;
+    }
+
+
+    if (
       structure.type ===
-        'turret' &&
+      'turret' &&
       gameTime >=
-        structure.nextActionAt
+      structure.nextActionAt
     ) {
 
       const targets =
@@ -7190,12 +6292,34 @@ function updateStructures(
         ];
 
 
-      if (boss) {
+      if (
+        boss &&
+        !(
+          boss.type ===
+            'rootkit' &&
+          gameTime <
+            boss.stealthUntil
+        )
+      ) {
 
         targets.push(
           boss
         );
       }
+
+
+      const range =
+        CONFIG.defenses
+          .turret
+          .range *
+        (
+          1 +
+          (
+            structure.level -
+            1
+          ) *
+          .08
+        );
 
 
       const target =
@@ -7206,25 +6330,12 @@ function updateStructures(
 
           targets.filter(
             target =>
-              distancePoint(
-                structure.x,
-                structure.y,
-                target.x,
-                target.y
+              distance(
+                structure,
+                target
               ) <=
-              CONFIG.defenses
-                .turret
-                .range *
-              (
-                1 +
-                (
-                  structure.level -
-                  1
-                ) *
-                .08
-              )
+              range
           )
-
         );
 
 
@@ -7232,6 +6343,7 @@ function updateStructures(
 
         const angle =
           Math.atan2(
+
             target.y -
             structure.y,
 
@@ -7272,8 +6384,7 @@ function updateStructures(
             ) *
             700,
 
-          radius:
-            3,
+          radius: 3,
 
           damage:
             CONFIG.defenses
@@ -7290,11 +6401,9 @@ function updateStructures(
               .28
             ),
 
-          crit:
-            false,
+          crit: false,
 
-          remainingPierce:
-            0,
+          remainingPierce: 0,
 
           hitIds:
             new Set(),
@@ -7305,7 +6414,6 @@ function updateStructures(
           expiresAt:
             gameTime +
             1200
-
         });
 
 
@@ -7328,18 +6436,21 @@ function updateStructures(
         'repair' &&
       structure.repairCharges >
         0 &&
-      gameTime >=
-        structure.nextActionAt &&
       core.hp <
-        core.maxHp
+        core.maxHp &&
+      gameTime >=
+        structure.nextActionAt
     ) {
 
-      const heal =
+      healCore(
+
         CONFIG.defenses
           .repair
           .heal *
+
         runMods
           .repairAmount *
+
         (
           1 +
           (
@@ -7347,11 +6458,7 @@ function updateStructures(
             1
           ) *
           .35
-        );
-
-
-      healCore(
-        heal
+        )
       );
 
 
@@ -7362,21 +6469,7 @@ function updateStructures(
         gameTime +
         CONFIG.defenses
           .repair
-          .pulseMs *
-        Math.pow(
-          .9,
-          structure.level -
-          1
-        );
-
-
-      burstAt(
-        structure.x,
-        structure.y,
-        '#69db7c',
-        10,
-        1.7
-      );
+          .pulseMs;
     }
   }
 
@@ -7398,7 +6491,7 @@ function damageStructure(
   if (
     !structure ||
     structure.hp <=
-    0
+      0
   ) {
 
     return;
@@ -7413,457 +6506,400 @@ function damageStructure(
     );
 
 
-  addFloatingText(
-    structure.x,
-
-    structure.y -
-    structure.radius -
-    8,
-
-    `-${Math.round(amount)}`,
-
-    '#ff8787'
-  );
-
-
   if (
     structure.hp <=
     0
   ) {
 
     burstAt(
+
       structure.x,
+
       structure.y,
 
       CONFIG.defenses[
         structure.type
       ].color,
 
-      24,
-      3.8
+      20,
+
+      3.4
     );
-
-
-    if (
-      selectedStructureId ===
-      structure.id
-    ) {
-
-      selectedStructureId =
-        null;
-    }
   }
 }
 
 
-function drawStructures() {
+// ============================================================
+// BUILD PHASE
+// ============================================================
+
+function handleBuildCanvasClick() {
+
+  if (
+    selectedBuildType
+  ) {
+
+    const cost =
+      defenseCost(
+        selectedBuildType
+      );
+
+
+    const result =
+      canPlaceStructure(
+
+        selectedBuildType,
+
+        mouse.x,
+
+        mouse.y
+      );
+
+
+    if (!result.ok) {
+
+      buildHint.textContent =
+        result.reason;
+
+      return;
+    }
+
+
+    if (
+      dataCurrency <
+      cost
+    ) {
+
+      buildHint.textContent =
+        'Not enough DATA.';
+
+      return;
+    }
+
+
+    dataCurrency -=
+      cost;
+
+
+    structures.push(
+      createStructure(
+
+        selectedBuildType,
+
+        mouse.x,
+
+        mouse.y
+      )
+    );
+
+
+    stats.structuresBuilt++;
+
+
+    sfx.build();
+
+
+    updateBuildUi();
+
+
+    return;
+  }
+
+
+  const structure =
+    nearestEntity(
+      mouse.x,
+      mouse.y,
+      structures
+    );
+
+
+  if (
+    structure &&
+    distancePoint(
+
+      mouse.x,
+      mouse.y,
+
+      structure.x,
+      structure.y
+    ) <=
+    structure.radius +
+    12
+  ) {
+
+    selectedStructureId =
+      structure.id;
+
+  } else {
+
+    selectedStructureId =
+      null;
+  }
+
+
+  updateBuildUi();
+}
+
+
+function canPlaceStructure(
+  type,
+  x,
+  y
+) {
+
+  const radius =
+    CONFIG.defenses[
+      type
+    ].radius;
+
+
+  const padding =
+    CONFIG.placement
+      .edgePadding;
+
+
+  if (
+    x <
+      padding +
+      radius ||
+    x >
+      canvas.width -
+      padding -
+      radius ||
+    y <
+      padding +
+      radius ||
+    y >
+      canvas.height -
+      padding -
+      radius
+  ) {
+
+    return {
+
+      ok: false,
+
+      reason:
+        'Too close to the arena edge.'
+    };
+  }
+
+
+  if (
+    distancePoint(
+      x,
+      y,
+      core.x,
+      core.y
+    ) <
+    CONFIG.core
+      .noBuildRadius +
+    radius
+  ) {
+
+    return {
+
+      ok: false,
+
+      reason:
+        'Core safety zone.'
+    };
+  }
+
 
   for (
     const structure
     of structures
   ) {
 
-    const base =
-      CONFIG.defenses[
-        structure.type
-      ];
-
-
-    ctx.save();
-
-
-    ctx.translate(
-      structure.x,
-      structure.y
-    );
-
-
     if (
-      structure.type ===
-      'slow'
-    ) {
+      distancePoint(
 
-      ctx.beginPath();
+        x,
+        y,
 
-
-      ctx.arc(
-        0,
-        0,
-        structure.effectRange,
-        0,
-        Math.PI * 2
-      );
-
-
-      ctx.fillStyle =
-        'rgba(116,192,252,.055)';
-
-
-      ctx.strokeStyle =
-        'rgba(116,192,252,.25)';
-
-
-      ctx.lineWidth =
-        2;
-
-
-      ctx.fill();
-
-
-      ctx.stroke();
-    }
-
-
-    ctx.rotate(
-      structure.rotation
-    );
-
-
-    if (
-      structure.type ===
-      'turret'
-    ) {
-
-      drawPolygon(
-        0,
-        0,
-        structure.radius,
-        6,
-        base.color,
-        false
-      );
-
-
-      ctx.fillStyle =
-        '#dffaff';
-
-
-      ctx.fillRect(
-        4,
-        -3,
-        21,
-        6
-      );
-
-    } else if (
-      structure.type ===
-      'firewall'
-    ) {
-
-      drawPolygon(
-        0,
-        0,
-        structure.radius,
-        6,
-        base.color,
-        false
-      );
-
-
-      ctx.strokeStyle =
-        '#ffe3e8';
-
-
-      ctx.lineWidth =
-        3;
-
-
-      ctx.strokeRect(
-        -13,
-        -13,
-        26,
-        26
-      );
-
-    } else if (
-      structure.type ===
-      'slow'
-    ) {
-
-      ctx.beginPath();
-
-
-      ctx.arc(
-        0,
-        0,
-        structure.radius,
-        0,
-        Math.PI * 2
-      );
-
-
-      ctx.fillStyle =
-        base.color;
-
-
-      ctx.shadowColor =
-        base.color;
-
-
-      ctx.shadowBlur =
-        14;
-
-
-      ctx.fill();
-
-    } else {
-
-      drawPolygon(
-        0,
-        0,
-        structure.radius,
-        4,
-        base.color,
-        false
-      );
-
-
-      ctx.fillStyle =
-        '#0d3d20';
-
-
-      ctx.fillRect(
-        -3,
-        -11,
-        6,
-        22
-      );
-
-
-      ctx.fillRect(
-        -11,
-        -3,
-        22,
-        6
-      );
-    }
-
-
-    ctx.restore();
-
-
-    drawSmallHpBar(
-      structure.x,
-
-      structure.y -
-      structure.radius -
-      10,
-
-      40,
-
-      structure.hp /
-      structure.maxHp,
-
-      base.color
-    );
-
-
-    if (
-      structure.type ===
-      'repair'
-    ) {
-
-      ctx.save();
-
-
-      ctx.font =
-        'bold 10px monospace';
-
-
-      ctx.textAlign =
-        'center';
-
-
-      ctx.fillStyle =
-        '#b2f2bb';
-
-
-      ctx.fillText(
-        `${structure.repairCharges}`,
         structure.x,
-        structure.y +
-        structure.radius +
-        15
-      );
-
-
-      ctx.restore();
-    }
-
-
-    if (
-      gameState ===
-        GAME_STATE.BUILD &&
-      selectedStructureId ===
-        structure.id
+        structure.y
+      ) <
+      radius +
+      structure.radius +
+      CONFIG.placement
+        .overlapPadding
     ) {
 
-      ctx.save();
+      return {
 
+        ok: false,
 
-      ctx.beginPath();
-
-
-      ctx.arc(
-        structure.x,
-        structure.y,
-        structure.radius + 8,
-        0,
-        Math.PI * 2
-      );
-
-
-      ctx.strokeStyle =
-        '#ffe066';
-
-
-      ctx.lineWidth =
-        3;
-
-
-      ctx.setLineDash(
-        [
-          7,
-          5
-        ]
-      );
-
-
-      ctx.stroke();
-
-
-      ctx.restore();
+        reason:
+          'Defense overlaps another structure.'
+      };
     }
   }
+
+
+  return {
+
+    ok: true,
+
+    reason: ''
+  };
 }
 
 
-function drawPlacementPreview() {
+function selectBuildType(
+  type
+) {
+
+  selectedBuildType =
+    selectedBuildType ===
+    type
+
+      ? null
+
+      : type;
+
+
+  selectedStructureId =
+    null;
+
+
+  updateBuildUi();
+}
+
+
+function clearBuildSelection() {
+
+  selectedBuildType =
+    null;
+
+
+  selectedStructureId =
+    null;
+
+
+  updateBuildUi();
+}
+
+
+function selectedStructure() {
+
+  return (
+    structures.find(
+      item =>
+        item.id ===
+        selectedStructureId
+    ) ||
+    null
+  );
+}
+
+
+function structureUpgradeCost(
+  structure
+) {
+
+  return Math.round(
+
+    CONFIG.defenses[
+      structure.type
+    ].cost *
+
+    (
+      .8 +
+      structure.level *
+      .6
+    )
+  );
+}
+
+
+function upgradeSelectedStructure() {
+
+  const structure =
+    selectedStructure();
+
 
   if (
-    gameState !==
-      GAME_STATE.BUILD ||
-    !selectedBuildType
+    !structure ||
+    structure.level >=
+      3
   ) {
 
     return;
   }
 
 
-  const base =
-    CONFIG.defenses[
-      selectedBuildType
-    ];
-
-
-  const check =
-    canPlaceStructure(
-      selectedBuildType,
-      mouse.x,
-      mouse.y
+  const cost =
+    structureUpgradeCost(
+      structure
     );
-
-
-  const color =
-    check.ok &&
-    dataCurrency >=
-      base.cost
-
-      ? '#69db7c'
-
-      : '#ff6b6b';
-
-
-  ctx.save();
-
-
-  ctx.globalAlpha =
-    .6;
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    mouse.x,
-    mouse.y,
-    base.radius,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.fillStyle =
-    color;
-
-
-  ctx.fill();
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    mouse.x,
-    mouse.y,
-    base.radius + 5,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.strokeStyle =
-    color;
-
-
-  ctx.lineWidth =
-    2;
-
-
-  ctx.stroke();
 
 
   if (
-    selectedBuildType ===
-    'slow'
+    dataCurrency <
+    cost
   ) {
 
-    ctx.beginPath();
-
-
-    ctx.arc(
-      mouse.x,
-      mouse.y,
-      base.range,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.strokeStyle =
-      'rgba(116,192,252,.45)';
-
-
-    ctx.stroke();
+    return;
   }
 
 
-  ctx.restore();
+  dataCurrency -=
+    cost;
+
+
+  structure.level++;
+
+
+  const oldMax =
+    structure.maxHp;
+
+
+  structure.maxHp *=
+    1.30;
+
+
+  structure.hp +=
+    structure.maxHp -
+    oldMax;
+
+
+  if (
+    structure.type ===
+    'slow'
+  ) {
+
+    structure.effectRange *=
+      1.10;
+
+
+    structure.slowAmount *=
+      .92;
+  }
+
+
+  if (
+    structure.type ===
+    'repair'
+  ) {
+
+    structure.repairCharges +=
+      2;
+  }
+
+
+  sfx.upgrade();
+
+
+  updateBuildUi();
 }
 
 
 function updateBuildPhase(
   timestamp
 ) {
-
-  if (
-    gameState !==
-    GAME_STATE.BUILD
-  ) {
-
-    return;
-  }
-
 
   const left =
     Math.max(
@@ -7899,8 +6935,15 @@ function renderThreatPreview() {
 
 
   nextWaveArchetype.textContent =
-    currentWavePlan
-      .archetype;
+    currentWavePlan.boss
+
+      ? CONFIG.bosses[
+          currentWavePlan
+            .bossType
+        ].name
+
+      : currentWavePlan
+          .archetype;
 
 
   threatPreviewList.innerHTML =
@@ -7911,25 +6954,9 @@ function renderThreatPreview() {
     currentWavePlan.boss
   ) {
 
-    const chip =
-      document.createElement(
-        'span'
-      );
-
-
-    chip.className =
-      'threat-chip';
-
-
-    chip.textContent =
-      'BOSS x1';
-
-
-    threatPreviewList
-      .appendChild(
-        chip
-      );
-
+    addThreatChip(
+      'BOSS x1'
+    );
 
     return;
   }
@@ -7945,57 +6972,53 @@ function renderThreatPreview() {
     )
   ) {
 
-    if (!count) {
-      continue;
+    if (
+      count >
+      0
+    ) {
+
+      addThreatChip(
+        `${type.toUpperCase()} x${count}`
+      );
     }
-
-
-    const chip =
-      document.createElement(
-        'span'
-      );
-
-
-    chip.className =
-      'threat-chip';
-
-
-    chip.textContent =
-      `${type.toUpperCase()} x${count}`;
-
-
-    threatPreviewList
-      .appendChild(
-        chip
-      );
   }
 
 
   if (
     currentWavePlan
       .eliteChance >=
-    .2
+    .20
   ) {
 
-    const chip =
-      document.createElement(
-        'span'
-      );
-
-
-    chip.className =
-      'threat-chip';
-
-
-    chip.textContent =
-      'ELITE RISK HIGH';
-
-
-    threatPreviewList
-      .appendChild(
-        chip
-      );
+    addThreatChip(
+      'ELITE RISK HIGH'
+    );
   }
+}
+
+
+function addThreatChip(
+  text
+) {
+
+  const chip =
+    document.createElement(
+      'span'
+    );
+
+
+  chip.className =
+    'threat-chip';
+
+
+  chip.textContent =
+    text;
+
+
+  threatPreviewList
+    .appendChild(
+      chip
+    );
 }
 
 
@@ -8022,11 +7045,12 @@ function updateBuildUi() {
         .build;
 
 
-    button.classList.toggle(
-      'selected',
-      selectedBuildType ===
-      type
-    );
+    button.classList
+      .toggle(
+        'selected',
+        selectedBuildType ===
+          type
+      );
 
 
     button.disabled =
@@ -8041,37 +7065,7 @@ function updateBuildUi() {
     selectedStructure();
 
 
-  if (structure) {
-
-    const maxed =
-      structure.level >=
-      3;
-
-
-    const cost =
-      maxed
-
-        ? 0
-
-        : structureUpgradeCost(
-            structure
-          );
-
-
-    upgradeStructureBtn.disabled =
-      maxed ||
-      dataCurrency <
-      cost;
-
-
-    upgradeStructureBtn.textContent =
-      maxed
-
-        ? 'MAX LEVEL'
-
-        : `UPGRADE L${structure.level + 1} - ${cost} DATA`;
-
-  } else {
+  if (!structure) {
 
     upgradeStructureBtn.disabled =
       true;
@@ -8079,7 +7073,42 @@ function updateBuildUi() {
 
     upgradeStructureBtn.textContent =
       'UPGRADE SELECTED';
+
+
+    return;
   }
+
+
+  if (
+    structure.level >=
+    3
+  ) {
+
+    upgradeStructureBtn.disabled =
+      true;
+
+
+    upgradeStructureBtn.textContent =
+      'MAX LEVEL';
+
+
+    return;
+  }
+
+
+  const cost =
+    structureUpgradeCost(
+      structure
+    );
+
+
+  upgradeStructureBtn.disabled =
+    dataCurrency <
+    cost;
+
+
+  upgradeStructureBtn.textContent =
+    `UPGRADE L${structure.level + 1} - ${cost} DATA`;
 }
 
 
@@ -8090,10 +7119,6 @@ function updateBuildUi() {
 const UPGRADE_POOL = [
 
   {
-
-    id:
-      'damage',
-
     name:
       'HEAVY PACKETS',
 
@@ -8101,26 +7126,20 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+25% player weapon damage.',
+      '+25% weapon damage.',
 
     valid:
       () => true,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.weaponDamage *=
-          1.25;
-      }
-
+      runMods.weaponDamage *=
+        1.25;
+    }
   },
 
 
   {
-
-    id:
-      'firerate',
-
     name:
       'OVERCLOCK',
 
@@ -8133,50 +7152,107 @@ const UPGRADE_POOL = [
     valid:
       () =>
         runMods.fireRate >
-        .48,
+        .5,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.fireRate *=
-          .85;
-      }
-
+      runMods.fireRate *=
+        .85;
+    }
   },
 
 
   {
-
-    id:
-      'velocity',
-
     name:
-      'VECTOR BOOST',
+      'PACKET SPLITTER',
+
+    rarity:
+      'RARE',
+
+    desc:
+      '+1 projectile per shot.',
+
+    valid:
+      () =>
+        runMods.multishot <
+        4,
+
+    apply() {
+
+      runMods.multishot++;
+    }
+  },
+
+
+  {
+    name:
+      'PIERCING PROTOCOL',
+
+    rarity:
+      'RARE',
+
+    desc:
+      '+1 bullet penetration.',
+
+    valid:
+      () =>
+        runMods.pierce <
+        3,
+
+    apply() {
+
+      runMods.pierce++;
+    }
+  },
+
+
+  {
+    name:
+      'ELECTRIC FORK',
+
+    rarity:
+      'RARE',
+
+    desc:
+      '+15% chain lightning chance.',
+
+    valid:
+      () =>
+        runMods.chainChance <
+        .45,
+
+    apply() {
+
+      runMods.chainChance +=
+        .15;
+    }
+  },
+
+
+  {
+    name:
+      'CRITICAL ROUTING',
 
     rarity:
       'COMMON',
 
     desc:
-      '+18% projectile speed.',
+      '+8% critical chance.',
 
     valid:
-      () => true,
+      () =>
+        runMods.critChance <
+        .40,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.bulletSpeed *=
-          1.18;
-      }
-
+      runMods.critChance +=
+        .08;
+    }
   },
 
 
   {
-
-    id:
-      'speed',
-
     name:
       'MOBILITY PATCH',
 
@@ -8189,23 +7265,17 @@ const UPGRADE_POOL = [
     valid:
       () =>
         runMods.playerSpeed <
-        1.65,
+        1.6,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.playerSpeed *=
-          1.10;
-      }
-
+      runMods.playerSpeed *=
+        1.10;
+    }
   },
 
 
   {
-
-    id:
-      'dash',
-
     name:
       'PHASE CACHE',
 
@@ -8218,23 +7288,17 @@ const UPGRADE_POOL = [
     valid:
       () =>
         runMods.dashCooldown >
-        .52,
+        .55,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.dashCooldown *=
-          .85;
-      }
-
+      runMods.dashCooldown *=
+        .85;
+    }
   },
 
 
   {
-
-    id:
-      'hp',
-
     name:
       'HARDENED PROCESS',
 
@@ -8242,155 +7306,31 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+20% max Player HP and heal the gained amount.',
+      '+20% maximum Player HP.',
 
     valid:
       () =>
         player.maxHp <
-        230,
+        220,
 
-    apply:
-      () => {
+    apply() {
 
-        const add =
-          player.maxHp *
-          .20;
-
-
-        player.maxHp +=
-          add;
+      const gain =
+        player.maxHp *
+        .20;
 
 
-        player.hp =
-          Math.min(
-            player.maxHp,
-            player.hp +
-            add
-          );
-      }
+      player.maxHp +=
+        gain;
 
+
+      player.hp +=
+        gain;
+    }
   },
 
 
   {
-
-    id:
-      'crit',
-
-    name:
-      'CRITICAL ROUTING',
-
-    rarity:
-      'COMMON',
-
-    desc:
-      '+8% critical-hit chance.',
-
-    valid:
-      () =>
-        runMods.critChance <
-        .40,
-
-    apply:
-      () => {
-
-        runMods.critChance +=
-          .08;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'multi',
-
-    name:
-      'PACKET SPLITTER',
-
-    rarity:
-      'RARE',
-
-    desc:
-      '+1 projectile per shot with a small spread.',
-
-    valid:
-      () =>
-        runMods.multishot <
-        4,
-
-    apply:
-      () => {
-
-        runMods.multishot++;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'pierce',
-
-    name:
-      'PIERCING PROTOCOL',
-
-    rarity:
-      'RARE',
-
-    desc:
-      'Bullets pierce +1 target.',
-
-    valid:
-      () =>
-        runMods.pierce <
-        3,
-
-    apply:
-      () => {
-
-        runMods.pierce++;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'chain',
-
-    name:
-      'ELECTRIC FORK',
-
-    rarity:
-      'RARE',
-
-    desc:
-      '+15% chance for hits to chain damage to a nearby threat.',
-
-    valid:
-      () =>
-        runMods.chainChance <
-        .45,
-
-    apply:
-      () => {
-
-        runMods.chainChance +=
-          .15;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'life',
-
     name:
       'BACKUP PROCESS',
 
@@ -8398,7 +7338,7 @@ const UPGRADE_POOL = [
       'RARE',
 
     desc:
-      '+1 life. Maximum 5 lives.',
+      '+1 Life. Maximum 4.',
 
     valid:
       () =>
@@ -8406,27 +7346,14 @@ const UPGRADE_POOL = [
         CONFIG.player
           .maxLives,
 
-    apply:
-      () => {
+    apply() {
 
-        player.lives =
-          Math.min(
-            CONFIG.player
-              .maxLives,
-
-            player.lives +
-            1
-          );
-      }
-
+      player.lives++;
+    }
   },
 
 
   {
-
-    id:
-      'corehp',
-
     name:
       'CORE CAPACITY',
 
@@ -8434,38 +7361,31 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+15% Core max HP and restore 10% of the new maximum.',
+      '+15% Core maximum HP.',
 
     valid:
       () =>
         core.maxHp <
-        2300,
+        2200,
 
-    apply:
-      () => {
+    apply() {
 
-        core.maxHp *=
-          1.15;
+      const old =
+        core.maxHp;
 
 
-        core.hp =
-          Math.min(
-            core.maxHp,
+      core.maxHp *=
+        1.15;
 
-            core.hp +
-            core.maxHp *
-            .10
-          );
-      }
 
+      core.hp +=
+        core.maxHp -
+        old;
+    }
   },
 
 
   {
-
-    id:
-      'coreshield',
-
     name:
       'SHIELD MATRIX',
 
@@ -8473,44 +7393,31 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+25% Core max shield and refill the gained capacity.',
+      '+20% Core maximum shield.',
 
     valid:
       () =>
         core.maxShield <
-        900,
+        750,
 
-    apply:
-      () => {
+    apply() {
 
-        const old =
-          core.maxShield;
-
-
-        core.maxShield *=
-          1.25;
+      const old =
+        core.maxShield;
 
 
-        core.shield =
-          Math.min(
-            core.maxShield,
+      core.maxShield *=
+        1.20;
 
-            core.shield +
-            (
-              core.maxShield -
-              old
-            )
-          );
-      }
 
+      core.shield +=
+        core.maxShield -
+        old;
+    }
   },
 
 
   {
-
-    id:
-      'armor',
-
     name:
       'CORE ARMOR',
 
@@ -8524,23 +7431,17 @@ const UPGRADE_POOL = [
       () =>
         runMods
           .coreDamageMultiplier >
-        .60,
+        .65,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.coreDamageMultiplier *=
-          .90;
-      }
-
+      runMods.coreDamageMultiplier *=
+        .90;
+    }
   },
 
 
   {
-
-    id:
-      'turret',
-
     name:
       'TURRET PROTOCOL',
 
@@ -8548,26 +7449,20 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+25% Auto Turret damage.',
+      '+25% Turret damage.',
 
     valid:
       () => true,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.turretDamage *=
-          1.25;
-      }
-
+      runMods.turretDamage *=
+        1.25;
+    }
   },
 
 
   {
-
-    id:
-      'fortify',
-
     name:
       'FORTIFICATION',
 
@@ -8575,96 +7470,41 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+20% structure max HP, including existing defenses.',
+      '+20% structure HP.',
 
     valid:
       () =>
         runMods.defenseHp <
-        2.1,
+        2,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.defenseHp *=
+      runMods.defenseHp *=
+        1.20;
+
+
+      for (
+        const structure
+        of structures
+      ) {
+
+        const old =
+          structure.maxHp;
+
+
+        structure.maxHp *=
           1.20;
 
 
-        for (
-          const structure
-          of structures
-        ) {
-
-          const old =
-            structure.maxHp;
-
-
-          structure.maxHp *=
-            1.20;
-
-
-          structure.hp +=
-            structure.maxHp -
-            old;
-        }
+        structure.hp +=
+          structure.maxHp -
+          old;
       }
-
+    }
   },
 
 
   {
-
-    id:
-      'slow',
-
-    name:
-      'DEEP PACKET INSPECTION',
-
-    rarity:
-      'COMMON',
-
-    desc:
-      'Slow Fields reduce enemy speed more strongly.',
-
-    valid:
-      () =>
-        runMods.slowMultiplier >
-        .68,
-
-    apply:
-      () => {
-
-        runMods.slowMultiplier *=
-          .88;
-
-
-        for (
-          const structure
-          of structures
-        ) {
-
-          if (
-            structure.type ===
-            'slow'
-          ) {
-
-            structure.slowAmount =
-              Math.max(
-                .3,
-                structure.slowAmount *
-                .88
-              );
-          }
-        }
-      }
-
-  },
-
-
-  {
-
-    id:
-      'repair',
-
     name:
       'NANOREPAIR',
 
@@ -8672,79 +7512,16 @@ const UPGRADE_POOL = [
       'COMMON',
 
     desc:
-      '+25% Repair Node healing and +1 charge for new nodes.',
+      '+25% Repair Node healing.',
 
     valid:
       () => true,
 
-    apply:
-      () => {
+    apply() {
 
-        runMods.repairAmount *=
-          1.25;
-
-
-        runMods.repairChargeBonus++;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'data',
-
-    name:
-      'DATA MINER',
-
-    rarity:
-      'COMMON',
-
-    desc:
-      '+15% DATA from threat eliminations.',
-
-    valid:
-      () =>
-        runMods.dataMultiplier <
-        2,
-
-    apply:
-      () => {
-
-        runMods.dataMultiplier *=
-          1.15;
-      }
-
-  },
-
-
-  {
-
-    id:
-      'salvage',
-
-    name:
-      'SALVAGE ROUTINE',
-
-    rarity:
-      'COMMON',
-
-    desc:
-      '+4% pickup drop chance.',
-
-    valid:
-      () =>
-        runMods.pickupBonus <
-        .20,
-
-    apply:
-      () => {
-
-        runMods.pickupBonus +=
-          .04;
-      }
-
+      runMods.repairAmount *=
+        1.25;
+    }
   }
 
 ];
@@ -8764,30 +7541,20 @@ function showUpgradeChoices() {
 
 
   const available =
-    UPGRADE_POOL.filter(
-      upgrade =>
-        upgrade.valid()
-    );
-
-
-  shuffle(
-    available
-  );
-
-
-  const choices =
-    available.slice(
-      0,
-      Math.min(
-        3,
-        available.length
+    shuffle(
+      UPGRADE_POOL.filter(
+        upgrade =>
+          upgrade.valid()
       )
     );
 
 
   for (
     const upgrade
-    of choices
+    of available.slice(
+      0,
+      3
+    )
   ) {
 
     const button =
@@ -8801,11 +7568,11 @@ function showUpgradeChoices() {
 
 
     button.className =
-      `upgrade-card${
+      `upgrade-card ${
         upgrade.rarity ===
         'RARE'
 
-          ? ' rare'
+          ? 'rare'
 
           : ''
       }`;
@@ -8848,19 +7615,28 @@ function chooseUpgrade(
   upgrade
 ) {
 
-  if (
-    gameState !==
-    GAME_STATE.UPGRADE
-  ) {
-
-    return;
-  }
-
-
   upgrade.apply();
 
 
+  pendingLevelUps--;
+
+
   sfx.upgrade();
+
+
+  if (
+    pendingLevelUps >
+    0
+  ) {
+
+    upgradeTitle.textContent =
+      `LEVEL ${playerLevel}`;
+
+
+    showUpgradeChoices();
+
+    return;
+  }
 
 
   upgradePanel
@@ -8870,12 +7646,14 @@ function chooseUpgrade(
     );
 
 
-  enterBuildState();
+  setGameState(
+    GAME_STATE.PLAYING
+  );
 }
 
 
 // ============================================================
-// COMBAT COLLISIONS
+// COMBAT
 // ============================================================
 
 function checkCombatCollisions() {
@@ -8949,9 +7727,7 @@ function checkCombatCollisions() {
       damageEnemy(
         enemy,
         bullet.damage,
-        bullet.crit,
-        bullet.x,
-        bullet.y
+        bullet.crit
       );
 
 
@@ -8988,9 +7764,7 @@ function checkCombatCollisions() {
       }
 
 
-      if (consumed) {
-        break;
-      }
+      break;
     }
 
 
@@ -9003,7 +7777,7 @@ function checkCombatCollisions() {
       distance(
         bullet,
         boss
-      ) <=
+      ) <
       bullet.radius +
       boss.radius
     ) {
@@ -9013,27 +7787,9 @@ function checkCombatCollisions() {
       );
 
 
-      boss.hp -=
-        bullet.damage;
-
-
-      boss.hitFlashUntil =
-        gameTime +
-        70;
-
-
-      createHitParticles(
-        bullet.x,
-        bullet.y,
-        '#f3d9fa'
+      damageBoss(
+        bullet
       );
-
-
-      screenShake =
-        Math.max(
-          screenShake,
-          2.5
-        );
 
 
       if (
@@ -9047,15 +7803,6 @@ function checkCombatCollisions() {
 
         consumed =
           true;
-      }
-
-
-      if (
-        boss.hp <=
-        0
-      ) {
-
-        killBoss();
       }
     }
 
@@ -9094,7 +7841,7 @@ function checkCombatCollisions() {
       distance(
         projectile,
         player
-      ) <=
+      ) <
       projectile.radius +
       player.radius
     ) {
@@ -9111,7 +7858,7 @@ function checkCombatCollisions() {
       distance(
         projectile,
         core
-      ) <=
+      ) <
       projectile.radius +
       core.radius
     ) {
@@ -9129,12 +7876,10 @@ function checkCombatCollisions() {
       const structure =
         structures.find(
           structure =>
-            structure.hp >
-              0 &&
             distance(
               projectile,
               structure
-            ) <=
+            ) <
             projectile.radius +
             structure.radius
         );
@@ -9168,9 +7913,7 @@ function checkCombatCollisions() {
 function damageEnemy(
   enemy,
   damage,
-  crit = false,
-  x = enemy.x,
-  y = enemy.y
+  crit
 ) {
 
   if (
@@ -9179,23 +7922,6 @@ function damageEnemy(
   ) {
 
     enemy.shieldHits--;
-
-
-    addFloatingText(
-      enemy.x,
-      enemy.y -
-      enemy.radius,
-      'BLOCK',
-      '#74c0fc'
-    );
-
-
-    createHitParticles(
-      x,
-      y,
-      '#74c0fc'
-    );
-
 
     return;
   }
@@ -9210,39 +7936,11 @@ function damageEnemy(
     80;
 
 
-  createHitParticles(
-    x,
-    y,
-
-    crit
-
-      ? '#ff922b'
-
-      : '#ffffff'
-  );
-
-
-  screenShake =
-    Math.max(
-      screenShake,
-
-      crit
-
-        ? 3.5
-
-        : 2
-    );
-
-
-  sfx.hit();
-
-
   if (crit) {
 
     addFloatingText(
       enemy.x,
-      enemy.y -
-      enemy.radius,
+      enemy.y - 30,
       'CRIT!',
       '#ff922b'
     );
@@ -9260,19 +7958,26 @@ function killEnemy(
   );
 
 
-  maybeDropPickup(
-    enemy
+  registerKill(
+
+    enemy.reward,
+
+    enemy.dataReward,
+
+    enemy.expReward,
+
+    enemy.x,
+
+    enemy.y,
+
+    false,
+
+    enemy.elite
   );
 
 
-  registerKill(
-    enemy.reward,
-    enemy.dataReward,
-    enemy.x,
-    enemy.y -
-    enemy.radius,
-    false,
-    enemy.elite
+  maybeDropPickup(
+    enemy
   );
 
 
@@ -9286,126 +7991,10 @@ function killEnemy(
 }
 
 
-function maybeChainLightning(
-  sourceEnemy,
-  damage
-) {
-
-  if (
-    runMods.chainChance <=
-      0 ||
-    Math.random() >=
-      runMods.chainChance
-  ) {
-
-    return;
-  }
-
-
-  const candidates =
-    enemies
-
-      .filter(
-        enemy =>
-          enemy.id !==
-            sourceEnemy.id &&
-          enemy.hp >
-            0 &&
-          distance(
-            sourceEnemy,
-            enemy
-          ) <
-          170
-      )
-
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          distance(
-            sourceEnemy,
-            a
-          ) -
-          distance(
-            sourceEnemy,
-            b
-          )
-      );
-
-
-  const target =
-    candidates[0];
-
-
-  if (!target) {
-    return;
-  }
-
-
-  damageEnemy(
-    target,
-    damage,
-    false,
-    target.x,
-    target.y
-  );
-
-
-  beams.push({
-
-    x1:
-      sourceEnemy.x,
-
-    y1:
-      sourceEnemy.y,
-
-    x2:
-      target.x,
-
-    y2:
-      target.y,
-
-    color:
-      '#63e6ff',
-
-    expiresAt:
-      gameTime +
-      90
-
-  });
-
-
-  if (
-    target.hp <=
-    0
-  ) {
-
-    const index =
-      enemies.findIndex(
-        enemy =>
-          enemy.id ===
-          target.id
-      );
-
-
-    if (
-      index >=
-      0
-    ) {
-
-      killEnemy(
-        target,
-        index
-      );
-    }
-  }
-}
-
-
 function registerKill(
   baseScore,
   baseData,
+  expReward,
   x,
   y,
   isBoss = false,
@@ -9436,7 +8025,9 @@ function registerKill(
 
       1 +
       Math.floor(
+
         comboStreak /
+
         CONFIG.combo
           .killsPerMultiplier
       )
@@ -9456,14 +8047,14 @@ function registerKill(
       .windowMs;
 
 
-  const gainedScore =
+  const scoreGain =
     Math.round(
       baseScore *
       comboMultiplier
     );
 
 
-  const gainedData =
+  const dataGain =
     Math.max(
       1,
       Math.round(
@@ -9475,15 +8066,20 @@ function registerKill(
 
 
   score +=
-    gainedScore;
+    scoreGain;
 
 
   dataCurrency +=
-    gainedData;
+    dataGain;
 
 
   stats.dataCollected +=
-    gainedData;
+    dataGain;
+
+
+  addExp(
+    expReward
+  );
 
 
   if (!isBoss) {
@@ -9500,34 +8096,86 @@ function registerKill(
 
   addFloatingText(
     x,
-    y,
-
-    `+${gainedScore}  DATA +${gainedData}`,
-
-    isBoss
-
-      ? '#f3d9fa'
-
-      : '#ffe066'
+    y - 20,
+    `+${scoreGain}`,
+    '#ffe066'
   );
+}
 
+
+function maybeChainLightning(
+  source,
+  damage
+) {
 
   if (
-    comboMultiplier >
-      1 &&
-    comboStreak %
-    CONFIG.combo
-      .killsPerMultiplier ===
-      0
+    runMods.chainChance <=
+      0 ||
+    Math.random() >=
+      runMods.chainChance
   ) {
 
-    addFloatingText(
-      player.x,
-      player.y - 50,
-      `COMBO x${comboMultiplier}`,
-      '#ffd43b'
-    );
+    return;
   }
+
+
+  const target =
+    enemies
+
+      .filter(
+        enemy =>
+          enemy.id !==
+            source.id &&
+          distance(
+            source,
+            enemy
+          ) <
+          170
+      )
+
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          distance(
+            source,
+            a
+          ) -
+          distance(
+            source,
+            b
+          )
+      )[0];
+
+
+  if (!target) {
+    return;
+  }
+
+
+  target.hp -=
+    damage;
+
+
+  beams.push({
+
+    x1:
+      source.x,
+
+    y1:
+      source.y,
+
+    x2:
+      target.x,
+
+    y2:
+      target.y,
+
+    expiresAt:
+      gameTime +
+      100
+  });
 }
 
 
@@ -9562,8 +8210,7 @@ function maybeDropPickup(
     Math.random() >
     CONFIG.pickups
       .dropChance +
-    runMods
-      .pickupBonus
+    runMods.pickupBonus
   ) {
 
     return;
@@ -9581,9 +8228,9 @@ function maybeDropPickup(
   if (
     core.hp /
     core.maxHp <
-      .45 &&
+      .4 &&
     roll <
-      .36
+      .30
   ) {
 
     type =
@@ -9610,7 +8257,7 @@ function maybeDropPickup(
 
   } else if (
     roll <
-    .58
+    .60
   ) {
 
     type =
@@ -9618,7 +8265,7 @@ function maybeDropPickup(
 
   } else if (
     roll <
-    .78
+    .82
   ) {
 
     type =
@@ -9647,9 +8294,6 @@ function spawnPickup(
 
   pickups.push({
 
-    id:
-      nextEntityId++,
-
     x,
 
     y,
@@ -9660,24 +8304,15 @@ function spawnPickup(
       CONFIG.pickups
         .radius,
 
-    phase:
-      random(
-        0,
-        Math.PI * 2
-      ),
-
     expiresAt:
       gameTime +
       CONFIG.pickups
         .lifeMs
-
   });
 }
 
 
-function updatePickups(
-  dt
-) {
+function updatePickups() {
 
   for (
     let i =
@@ -9694,20 +8329,14 @@ function updatePickups(
       pickups[i];
 
 
-    pickup.phase +=
-      dt *
-      4;
-
-
     if (
       player.alive &&
       distance(
         player,
         pickup
-      ) <=
+      ) <
       player.radius +
-      pickup.radius +
-      3
+      pickup.radius
     ) {
 
       applyPickup(
@@ -9748,41 +8377,14 @@ function applyPickup(
     'heal'
   ) {
 
-    const before =
-      player.hp;
-
-
     player.hp =
       Math.min(
         player.maxHp,
+
         player.hp +
         CONFIG.pickups
           .playerHeal
       );
-
-
-    const healed =
-      player.hp -
-      before;
-
-
-    if (
-      healed >
-      0
-    ) {
-
-      addFloatingText(
-        player.x,
-        player.y - 30,
-        `+${Math.round(healed)} HP`,
-        '#69db7c'
-      );
-
-    } else {
-
-      score +=
-        25;
-    }
 
   } else if (
     pickup.type ===
@@ -9796,14 +8398,6 @@ function applyPickup(
       ) +
       CONFIG.weapon
         .rapidFireDurationMs;
-
-
-    addFloatingText(
-      player.x,
-      player.y - 30,
-      'RAPID FIRE',
-      '#ffe066'
-    );
 
   } else if (
     pickup.type ===
@@ -9820,241 +8414,21 @@ function applyPickup(
         1
       );
 
+  } else {
 
-    addFloatingText(
-      player.x,
-      player.y - 30,
-      'PLAYER SHIELD +1',
-      '#74c0fc'
+    healCore(
+      CONFIG.pickups
+        .coreRepair
     );
-
-  } else if (
-    pickup.type ===
-    'core'
-  ) {
-
-    const healed =
-      healCore(
-        CONFIG.pickups
-          .coreRepair
-      );
-
-
-    if (
-      healed <=
-      0
-    ) {
-
-      core.shield =
-        Math.min(
-          core.maxShield,
-          core.shield +
-          45
-        );
-
-
-      addFloatingText(
-        core.x,
-        core.y - 52,
-        '+45 CORE SHIELD',
-        '#74c0fc'
-      );
-    }
   }
-
-
-  burstAt(
-    pickup.x,
-    pickup.y,
-    pickupColor(
-      pickup.type
-    ),
-    18,
-    3.4
-  );
 
 
   sfx.pickup();
 }
 
 
-function pickupColor(
-  type
-) {
-
-  if (
-    type ===
-    'heal'
-  ) {
-
-    return '#69db7c';
-  }
-
-
-  if (
-    type ===
-    'rapid'
-  ) {
-
-    return '#ffe066';
-  }
-
-
-  if (
-    type ===
-    'core'
-  ) {
-
-    return '#c77dff';
-  }
-
-
-  return '#74c0fc';
-}
-
-
-function drawPickups() {
-
-  ctx.save();
-
-
-  for (
-    const pickup
-    of pickups
-  ) {
-
-    const y =
-      pickup.y +
-      Math.sin(
-        pickup.phase
-      ) *
-      4;
-
-
-    const color =
-      pickupColor(
-        pickup.type
-      );
-
-
-    ctx.save();
-
-
-    ctx.translate(
-      pickup.x,
-      y
-    );
-
-
-    ctx.rotate(
-      pickup.phase *
-      .35
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      0,
-      -pickup.radius
-    );
-
-
-    ctx.lineTo(
-      pickup.radius,
-      0
-    );
-
-
-    ctx.lineTo(
-      0,
-      pickup.radius
-    );
-
-
-    ctx.lineTo(
-      -pickup.radius,
-      0
-    );
-
-
-    ctx.closePath();
-
-
-    ctx.fillStyle =
-      color;
-
-
-    ctx.shadowColor =
-      color;
-
-
-    ctx.shadowBlur =
-      18;
-
-
-    ctx.fill();
-
-
-    ctx.rotate(
-      -pickup.phase *
-      .35
-    );
-
-
-    ctx.fillStyle =
-      '#081019';
-
-
-    ctx.font =
-      'bold 11px monospace';
-
-
-    ctx.textAlign =
-      'center';
-
-
-    ctx.textBaseline =
-      'middle';
-
-
-    const label =
-      pickup.type ===
-      'heal'
-
-        ? 'H'
-
-        : pickup.type ===
-          'rapid'
-
-          ? 'R'
-
-          : pickup.type ===
-            'core'
-
-            ? 'C'
-
-            : 'S';
-
-
-    ctx.fillText(
-      label,
-      0,
-      1
-    );
-
-
-    ctx.restore();
-  }
-
-
-  ctx.restore();
-}
-
-
 // ============================================================
-// PARTICLES + FLOATING TEXT + BEAMS
+// PARTICLES
 // ============================================================
 
 function createParticle(
@@ -10085,7 +8459,6 @@ function createParticle(
 
     maxLifeMs:
       lifeMs
-
   });
 }
 
@@ -10095,7 +8468,7 @@ function burstAt(
   y,
   color,
   count = 14,
-  speedScale = 3.5
+  speedScale = 3
 ) {
 
   for (
@@ -10120,6 +8493,7 @@ function burstAt(
 
 
     createParticle(
+
       x,
       y,
 
@@ -10137,12 +8511,12 @@ function burstAt(
 
       random(
         2,
-        5.5
+        5
       ),
 
       random(
-        260,
-        520
+        220,
+        500
       )
     );
   }
@@ -10153,88 +8527,23 @@ function createExplosion(
   enemy
 ) {
 
-  const color =
+  burstAt(
+
+    enemy.x,
+
+    enemy.y,
+
     CONFIG.enemies[
       enemy.type
-    ]?.color ||
-    '#ff5c7a';
-
-
-  burstAt(
-    enemy.x,
-    enemy.y,
-    color,
+    ].color,
 
     enemy.type ===
     'tank'
+      ? 22
+      : 14,
 
-      ? 23
-
-      : 15,
-
-    enemy.type ===
-    'runner'
-
-      ? 4.2
-
-      : 3.5
+    3.5
   );
-}
-
-
-function createHitParticles(
-  x,
-  y,
-  color = '#ffffff'
-) {
-
-  for (
-    let i = 0;
-    i < 7;
-    i++
-  ) {
-
-    const angle =
-      random(
-        0,
-        Math.PI * 2
-      );
-
-
-    const speed =
-      random(
-        45,
-        140
-      );
-
-
-    createParticle(
-      x,
-      y,
-
-      Math.cos(
-        angle
-      ) *
-      speed,
-
-      Math.sin(
-        angle
-      ) *
-      speed,
-
-      color,
-
-      random(
-        1.5,
-        3.2
-      ),
-
-      random(
-        150,
-        250
-      )
-    );
-  }
 }
 
 
@@ -10255,20 +8564,6 @@ function updateParticles(
     particle.y +=
       particle.vy *
       dt;
-
-
-    particle.vx *=
-      Math.pow(
-        .05,
-        dt
-      );
-
-
-    particle.vy *=
-      Math.pow(
-        .05,
-        dt
-      );
 
 
     particle.lifeMs -=
@@ -10294,114 +8589,6 @@ function updateParticles(
 }
 
 
-function drawParticles() {
-
-  ctx.save();
-
-
-  for (
-    const particle
-    of particles
-  ) {
-
-    const alpha =
-      clamp(
-        particle.lifeMs /
-        particle.maxLifeMs,
-        0,
-        1
-      );
-
-
-    ctx.globalAlpha =
-      alpha;
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      particle.x,
-      particle.y,
-
-      particle.size *
-      alpha +
-      .4,
-
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      particle.color;
-
-
-    ctx.shadowColor =
-      particle.color;
-
-
-    ctx.shadowBlur =
-      10;
-
-
-    ctx.fill();
-  }
-
-
-  ctx.restore();
-}
-
-
-function drawBeams() {
-
-  ctx.save();
-
-
-  for (
-    const beam
-    of beams
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      beam.x1,
-      beam.y1
-    );
-
-
-    ctx.lineTo(
-      beam.x2,
-      beam.y2
-    );
-
-
-    ctx.strokeStyle =
-      beam.color;
-
-
-    ctx.lineWidth =
-      3;
-
-
-    ctx.shadowColor =
-      beam.color;
-
-
-    ctx.shadowBlur =
-      15;
-
-
-    ctx.stroke();
-  }
-
-
-  ctx.restore();
-}
-
-
 function addFloatingText(
   x,
   y,
@@ -10419,12 +8606,7 @@ function addFloatingText(
 
     color,
 
-    lifeMs:
-      850,
-
-    maxLifeMs:
-      850
-
+    lifeMs: 850
   });
 }
 
@@ -10434,16 +8616,16 @@ function updateFloatingTexts(
 ) {
 
   for (
-    const item
+    const text
     of floatingTexts
   ) {
 
-    item.y -=
-      42 *
+    text.y -=
+      40 *
       dt;
 
 
-    item.lifeMs -=
+    text.lifeMs -=
       dt *
       1000;
   }
@@ -10451,734 +8633,15 @@ function updateFloatingTexts(
 
   floatingTexts =
     floatingTexts.filter(
-      item =>
-        item.lifeMs >
+      text =>
+        text.lifeMs >
         0
     );
 }
 
 
-function drawFloatingTexts() {
-
-  ctx.save();
-
-
-  ctx.font =
-    'bold 15px monospace';
-
-
-  ctx.textAlign =
-    'center';
-
-
-  for (
-    const item
-    of floatingTexts
-  ) {
-
-    ctx.globalAlpha =
-      clamp(
-        item.lifeMs /
-        item.maxLifeMs,
-        0,
-        1
-      );
-
-
-    ctx.fillStyle =
-      item.color;
-
-
-    ctx.fillText(
-      item.text,
-      item.x,
-      item.y
-    );
-  }
-
-
-  ctx.restore();
-}
-
-
 // ============================================================
-// WORLD DRAWING
-// ============================================================
-
-function drawGrid() {
-
-  const visualTime =
-    performance.now();
-
-
-  const gridSize =
-    50;
-
-
-  const pulse =
-    .10 +
-    Math.sin(
-      visualTime *
-      .002
-    ) *
-    .025;
-
-
-  ctx.save();
-
-
-  ctx.strokeStyle =
-    `rgba(54,91,135,${pulse})`;
-
-
-  ctx.lineWidth =
-    1;
-
-
-  for (
-    let x = 0;
-    x < canvas.width;
-    x += gridSize
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      x,
-      0
-    );
-
-
-    ctx.lineTo(
-      x,
-      canvas.height
-    );
-
-
-    ctx.stroke();
-  }
-
-
-  for (
-    let y = 0;
-    y < canvas.height;
-    y += gridSize
-  ) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      0,
-      y
-    );
-
-
-    ctx.lineTo(
-      canvas.width,
-      y
-    );
-
-
-    ctx.stroke();
-  }
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    core.x,
-    core.y,
-    CONFIG.core
-      .noBuildRadius,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.strokeStyle =
-    'rgba(99,230,255,.045)';
-
-
-  ctx.lineWidth =
-    2;
-
-
-  ctx.stroke();
-
-
-  ctx.restore();
-}
-
-
-function drawSpawnWarnings() {
-
-  ctx.save();
-
-
-  for (
-    const pending
-    of pendingSpawns
-  ) {
-
-    const progress =
-      clamp(
-
-        (
-          gameTime -
-          pending.createdAt
-        ) /
-        CONFIG.waves
-          .spawnWarningMs,
-
-        0,
-
-        1
-      );
-
-
-    const ringRadius =
-      17 +
-      (
-        1 -
-        progress
-      ) *
-      18;
-
-
-    ctx.globalAlpha =
-      .62 +
-      Math.sin(
-        gameTime *
-        .025
-      ) *
-      .2;
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      pending.warningX,
-      pending.warningY,
-      ringRadius,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.strokeStyle =
-      pending.elite
-
-        ? '#ffd43b'
-
-        : '#ff4d6d';
-
-
-    ctx.lineWidth =
-      3;
-
-
-    ctx.shadowColor =
-      ctx.strokeStyle;
-
-
-    ctx.shadowBlur =
-      18;
-
-
-    ctx.stroke();
-
-
-    ctx.save();
-
-
-    ctx.translate(
-      pending.warningX,
-      pending.warningY
-    );
-
-
-    ctx.rotate(
-      pending.warningAngle
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-      13,
-      0
-    );
-
-
-    ctx.lineTo(
-      -8,
-      -8
-    );
-
-
-    ctx.lineTo(
-      -8,
-      8
-    );
-
-
-    ctx.closePath();
-
-
-    ctx.fillStyle =
-      ctx.strokeStyle;
-
-
-    ctx.fill();
-
-
-    ctx.restore();
-  }
-
-
-  if (
-    pendingBossAt
-  ) {
-
-    const remaining =
-      Math.max(
-        0,
-        pendingBossAt -
-        gameTime
-      );
-
-
-    const progress =
-      1 -
-      clamp(
-        remaining /
-        1300,
-        0,
-        1
-      );
-
-
-    ctx.globalAlpha =
-      .7 +
-      Math.sin(
-        gameTime *
-        .02
-      ) *
-      .2;
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      canvas.width / 2,
-      90,
-
-      38 +
-      (
-        1 -
-        progress
-      ) *
-      42,
-
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.strokeStyle =
-      '#ff4d6d';
-
-
-    ctx.lineWidth =
-      5;
-
-
-    ctx.shadowColor =
-      '#ff4d6d';
-
-
-    ctx.shadowBlur =
-      25;
-
-
-    ctx.stroke();
-
-
-    ctx.font =
-      'bold 18px monospace';
-
-
-    ctx.textAlign =
-      'center';
-
-
-    ctx.fillStyle =
-      '#ffb3c1';
-
-
-    ctx.fillText(
-      'BOSS SIGNAL',
-      canvas.width / 2,
-      96
-    );
-  }
-
-
-  ctx.restore();
-}
-
-
-function drawWaveOverlay() {
-
-  ctx.save();
-
-
-  ctx.textAlign =
-    'center';
-
-
-  if (
-    gameTime <
-    waveBannerUntil
-  ) {
-
-    const alpha =
-      Math.min(
-        1,
-        (
-          waveBannerUntil -
-          gameTime
-        ) /
-        300
-      );
-
-
-    ctx.globalAlpha =
-      alpha;
-
-
-    ctx.font =
-      'bold 42px monospace';
-
-
-    ctx.fillStyle =
-      currentWavePlan
-        ?.boss
-
-        ? '#ffb3c1'
-
-        : '#b8f6ff';
-
-
-    ctx.shadowColor =
-      currentWavePlan
-        ?.boss
-
-        ? '#ff4d6d'
-
-        : '#4de5ff';
-
-
-    ctx.shadowBlur =
-      20;
-
-
-    ctx.fillText(
-
-      currentWavePlan
-        ?.boss
-
-        ? `BOSS WAVE ${wave}`
-
-        : `WAVE ${wave}`,
-
-      canvas.width / 2,
-
-      100
-    );
-
-
-    ctx.font =
-      'bold 14px monospace';
-
-
-    ctx.fillText(
-      currentWavePlan
-        ?.archetype ||
-      'INCOMING THREATS',
-
-      canvas.width / 2,
-
-      130
-    );
-  }
-
-
-  if (
-    waveState ===
-      'cleared' &&
-    gameTime <
-      waveClearUntil
-  ) {
-
-    ctx.globalAlpha =
-      1;
-
-
-    ctx.font =
-      'bold 32px monospace';
-
-
-    ctx.fillStyle =
-      '#69f0ae';
-
-
-    ctx.shadowColor =
-      '#69f0ae';
-
-
-    ctx.shadowBlur =
-      14;
-
-
-    ctx.fillText(
-      'SECTOR SECURED',
-      canvas.width / 2,
-      canvas.height / 2 - 12
-    );
-
-
-    ctx.font =
-      '14px monospace';
-
-
-    ctx.shadowBlur =
-      0;
-
-
-    ctx.fillText(
-      waveClearMessage,
-      canvas.width / 2,
-      canvas.height / 2 + 20
-    );
-  }
-
-
-  if (
-    lastStandActive &&
-    gameState ===
-      GAME_STATE.PLAYING
-  ) {
-
-    ctx.globalAlpha =
-      .72 +
-      Math.sin(
-        performance.now() *
-        .01
-      ) *
-      .18;
-
-
-    ctx.font =
-      'bold 16px monospace';
-
-
-    ctx.fillStyle =
-      '#ff6b81';
-
-
-    ctx.shadowColor =
-      '#ff4d6d';
-
-
-    ctx.shadowBlur =
-      12;
-
-
-    ctx.fillText(
-      'CRITICAL CORE CONDITION - LAST STAND',
-      canvas.width / 2,
-      canvas.height - 24
-    );
-  }
-
-
-  ctx.restore();
-}
-
-
-function drawCrosshair() {
-
-  if (
-    ![
-      GAME_STATE.PLAYING,
-      GAME_STATE.PAUSED,
-      GAME_STATE.BUILD
-    ].includes(
-      gameState
-    )
-  ) {
-
-    return;
-  }
-
-
-  const color =
-    gameState ===
-    GAME_STATE.BUILD
-
-      ? '#b2f2bb'
-
-      : '#9befff';
-
-
-  ctx.save();
-
-
-  ctx.strokeStyle =
-    color;
-
-
-  ctx.lineWidth =
-    2;
-
-
-  ctx.shadowColor =
-    color;
-
-
-  ctx.shadowBlur =
-    8;
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    mouse.x,
-    mouse.y,
-    7,
-    0,
-    Math.PI * 2
-  );
-
-
-  ctx.stroke();
-
-
-  ctx.beginPath();
-
-
-  ctx.moveTo(
-    mouse.x - 15,
-    mouse.y
-  );
-
-
-  ctx.lineTo(
-    mouse.x - 5,
-    mouse.y
-  );
-
-
-  ctx.moveTo(
-    mouse.x + 5,
-    mouse.y
-  );
-
-
-  ctx.lineTo(
-    mouse.x + 15,
-    mouse.y
-  );
-
-
-  ctx.moveTo(
-    mouse.x,
-    mouse.y - 15
-  );
-
-
-  ctx.lineTo(
-    mouse.x,
-    mouse.y - 5
-  );
-
-
-  ctx.moveTo(
-    mouse.x,
-    mouse.y + 5
-  );
-
-
-  ctx.lineTo(
-    mouse.x,
-    mouse.y + 15
-  );
-
-
-  ctx.stroke();
-
-
-  ctx.restore();
-}
-
-
-function drawDamageVignette() {
-
-  if (
-    gameTime <
-      player.hurtFlashUntil ||
-    lastStandActive
-  ) {
-
-    ctx.save();
-
-
-    const alpha =
-      gameTime <
-      player.hurtFlashUntil
-
-        ? .12
-
-        : .035 +
-          Math.sin(
-            performance.now() *
-            .006
-          ) *
-          .02;
-
-
-    ctx.fillStyle =
-      `rgba(255,30,65,${
-        Math.max(
-          0,
-          alpha
-        )
-      })`;
-
-
-    ctx.fillRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-
-    ctx.restore();
-  }
-}
-
-
-// ============================================================
-// ENDING / RUN OVER
+// ENDING
 // ============================================================
 
 function startEnding(
@@ -11186,20 +8649,19 @@ function startEnding(
 ) {
 
   if (
-    [
-      GAME_STATE.ENDING,
+    gameState ===
+      GAME_STATE.ENDING ||
+    gameState ===
       GAME_STATE.GAMEOVER
-    ].includes(
-      gameState
-    )
   ) {
 
     return;
   }
 
 
-  gameState =
-    GAME_STATE.ENDING;
+  setGameState(
+    GAME_STATE.ENDING
+  );
 
 
   endingReason =
@@ -11214,20 +8676,13 @@ function startEnding(
     false;
 
 
-  mouse.isDown =
-    false;
+  endingReasonText.textContent =
+    reason;
 
 
-  pausePanel
+  endingOverlay
     .classList
-    .add(
-      'hidden'
-    );
-
-
-  upgradePanel
-    .classList
-    .add(
+    .remove(
       'hidden'
     );
 
@@ -11239,22 +8694,8 @@ function startEnding(
     );
 
 
-  bossHud
-    .classList
-    .add(
-      'hidden'
-    );
-
-
-  endingOverlay
-    .classList
-    .remove(
-      'hidden'
-    );
-
-
-  endingReasonText.textContent =
-    reason;
+  mouse.isDown =
+    false;
 
 
   enemyProjectiles =
@@ -11265,36 +8706,27 @@ function startEnding(
     [];
 
 
-  const explosionX =
+  const target =
     reason ===
     'CORE BREACHED'
 
-      ? core.x
+      ? core
 
-      : player.x;
-
-
-  const explosionY =
-    reason ===
-    'CORE BREACHED'
-
-      ? core.y
-
-      : player.y;
+      : player;
 
 
   burstAt(
-    explosionX,
-    explosionY,
+    target.x,
+    target.y,
     '#ff4d6d',
-    70,
+    80,
     7
   );
 
 
   burstAt(
-    explosionX,
-    explosionY,
+    target.x,
+    target.y,
     '#c77dff',
     45,
     5
@@ -11302,14 +8734,14 @@ function startEnding(
 
 
   screenShake =
-    24;
+    25;
 
 
   tone(
     100,
     1000,
     'sawtooth',
-    0.05,
+    .05,
     35
   );
 }
@@ -11324,21 +8756,6 @@ function updateEnding(
     dt *
     .65
   );
-
-
-  updateFloatingTexts(
-    dt *
-    .4
-  );
-
-
-  screenShake =
-    Math.max(
-      0,
-      screenShake -
-      18 *
-      dt
-    );
 
 
   const elapsed =
@@ -11358,126 +8775,15 @@ function updateEnding(
 }
 
 
-function drawEndingEffects(
-  timestamp
-) {
-
-  if (
-    gameState !==
-    GAME_STATE.ENDING
-  ) {
-
-    return;
-  }
-
-
-  const elapsed =
-    timestamp -
-    endingStartedAtReal;
-
-
-  const progress =
-    clamp(
-      elapsed /
-      CONFIG.ending
-        .durationMs,
-      0,
-      1
-    );
-
-
-  ctx.save();
-
-
-  ctx.fillStyle =
-    `rgba(80,0,14,${
-      .06 +
-      progress *
-      .30
-    })`;
-
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  ctx.globalAlpha =
-    .18 +
-    progress *
-    .42;
-
-
-  for (
-    let i = 0;
-    i < 9;
-    i++
-  ) {
-
-    const y =
-      (
-        Math.sin(
-          timestamp *
-          .02 +
-          i *
-          7.1
-        ) *
-        .5 +
-        .5
-      ) *
-      canvas.height;
-
-
-    const height =
-      random(
-        2,
-        9
-      );
-
-
-    ctx.fillStyle =
-      i %
-      2
-
-        ? '#ff4d6d'
-
-        : '#c77dff';
-
-
-    ctx.fillRect(
-      random(
-        -50,
-        50
-      ),
-
-      y,
-
-      canvas.width +
-      random(
-        -80,
-        120
-      ),
-
-      height
-    );
-  }
-
-
-  ctx.restore();
-}
-
-
 function showGameOver() {
 
   endingResultShown =
     true;
 
 
-  gameState =
-    GAME_STATE.GAMEOVER;
+  setGameState(
+    GAME_STATE.GAMEOVER
+  );
 
 
   endingOverlay
@@ -11561,17 +8867,1074 @@ function showGameOver() {
 
 
 // ============================================================
+// DRAW
+// ============================================================
+
+function drawGame(
+  timestamp
+) {
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  let shakeX =
+    0;
+
+  let shakeY =
+    0;
+
+
+  if (
+    screenShake >
+    0
+  ) {
+
+    shakeX =
+      random(
+        -screenShake / 2,
+        screenShake / 2
+      );
+
+
+    shakeY =
+      random(
+        -screenShake / 2,
+        screenShake / 2
+      );
+  }
+
+
+  ctx.save();
+
+
+  ctx.translate(
+    shakeX,
+    shakeY
+  );
+
+
+  drawGrid();
+
+
+  if (
+    gameState !==
+    GAME_STATE.MENU
+  ) {
+
+    drawHazards();
+
+    drawCore();
+
+    drawStructures();
+
+    drawPickups();
+
+    drawEnemyProjectiles();
+
+    drawBullets();
+
+    drawBeams();
+
+    drawEnemies();
+
+    drawBoss();
+
+    drawPlayer();
+
+    drawParticles();
+
+    drawFloatingTexts();
+
+    drawWaveOverlay();
+
+    drawPlacementPreview();
+  }
+
+
+  ctx.restore();
+
+
+  drawCrosshair();
+
+
+  if (
+    gameState ===
+    GAME_STATE.ENDING
+  ) {
+
+    drawEndingGlitch(
+      timestamp
+    );
+  }
+}
+
+
+function drawGrid() {
+
+  const time =
+    performance.now();
+
+
+  ctx.save();
+
+
+  ctx.strokeStyle =
+    `rgba(
+      54,
+      91,
+      135,
+      ${
+        .10 +
+        Math.sin(
+          time *
+          .002
+        ) *
+        .025
+      }
+    )`;
+
+
+  for (
+    let x = 0;
+    x < canvas.width;
+    x += 50
+  ) {
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x,
+      0
+    );
+
+    ctx.lineTo(
+      x,
+      canvas.height
+    );
+
+    ctx.stroke();
+  }
+
+
+  for (
+    let y = 0;
+    y < canvas.height;
+    y += 50
+  ) {
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      0,
+      y
+    );
+
+    ctx.lineTo(
+      canvas.width,
+      y
+    );
+
+    ctx.stroke();
+  }
+
+
+  ctx.restore();
+}
+
+
+function drawEnemies() {
+
+  for (
+    const enemy
+    of enemies
+  ) {
+
+    const color =
+      gameTime <
+      enemy.hitFlashUntil
+
+        ? '#ffffff'
+
+        : CONFIG.enemies[
+            enemy.type
+          ].color;
+
+
+    ctx.save();
+
+
+    ctx.translate(
+      enemy.x,
+      enemy.y
+    );
+
+
+    ctx.rotate(
+      enemy.rotation
+    );
+
+
+    if (
+      enemy.elite
+    ) {
+
+      ctx.beginPath();
+
+
+      ctx.arc(
+        0,
+        0,
+        enemy.radius + 7,
+        0,
+        Math.PI * 2
+      );
+
+
+      ctx.strokeStyle =
+        '#ffd43b';
+
+
+      ctx.lineWidth =
+        3;
+
+
+      ctx.stroke();
+    }
+
+
+    if (
+      enemy.type ===
+      'runner'
+    ) {
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        enemy.radius + 4,
+        0
+      );
+
+      ctx.lineTo(
+        -enemy.radius,
+        -enemy.radius
+      );
+
+      ctx.lineTo(
+        -enemy.radius,
+        enemy.radius
+      );
+
+      ctx.closePath();
+
+      ctx.fillStyle =
+        color;
+
+      ctx.fill();
+
+    } else if (
+      enemy.type ===
+      'shooter'
+    ) {
+
+      ctx.fillStyle =
+        color;
+
+
+      ctx.fillRect(
+        -enemy.radius,
+        -enemy.radius,
+        enemy.radius * 2,
+        enemy.radius * 2
+      );
+
+    } else if (
+      enemy.type ===
+      'hunter'
+    ) {
+
+      drawPolygon(
+        0,
+        0,
+        enemy.radius,
+        4,
+        color,
+        false
+      );
+
+    } else if (
+      enemy.type ===
+      'sapper'
+    ) {
+
+      drawPolygon(
+        0,
+        0,
+        enemy.radius,
+        5,
+        color,
+        false
+      );
+
+    } else {
+
+      drawStarShape(
+
+        0,
+        0,
+
+        enemy.radius,
+
+        enemy.radius *
+        .68,
+
+        enemy.type ===
+        'tank'
+          ? 8
+          : 12,
+
+        color
+      );
+    }
+
+
+    ctx.restore();
+  }
+}
+
+
+function drawBoss() {
+
+  if (!boss) {
+    return;
+  }
+
+
+  ctx.save();
+
+
+  ctx.translate(
+    boss.x,
+    boss.y
+  );
+
+
+  ctx.rotate(
+    boss.rotation
+  );
+
+
+  if (
+    boss.type ===
+      'rootkit' &&
+    gameTime <
+      boss.stealthUntil
+  ) {
+
+    ctx.globalAlpha =
+      .22;
+  }
+
+
+  drawStarShape(
+
+    0,
+    0,
+
+    boss.radius,
+
+    boss.radius *
+    .68,
+
+    boss.type ===
+    'zeroday'
+      ? 18
+      : 14,
+
+    gameTime <
+    boss.hitFlashUntil
+
+      ? '#ffffff'
+
+      : boss.color
+  );
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    0,
+    0,
+    15,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.fillStyle =
+    '#ffffff';
+
+
+  ctx.fill();
+
+
+  ctx.restore();
+
+
+  if (
+    boss.shield >
+    0
+  ) {
+
+    ctx.save();
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      boss.x,
+      boss.y,
+      boss.radius + 10,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.strokeStyle =
+      '#e64980';
+
+
+    ctx.lineWidth =
+      4;
+
+
+    ctx.stroke();
+
+
+    ctx.restore();
+  }
+}
+
+
+function drawStructures() {
+
+  for (
+    const structure
+    of structures
+  ) {
+
+    const config =
+      CONFIG.defenses[
+        structure.type
+      ];
+
+
+    ctx.save();
+
+
+    ctx.translate(
+      structure.x,
+      structure.y
+    );
+
+
+    ctx.globalAlpha =
+      structure.disabledUntil >
+      gameTime
+
+        ? .35
+
+        : 1;
+
+
+    if (
+      structure.type ===
+      'slow'
+    ) {
+
+      ctx.beginPath();
+
+
+      ctx.arc(
+        0,
+        0,
+        structure.effectRange,
+        0,
+        Math.PI * 2
+      );
+
+
+      ctx.fillStyle =
+        'rgba(116,192,252,.05)';
+
+
+      ctx.fill();
+    }
+
+
+    drawPolygon(
+
+      0,
+      0,
+
+      structure.radius,
+
+      structure.type ===
+      'repair'
+        ? 4
+        : 6,
+
+      config.color,
+
+      false
+    );
+
+
+    ctx.restore();
+  }
+}
+
+
+function drawBullets() {
+
+  for (
+    const bullet
+    of bullets
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      bullet.prevX,
+      bullet.prevY
+    );
+
+
+    ctx.lineTo(
+      bullet.x,
+      bullet.y
+    );
+
+
+    ctx.strokeStyle =
+      bullet.color;
+
+
+    ctx.lineWidth =
+      bullet.owner ===
+      'turret'
+
+        ? 3
+
+        : 4;
+
+
+    ctx.stroke();
+  }
+}
+
+
+function drawEnemyProjectiles() {
+
+  for (
+    const projectile
+    of enemyProjectiles
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      projectile.x,
+      projectile.y,
+      projectile.radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      projectile.color;
+
+
+    ctx.fill();
+  }
+}
+
+
+function drawPickups() {
+
+  for (
+    const pickup
+    of pickups
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      pickup.x,
+      pickup.y,
+      pickup.radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      pickup.type ===
+      'heal'
+
+        ? '#69db7c'
+
+        : pickup.type ===
+          'core'
+
+          ? '#c77dff'
+
+          : pickup.type ===
+            'rapid'
+
+            ? '#ffe066'
+
+            : '#74c0fc';
+
+
+    ctx.fill();
+  }
+}
+
+
+function drawHazards() {
+
+  for (
+    const hazard
+    of hazards
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      hazard.x,
+      hazard.y,
+      hazard.radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      `${hazard.color}22`;
+
+
+    ctx.strokeStyle =
+      hazard.color;
+
+
+    ctx.lineWidth =
+      2;
+
+
+    ctx.fill();
+
+    ctx.stroke();
+  }
+}
+
+
+function drawParticles() {
+
+  for (
+    const particle
+    of particles
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      particle.x,
+      particle.y,
+      particle.size,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      particle.color;
+
+
+    ctx.fill();
+  }
+}
+
+
+function drawFloatingTexts() {
+
+  ctx.save();
+
+
+  ctx.font =
+    'bold 15px monospace';
+
+
+  ctx.textAlign =
+    'center';
+
+
+  for (
+    const item
+    of floatingTexts
+  ) {
+
+    ctx.fillStyle =
+      item.color;
+
+
+    ctx.fillText(
+      item.text,
+      item.x,
+      item.y
+    );
+  }
+
+
+  ctx.restore();
+}
+
+
+function drawBeams() {
+
+  for (
+    const beam
+    of beams
+  ) {
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      beam.x1,
+      beam.y1
+    );
+
+
+    ctx.lineTo(
+      beam.x2,
+      beam.y2
+    );
+
+
+    ctx.strokeStyle =
+      '#63e6ff';
+
+
+    ctx.lineWidth =
+      3;
+
+
+    ctx.stroke();
+  }
+}
+
+
+function drawWaveOverlay() {
+
+  ctx.save();
+
+
+  ctx.textAlign =
+    'center';
+
+
+  if (
+    gameTime <
+    waveBannerUntil
+  ) {
+
+    ctx.font =
+      'bold 38px monospace';
+
+
+    ctx.fillStyle =
+      currentWavePlan.boss
+
+        ? '#ff9bab'
+
+        : '#b8f6ff';
+
+
+    ctx.fillText(
+
+      currentWavePlan.boss
+
+        ? `BOSS WAVE ${wave}`
+
+        : `WAVE ${wave}`,
+
+      canvas.width / 2,
+
+      95
+    );
+  }
+
+
+  if (
+    waveState ===
+      'cleared'
+  ) {
+
+    ctx.font =
+      'bold 30px monospace';
+
+
+    ctx.fillStyle =
+      '#69f0ae';
+
+
+    ctx.fillText(
+      'SECTOR SECURED',
+      canvas.width / 2,
+      canvas.height / 2
+    );
+
+
+    ctx.font =
+      '14px monospace';
+
+
+    ctx.fillText(
+      waveClearMessage,
+      canvas.width / 2,
+      canvas.height / 2 + 30
+    );
+  }
+
+
+  if (
+    lastStandActive
+  ) {
+
+    ctx.font =
+      'bold 15px monospace';
+
+
+    ctx.fillStyle =
+      '#ff6b81';
+
+
+    ctx.fillText(
+      'CRITICAL CORE CONDITION — LAST STAND',
+      canvas.width / 2,
+      canvas.height - 24
+    );
+  }
+
+
+  ctx.restore();
+}
+
+
+function drawPlacementPreview() {
+
+  if (
+    gameState !==
+      GAME_STATE.BUILD ||
+    !selectedBuildType
+  ) {
+
+    return;
+  }
+
+
+  const config =
+    CONFIG.defenses[
+      selectedBuildType
+    ];
+
+
+  const valid =
+    canPlaceStructure(
+
+      selectedBuildType,
+
+      mouse.x,
+
+      mouse.y
+    ).ok &&
+    dataCurrency >=
+      config.cost;
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    mouse.x,
+    mouse.y,
+    config.radius,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.fillStyle =
+    valid
+
+      ? 'rgba(105,219,124,.55)'
+
+      : 'rgba(255,107,107,.55)';
+
+
+  ctx.fill();
+}
+
+
+function drawCrosshair() {
+
+  if (
+    ![
+      GAME_STATE.PLAYING,
+      GAME_STATE.PAUSED,
+      GAME_STATE.BUILD
+    ].includes(
+      gameState
+    )
+  ) {
+
+    return;
+  }
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    mouse.x,
+    mouse.y,
+    7,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.strokeStyle =
+    '#9befff';
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.stroke();
+}
+
+
+function drawEndingGlitch(
+  timestamp
+) {
+
+  const elapsed =
+    timestamp -
+    endingStartedAtReal;
+
+
+  const progress =
+    clamp(
+
+      elapsed /
+      CONFIG.ending
+        .durationMs,
+
+      0,
+      1
+    );
+
+
+  ctx.save();
+
+
+  ctx.fillStyle =
+    `rgba(
+      100,
+      0,
+      20,
+      ${
+        progress *
+        .25
+      }
+    )`;
+
+
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  for (
+    let i = 0;
+    i < 8;
+    i++
+  ) {
+
+    ctx.fillStyle =
+      i % 2
+
+        ? '#ff4d6d33'
+
+        : '#c77dff33';
+
+
+    ctx.fillRect(
+
+      random(
+        0,
+        canvas.width
+      ),
+
+      random(
+        0,
+        canvas.height
+      ),
+
+      random(
+        80,
+        400
+      ),
+
+      random(
+        2,
+        8
+      )
+    );
+  }
+
+
+  ctx.restore();
+}
+
+
+// ============================================================
 // HUD
 // ============================================================
 
 function updateHud() {
 
   hpText.textContent =
-    Math.max(
-      0,
-      Math.ceil(
-        player.hp
-      )
+    Math.ceil(
+      player.hp
     );
 
 
@@ -11603,14 +9966,9 @@ function updateHud() {
 
 
   coreHpText.textContent =
-    `${
-      Math.max(
-        0,
-        Math.ceil(
-          core.hp
-        )
-      )
-    }`;
+    Math.ceil(
+      core.hp
+    );
 
 
   coreHpBar.style.width =
@@ -11627,6 +9985,32 @@ function updateHud() {
 
   coreShieldText.textContent =
     `SHIELD ${Math.round(core.shield)} / ${Math.round(core.maxShield)}`;
+
+
+  const needed =
+    expNeeded(
+      playerLevel
+    );
+
+
+  levelText.textContent =
+    playerLevel;
+
+
+  expText.textContent =
+    `${Math.floor(playerExp)} / ${needed} EXP`;
+
+
+  expBar.style.width =
+    `${
+      clamp(
+        playerExp /
+        needed,
+        0,
+        1
+      ) *
+      100
+    }%`;
 
 
   scoreText.textContent =
@@ -11657,137 +10041,39 @@ function updateHud() {
     `${comboStreak} streak`;
 
 
-  const dashLeft =
-    Math.max(
-      0,
-      player.dashCooldownUntil -
-      gameTime
-    );
-
-
   dashStatus.textContent =
-    !player.alive
+    gameTime >=
+    player.dashCooldownUntil
 
-      ? `REBOOT ${
-          Math.max(
-            0,
+      ? 'DASH READY'
+
+      : `DASH ${
+          (
             (
-              player.respawnAt -
+              player.dashCooldownUntil -
               gameTime
             ) /
             1000
           ).toFixed(1)
-        }s`
-
-      : dashLeft <=
-        0
-
-        ? 'DASH READY'
-
-        : `DASH ${
-            (
-              dashLeft /
-              1000
-            ).toFixed(1)
-          }s`;
-
-
-  const powerParts =
-    [];
-
-
-  if (
-    player.shieldCharges >
-    0
-  ) {
-
-    powerParts.push(
-      `P-SHIELD x${player.shieldCharges}`
-    );
-  }
-
-
-  if (
-    gameTime <
-    player.rapidFireUntil
-  ) {
-
-    powerParts.push(
-      `RAPID ${
-        (
-          (
-            player.rapidFireUntil -
-            gameTime
-          ) /
-          1000
-        ).toFixed(1)
-      }s`
-    );
-  }
+        }s`;
 
 
   powerStatus.textContent =
-    powerParts.length
+    gameTime <
+    player.rapidFireUntil
 
-      ? powerParts.join(
-          ' · '
-        )
+      ? 'RAPID FIRE'
 
-      : 'NO POWER-UP';
+      : player.shieldCharges >
+        0
 
+        ? `PLAYER SHIELD x${player.shieldCharges}`
 
-  if (
-    gameState ===
-    GAME_STATE.MENU
-  ) {
-
-    stateStatus.textContent =
-      'SYSTEM IDLE';
-
-  } else if (
-    gameState ===
-    GAME_STATE.BUILD
-  ) {
-
-    stateStatus.textContent =
-      'BUILD PHASE';
-
-  } else if (
-    gameState ===
-    GAME_STATE.UPGRADE
-  ) {
-
-    stateStatus.textContent =
-      'UPGRADE AVAILABLE';
-
-  } else if (
-    gameState ===
-    GAME_STATE.PAUSED
-  ) {
-
-    stateStatus.textContent =
-      'SESSION PAUSED';
-
-  } else if (
-    lastStandActive
-  ) {
-
-    stateStatus.textContent =
-      'LAST STAND';
-
-  } else {
-
-    stateStatus.textContent =
-      currentWavePlan
-        ?.archetype ||
-      'DEFENSE ACTIVE';
-  }
+        : 'NO POWER-UP';
 
 
   if (
-    boss &&
-    gameState !==
-    GAME_STATE.ENDING
+    boss
   ) {
 
     bossHud
@@ -11797,19 +10083,41 @@ function updateHud() {
       );
 
 
+    let suffix =
+      ` · PHASE ${boss.phase}`;
+
+
+    if (
+      boss.type ===
+        'ransomware' &&
+      boss.shield >
+        0
+    ) {
+
+      suffix +=
+        ` · ENC ${Math.ceil(boss.shield)}`;
+    }
+
+
+    if (
+      boss.type ===
+        'rootkit' &&
+      gameTime <
+        boss.stealthUntil
+    ) {
+
+      suffix +=
+        ' · STEALTH';
+    }
+
+
     bossName.textContent =
-      `INTRUSION OVERLORD · PHASE ${boss.phase}`;
+      boss.name +
+      suffix;
 
 
     bossHpText.textContent =
-      `${
-        Math.max(
-          0,
-          Math.ceil(
-            boss.hp
-          )
-        )
-      } / ${Math.ceil(boss.maxHp)}`;
+      `${Math.ceil(boss.hp)} / ${Math.ceil(boss.maxHp)}`;
 
 
     bossHpBar.style.width =
@@ -11838,13 +10146,36 @@ function updateHud() {
     GAME_STATE.BUILD
   ) {
 
-    updateBuildUi();
+    stateStatus.textContent =
+      'BUILD PHASE';
+
+  } else if (
+    gameState ===
+    GAME_STATE.UPGRADE
+  ) {
+
+    stateStatus.textContent =
+      'LEVEL UP';
+
+  } else if (
+    lastStandActive
+  ) {
+
+    stateStatus.textContent =
+      'LAST STAND';
+
+  } else {
+
+    stateStatus.textContent =
+      currentWavePlan
+        ?.archetype ||
+      'SYSTEM READY';
   }
 }
 
 
 // ============================================================
-// GAME UPDATE / DRAW
+// GAME LOOP
 // ============================================================
 
 function updateGame(
@@ -11884,9 +10215,10 @@ function updateGame(
   );
 
 
-  updatePickups(
-    dt
-  );
+  updateHazards();
+
+
+  updatePickups();
 
 
   updateParticles(
@@ -11908,133 +10240,16 @@ function updateGame(
   updateWaveSystem();
 
 
+  checkPendingLevelUp();
+
+
   screenShake =
     Math.max(
       0,
       screenShake -
-      36 *
+      35 *
       dt
     );
-}
-
-
-function drawGame(
-  timestamp
-) {
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  let shakeX =
-    0;
-
-
-  let shakeY =
-    0;
-
-
-  if (
-    screenShake >
-    0
-  ) {
-
-    shakeX =
-      (
-        Math.random() -
-        .5
-      ) *
-      screenShake;
-
-
-    shakeY =
-      (
-        Math.random() -
-        .5
-      ) *
-      screenShake;
-  }
-
-
-  ctx.save();
-
-
-  ctx.translate(
-    shakeX,
-    shakeY
-  );
-
-
-  drawGrid();
-
-
-  if (
-    gameState !==
-    GAME_STATE.MENU
-  ) {
-
-    drawCore();
-
-
-    drawStructures();
-
-
-    drawSpawnWarnings();
-
-
-    drawPickups();
-
-
-    drawEnemyProjectiles();
-
-
-    drawBullets();
-
-
-    drawBeams();
-
-
-    drawEnemies();
-
-
-    drawBoss();
-
-
-    drawPlayer();
-
-
-    drawParticles();
-
-
-    drawFloatingTexts();
-
-
-    drawWaveOverlay();
-
-
-    drawRespawnStatus();
-
-
-    drawDamageVignette();
-
-
-    drawPlacementPreview();
-  }
-
-
-  ctx.restore();
-
-
-  drawCrosshair();
-
-
-  drawEndingEffects(
-    timestamp
-  );
 }
 
 
@@ -12044,9 +10259,13 @@ function gameLoop(
 
   const dt =
     Math.min(
+
       .033,
+
       Math.max(
+
         0,
+
         (
           timestamp -
           lastFrameTimestamp
@@ -12110,7 +10329,7 @@ function gameLoop(
 
 
 // ============================================================
-// RUN RESET / START
+// RESET
 // ============================================================
 
 function resetRun() {
@@ -12120,7 +10339,8 @@ function resetRun() {
 
 
   dataCurrency =
-    0;
+    CONFIG.economy
+      .startingData;
 
 
   wave =
@@ -12131,48 +10351,41 @@ function resetRun() {
     0;
 
 
-  runStartedAtReal =
-    performance.now();
+  playerLevel =
+    1;
+
+
+  playerExp =
+    0;
+
+
+  pendingLevelUps =
+    0;
 
 
   nextEntityId =
     1;
 
 
-  bullets =
-    [];
+  bullets = [];
 
+  enemies = [];
 
-  enemies =
-    [];
+  enemyProjectiles = [];
 
+  particles = [];
 
-  enemyProjectiles =
-    [];
+  floatingTexts = [];
 
+  pickups = [];
 
-  particles =
-    [];
+  structures = [];
 
+  beams = [];
 
-  floatingTexts =
-    [];
+  hazards = [];
 
-
-  pickups =
-    [];
-
-
-  structures =
-    [];
-
-
-  beams =
-    [];
-
-
-  pendingSpawns =
-    [];
+  pendingSpawns = [];
 
 
   boss =
@@ -12191,24 +10404,8 @@ function resetRun() {
     1;
 
 
-  comboExpiresAt =
-    0;
-
-
   bestComboMultiplier =
     1;
-
-
-  lastShotAt =
-    -Infinity;
-
-
-  muzzleFlashUntil =
-    0;
-
-
-  screenShake =
-    0;
 
 
   lastStandActive =
@@ -12227,60 +10424,41 @@ function resetRun() {
     runMods,
     {
 
-      playerSpeed:
-        1,
+      playerSpeed: 1,
 
-      dashCooldown:
-        1,
+      dashCooldown: 1,
 
-      weaponDamage:
-        1,
+      weaponDamage: 1,
 
-      fireRate:
-        1,
+      fireRate: 1,
 
-      bulletSpeed:
-        1,
+      bulletSpeed: 1,
 
-      multishot:
-        0,
+      multishot: 0,
 
-      pierce:
-        0,
+      pierce: 0,
 
-      critChance:
-        0,
+      critChance: 0,
 
-      critMultiplier:
-        2,
+      critMultiplier: 2,
 
-      chainChance:
-        0,
+      chainChance: 0,
 
-      dataMultiplier:
-        1,
+      dataMultiplier: 1,
 
-      pickupBonus:
-        0,
+      pickupBonus: 0,
 
-      coreDamageMultiplier:
-        1,
+      coreDamageMultiplier: 1,
 
-      turretDamage:
-        1,
+      turretDamage: 1,
 
-      defenseHp:
-        1,
+      defenseHp: 1,
 
-      slowMultiplier:
-        1,
+      slowMultiplier: 1,
 
-      repairAmount:
-        1,
+      repairAmount: 1,
 
-      repairChargeBonus:
-        0
-
+      repairChargeBonus: 0
     }
   );
 
@@ -12289,24 +10467,17 @@ function resetRun() {
     stats,
     {
 
-      kills:
-        0,
+      kills: 0,
 
-      elites:
-        0,
+      elites: 0,
 
-      bosses:
-        0,
+      bosses: 0,
 
-      structuresBuilt:
-        0,
+      structuresBuilt: 0,
 
-      coreDamageTaken:
-        0,
+      coreDamageTaken: 0,
 
-      dataCollected:
-        0
-
+      dataCollected: 0
     }
   );
 
@@ -12319,19 +10490,13 @@ function resetRun() {
     canvas.height / 2;
 
 
-  core.hp =
-    CONFIG.core
-      .maxHp;
-
-
   core.maxHp =
     CONFIG.core
       .maxHp;
 
 
-  core.shield =
-    CONFIG.core
-      .maxShield;
+  core.hp =
+    core.maxHp;
 
 
   core.maxShield =
@@ -12339,27 +10504,21 @@ function resetRun() {
       .maxShield;
 
 
-  core.flashUntil =
-    0;
+  core.shield =
+    core.maxShield;
 
 
-  player.x =
-    core.x;
-
-
-  player.y =
-    core.y +
-    125;
-
-
-  player.hp =
-    CONFIG.player
-      .maxHp;
+  core.lastDamageAt =
+    -Infinity;
 
 
   player.maxHp =
     CONFIG.player
       .maxHp;
+
+
+  player.hp =
+    player.maxHp;
 
 
   player.lives =
@@ -12371,24 +10530,16 @@ function resetRun() {
     true;
 
 
-  player.respawnAt =
-    0;
+  player.x =
+    core.x;
+
+
+  player.y =
+    core.y +
+    125;
 
 
   player.invulnerableUntil =
-    0;
-
-
-  player.hurtFlashUntil =
-    0;
-
-
-  player.angle =
-    -Math.PI /
-    2;
-
-
-  player.dashUntil =
     0;
 
 
@@ -12408,9 +10559,6 @@ function resetRun() {
     false;
 
 
-  clearBuildSelection();
-
-
   startMenu
     .classList
     .add(
@@ -12447,13 +10595,6 @@ function resetRun() {
 
 
   gameOverPanel
-    .classList
-    .add(
-      'hidden'
-    );
-
-
-  bossHud
     .classList
     .add(
       'hidden'
@@ -12472,31 +10613,14 @@ function resetRun() {
 
 function showStartMenu() {
 
-  gameState =
-    GAME_STATE.MENU;
-
-
-  mouse.isDown =
-    false;
+  setGameState(
+    GAME_STATE.MENU
+  );
 
 
   startMenu
     .classList
     .remove(
-      'hidden'
-    );
-
-
-  pausePanel
-    .classList
-    .add(
-      'hidden'
-    );
-
-
-  upgradePanel
-    .classList
-    .add(
       'hidden'
     );
 
@@ -12508,21 +10632,7 @@ function showStartMenu() {
     );
 
 
-  endingOverlay
-    .classList
-    .add(
-      'hidden'
-    );
-
-
   gameOverPanel
-    .classList
-    .add(
-      'hidden'
-    );
-
-
-  bossHud
     .classList
     .add(
       'hidden'
@@ -12533,6 +10643,28 @@ function showStartMenu() {
 // ============================================================
 // HELPERS
 // ============================================================
+
+function getThreatCount() {
+
+  return (
+
+    waveQueue.length +
+
+    pendingSpawns.length +
+
+    enemies.length +
+
+    (
+      boss ||
+      pendingBossAt
+
+        ? 1
+
+        : 0
+    )
+  );
+}
+
 
 function random(
   min,
@@ -12572,10 +10704,8 @@ function distance(
 ) {
 
   return Math.hypot(
-    a.x -
-    b.x,
-    a.y -
-    b.y
+    a.x - b.x,
+    a.y - b.y
   );
 }
 
@@ -12588,10 +10718,8 @@ function distancePoint(
 ) {
 
   return Math.hypot(
-    x1 -
-    x2,
-    y1 -
-    y2
+    x1 - x2,
+    y1 - y2
   );
 }
 
@@ -12602,54 +10730,44 @@ function nearestEntity(
   list
 ) {
 
-  let best =
+  let result =
     null;
 
 
-  let bestDistance =
+  let best =
     Infinity;
 
 
   for (
-    const entity
+    const item
     of list
   ) {
 
-    if (
-      !entity ||
-      entity.hp ===
-      0
-    ) {
-
-      continue;
-    }
-
-
-    const currentDistance =
+    const d =
       distancePoint(
         x,
         y,
-        entity.x,
-        entity.y
+        item.x,
+        item.y
       );
 
 
     if (
-      currentDistance <
-      bestDistance
+      d <
+      best
     ) {
 
-      bestDistance =
-        currentDistance;
-
-
       best =
-        entity;
+        d;
+
+
+      result =
+        item;
     }
   }
 
 
-  return best;
+  return result;
 }
 
 
@@ -12657,10 +10775,15 @@ function shuffle(
   array
 ) {
 
+  const copy =
+    [
+      ...array
+    ];
+
+
   for (
     let i =
-      array.length -
-      1;
+      copy.length - 1;
 
     i >
     0;
@@ -12672,24 +10795,23 @@ function shuffle(
       Math.floor(
         Math.random() *
         (
-          i +
-          1
+          i + 1
         )
       );
 
 
     [
-      array[i],
-      array[j]
+      copy[i],
+      copy[j]
     ] =
       [
-        array[j],
-        array[i]
+        copy[j],
+        copy[i]
       ];
   }
 
 
-  return array;
+  return copy;
 }
 
 
@@ -12698,41 +10820,40 @@ function formatTime(
 ) {
 
   const total =
-    Math.max(
-      0,
-      Math.floor(
-        seconds
-      )
+    Math.floor(
+      seconds
     );
 
 
   const minutes =
     Math.floor(
-      total /
-      60
+      total / 60
     );
 
 
   const secs =
-    total %
-    60;
+    total % 60;
 
 
-  return `${
+  return (
     String(
       minutes
-    ).padStart(
-      2,
-      '0'
     )
-  }:${
+      .padStart(
+        2,
+        '0'
+      ) +
+
+    ':' +
+
     String(
       secs
-    ).padStart(
-      2,
-      '0'
     )
-  }`;
+      .padStart(
+        2,
+        '0'
+      )
+  );
 }
 
 
@@ -12741,8 +10862,8 @@ function drawPolygon(
   y,
   radius,
   sides,
-  fill,
-  strokeOnly = false
+  color,
+  strokeOnly
 ) {
 
   ctx.beginPath();
@@ -12755,8 +10876,6 @@ function drawPolygon(
   ) {
 
     const angle =
-      -Math.PI /
-      2 +
       Math.PI *
       2 *
       i /
@@ -12801,24 +10920,10 @@ function drawPolygon(
   ctx.closePath();
 
 
-  ctx.shadowColor =
-    fill;
-
-
-  ctx.shadowBlur =
-    14;
-
-
-  if (
-    strokeOnly
-  ) {
+  if (strokeOnly) {
 
     ctx.strokeStyle =
-      fill;
-
-
-    ctx.lineWidth =
-      2;
+      color;
 
 
     ctx.stroke();
@@ -12826,7 +10931,7 @@ function drawPolygon(
   } else {
 
     ctx.fillStyle =
-      fill;
+      color;
 
 
     ctx.fill();
@@ -12837,10 +10942,10 @@ function drawPolygon(
 function drawStarShape(
   x,
   y,
-  outerRadius,
-  innerRadius,
+  outer,
+  inner,
   points,
-  fill
+  color
 ) {
 
   ctx.beginPath();
@@ -12859,13 +10964,11 @@ function drawStarShape(
 
 
     const radius =
-      i %
-      2 ===
-      0
+      i % 2 === 0
 
-        ? outerRadius
+        ? outer
 
-        : innerRadius;
+        : inner;
 
 
     const px =
@@ -12907,77 +11010,15 @@ function drawStarShape(
 
 
   ctx.fillStyle =
-    fill;
-
-
-  ctx.shadowColor =
-    fill;
-
-
-  ctx.shadowBlur =
-    16;
+    color;
 
 
   ctx.fill();
 }
 
 
-function drawSmallHpBar(
-  x,
-  y,
-  width,
-  ratio,
-  color
-) {
-
-  ctx.save();
-
-
-  ctx.fillStyle =
-    'rgba(0,0,0,.62)';
-
-
-  ctx.fillRect(
-    x -
-    width /
-    2,
-
-    y,
-
-    width,
-
-    5
-  );
-
-
-  ctx.fillStyle =
-    color;
-
-
-  ctx.fillRect(
-    x -
-    width /
-    2,
-
-    y,
-
-    width *
-    clamp(
-      ratio,
-      0,
-      1
-    ),
-
-    5
-  );
-
-
-  ctx.restore();
-}
-
-
 // ============================================================
-// UI EVENTS
+// EVENTS
 // ============================================================
 
 startBtn.addEventListener(
@@ -13004,20 +11045,15 @@ restartBtn.addEventListener(
 
 readyBtn.addEventListener(
   'click',
-  () => {
-
-    startNextWaveFromBuild();
-  }
+  startNextWaveFromBuild
 );
 
 
-upgradeStructureBtn.addEventListener(
-  'click',
-  () => {
-
-    upgradeSelectedStructure();
-  }
-);
+upgradeStructureBtn
+  .addEventListener(
+    'click',
+    upgradeSelectedStructure
+  );
 
 
 for (
@@ -13030,7 +11066,8 @@ for (
     () => {
 
       selectBuildType(
-        button.dataset.build
+        button.dataset
+          .build
       );
     }
   );
