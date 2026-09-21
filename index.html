@@ -27,21 +27,47 @@
       <div class="hud-item hp-item">
 
         <span>
-          CORE HP
+          PLAYER HP
         </span>
 
         <strong id="hp">
           100
         </strong>
 
-        <div class="hp-bar">
-
+        <div class="meter">
           <div
             id="hpBar"
-            class="hp-bar-fill"
+            class="meter-fill player-hp-fill"
           ></div>
-
         </div>
+
+        <small id="lives">
+          LIVES ◆ ◆ ◆
+        </small>
+
+      </div>
+
+
+      <div class="hud-item core-item">
+
+        <span>
+          CORE HP
+        </span>
+
+        <strong id="coreHp">
+          1000
+        </strong>
+
+        <div class="meter">
+          <div
+            id="coreHpBar"
+            class="meter-fill core-hp-fill"
+          ></div>
+        </div>
+
+        <small id="coreShield">
+          SHIELD 250 / 250
+        </small>
 
       </div>
 
@@ -56,6 +82,27 @@
           0
         </strong>
 
+        <small id="combo">
+          COMBO x1
+        </small>
+
+      </div>
+
+
+      <div class="hud-item">
+
+        <span>
+          DATA
+        </span>
+
+        <strong id="data">
+          0
+        </strong>
+
+        <small id="streak">
+          0 streak
+        </small>
+
       </div>
 
 
@@ -69,34 +116,8 @@
           1
         </strong>
 
-      </div>
-
-
-      <div class="hud-item">
-
-        <span>
-          THREATS
-        </span>
-
-        <strong id="threats">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="hud-item combo-item">
-
-        <span>
-          COMBO
-        </span>
-
-        <strong id="combo">
-          x1
-        </strong>
-
-        <small id="streak">
-          0 streak
+        <small id="threats">
+          0 threats
         </small>
 
       </div>
@@ -114,8 +135,8 @@
         NO POWER-UP
       </span>
 
-      <span>
-        WASD move · Mouse aim · Hold LMB fire · Space dash · Esc pause
+      <span id="stateStatus">
+        SYSTEM IDLE
       </span>
 
     </section>
@@ -129,67 +150,6 @@
         height="720"
       ></canvas>
 
-        <div
-        id="startMenu"
-        class="overlay-panel start-panel"
-        >
-
-        <div class="start-kicker">
-            SYSTEM READY
-        </div>
-
-
-        <h1>
-            CYBER DEFENSE ARENA
-        </h1>
-
-
-        <p class="start-subtitle">
-            Defend the network.
-            Destroy incoming threats.
-            Survive every attack wave.
-        </p>
-
-
-        <button
-            id="startBtn"
-            type="button"
-        >
-            START GAME
-        </button>
-
-
-        <div class="controls-grid">
-
-            <div>
-            <strong>WASD</strong>
-            <span>Move</span>
-            </div>
-
-            <div>
-            <strong>MOUSE</strong>
-            <span>Aim</span>
-            </div>
-
-            <div>
-            <strong>LMB</strong>
-            <span>Fire</span>
-            </div>
-
-            <div>
-            <strong>SPACE</strong>
-            <span>Dash</span>
-            </div>
-
-            <div>
-            <strong>ESC</strong>
-            <span>Pause</span>
-            </div>
-
-        </div>
-
-        </div>
-
 
       <div
         id="bossHud"
@@ -198,7 +158,7 @@
 
         <div class="boss-label">
 
-          <span>
+          <span id="bossName">
             INTRUSION OVERLORD
           </span>
 
@@ -207,7 +167,6 @@
           </strong>
 
         </div>
-
 
         <div class="boss-bar">
 
@@ -222,9 +181,73 @@
 
 
       <div
+        id="startMenu"
+        class="overlay-panel start-panel"
+      >
+
+        <div class="start-kicker">
+          SYSTEM READY
+        </div>
+
+        <h1>
+          CYBER DEFENSE ARENA
+        </h1>
+
+        <p class="start-subtitle">
+          Defend the Core.
+          Build the network.
+          Survive an endless cyber assault.
+        </p>
+
+        <button
+          id="startBtn"
+          class="primary-btn"
+          type="button"
+        >
+          START GAME
+        </button>
+
+
+        <div class="controls-grid">
+
+          <div>
+            <strong>WASD</strong>
+            <span>Move</span>
+          </div>
+
+          <div>
+            <strong>MOUSE</strong>
+            <span>Aim</span>
+          </div>
+
+          <div>
+            <strong>LMB</strong>
+            <span>Fire / Build</span>
+          </div>
+
+          <div>
+            <strong>SPACE</strong>
+            <span>Dash</span>
+          </div>
+
+          <div>
+            <strong>ESC</strong>
+            <span>Pause / Cancel</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
         id="pausePanel"
         class="overlay-panel hidden"
       >
+
+        <div class="start-kicker">
+          SESSION SUSPENDED
+        </div>
 
         <h1>
           PAUSED
@@ -233,51 +256,319 @@
         <p>
           Press
           <strong>Esc</strong>
-          to continue
+          to continue.
         </p>
 
       </div>
 
 
       <div
-        id="gameOver"
-        class="overlay-panel hidden"
+        id="upgradePanel"
+        class="overlay-panel upgrade-panel hidden"
       >
 
-        <h1>
-          SYSTEM BREACHED
+        <div class="start-kicker">
+          SYSTEM UPGRADE AVAILABLE
+        </div>
+
+        <h2>
+          Choose 1 Upgrade
+        </h2>
+
+        <p class="panel-subtitle">
+          Your choice lasts for this run.
+        </p>
+
+        <div
+          id="upgradeChoices"
+          class="upgrade-choices"
+        ></div>
+
+      </div>
+
+
+      <div
+        id="buildPanel"
+        class="build-panel hidden"
+      >
+
+        <div class="build-head">
+
+          <div>
+
+            <span class="build-kicker">
+              BUILD PHASE
+            </span>
+
+            <strong id="buildTimer">
+              20.0s
+            </strong>
+
+          </div>
+
+          <div class="build-data">
+
+            DATA
+
+            <strong id="buildData">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="threat-preview">
+
+          <span id="nextWaveTitle">
+            WAVE 2
+          </span>
+
+          <strong id="nextWaveArchetype">
+            STANDARD ATTACK
+          </strong>
+
+          <div
+            id="threatPreviewList"
+            class="threat-preview-list"
+          ></div>
+
+        </div>
+
+
+        <div class="build-options">
+
+          <button
+            type="button"
+            class="build-option"
+            data-build="turret"
+          >
+
+            <strong>
+              AUTO TURRET
+            </strong>
+
+            <span id="turretCost">
+              40 DATA
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="build-option"
+            data-build="firewall"
+          >
+
+            <strong>
+              FIREWALL
+            </strong>
+
+            <span id="firewallCost">
+              35 DATA
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="build-option"
+            data-build="slow"
+          >
+
+            <strong>
+              SLOW FIELD
+            </strong>
+
+            <span id="slowCost">
+              45 DATA
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="build-option"
+            data-build="repair"
+          >
+
+            <strong>
+              REPAIR NODE
+            </strong>
+
+            <span id="repairCost">
+              55 DATA
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <div class="build-actions">
+
+          <button
+            id="upgradeStructureBtn"
+            type="button"
+            disabled
+          >
+            UPGRADE SELECTED
+          </button>
+
+          <button
+            id="readyBtn"
+            class="primary-btn"
+            type="button"
+          >
+            READY
+          </button>
+
+        </div>
+
+
+        <p
+          id="buildHint"
+          class="build-hint"
+        >
+          Select a defense, then click the arena to place it.
+        </p>
+
+      </div>
+
+
+      <div
+        id="endingOverlay"
+        class="ending-overlay hidden"
+        aria-live="polite"
+      >
+
+        <div
+          id="endingReason"
+          class="ending-reason"
+        >
+          CORE BREACHED
+        </div>
+
+        <div class="ending-subline">
+          DEFENSE SESSION TERMINATING...
+        </div>
+
+      </div>
+
+
+      <div
+        id="gameOver"
+        class="overlay-panel result-panel hidden"
+      >
+
+        <div class="start-kicker">
+          DEFENSE SESSION TERMINATED
+        </div>
+
+
+        <h1 id="resultTitle">
+          NETWORK COLLAPSED
         </h1>
 
 
-        <p>
-          Final score:
-          <strong id="finalScore">
-            0
-          </strong>
+        <p
+          id="resultReason"
+          class="result-reason"
+        >
+          CORE BREACHED
         </p>
 
 
-        <p>
-          Wave reached:
-          <strong id="finalWave">
-            1
-          </strong>
-        </p>
+        <div class="result-hero">
+
+          <div>
+
+            <span>
+              WAVE
+            </span>
+
+            <strong id="finalWave">
+              1
+            </strong>
+
+          </div>
 
 
-        <p>
-          Best combo:
-          <strong id="finalCombo">
-            x1
-          </strong>
+          <div>
+
+            <span>
+              SCORE
+            </span>
+
+            <strong id="finalScore">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+          <div>
+            <span>Threats Eliminated</span>
+            <strong id="finalKills">0</strong>
+          </div>
+
+          <div>
+            <span>Elite Threats</span>
+            <strong id="finalElites">0</strong>
+          </div>
+
+          <div>
+            <span>Bosses Destroyed</span>
+            <strong id="finalBosses">0</strong>
+          </div>
+
+          <div>
+            <span>Structures Built</span>
+            <strong id="finalStructures">0</strong>
+          </div>
+
+          <div>
+            <span>Core Damage Taken</span>
+            <strong id="finalCoreDamage">0</strong>
+          </div>
+
+          <div>
+            <span>Best Combo</span>
+            <strong id="finalCombo">x1</strong>
+          </div>
+
+          <div>
+            <span>Survival Time</span>
+            <strong id="finalTime">00:00</strong>
+          </div>
+
+          <div>
+            <span>DATA Collected</span>
+            <strong id="finalData">0</strong>
+          </div>
+
+        </div>
+
+
+        <p class="reboot-line">
+          THE NETWORK WILL REBOOT.
         </p>
 
 
         <button
           id="restartBtn"
+          class="primary-btn"
           type="button"
         >
-          Restart
+          TRY AGAIN
         </button>
 
       </div>
