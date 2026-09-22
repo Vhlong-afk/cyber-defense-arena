@@ -6010,6 +6010,14 @@ function moveBossToward(
   desiredRange
 ) {
 
+  if (
+    !boss ||
+    !target
+  ) {
+    return;
+  }
+
+
   const dx =
     target.x -
     boss.x;
@@ -6027,26 +6035,94 @@ function moveBossToward(
     ) || 1;
 
 
+  const nx =
+    dx /
+    dist;
+
+
+  const ny =
+    dy /
+    dist;
+
+
+  /*
+    Nếu còn xa:
+    Boss tiếp tục tiến về mục tiêu.
+  */
   if (
-    dist <=
-    desiredRange
+    dist >
+    desiredRange +
+    25
   ) {
+
+    boss.x +=
+      nx *
+      boss.speed *
+      dt;
+
+
+    boss.y +=
+      ny *
+      boss.speed *
+      dt;
+
 
     return;
   }
 
 
-  boss.x +=
-    dx /
-    dist *
+  /*
+    Nếu quá gần:
+    Boss lùi nhẹ ra ngoài.
+  */
+  if (
+    dist <
+    desiredRange -
+    35
+  ) {
+
+    boss.x -=
+      nx *
+      boss.speed *
+      .55 *
+      dt;
+
+
+    boss.y -=
+      ny *
+      boss.speed *
+      .55 *
+      dt;
+  }
+
+
+  /*
+    Khi đã ở đúng khoảng cách:
+    Boss chạy vòng quanh mục tiêu
+    thay vì đứng im.
+  */
+  const orbitDirection =
+    boss.id % 2 === 0
+      ? 1
+      : -1;
+
+
+  const orbitSpeed =
     boss.speed *
+    .55;
+
+
+  boss.x +=
+    -ny *
+    orbitSpeed *
+    orbitDirection *
     dt;
 
 
   boss.y +=
-    dy /
-    dist *
-    boss.speed *
+    nx *
+    orbitSpeed *
+    orbitDirection *
     dt;
 }
 
