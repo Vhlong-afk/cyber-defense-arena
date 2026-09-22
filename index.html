@@ -330,6 +330,139 @@
 
         </div>
 
+        <section
+      id="buildPanel"
+      class="build-panel hidden"
+    >
+
+      <div class="build-head">
+
+        <div>
+
+          <span class="build-kicker">
+            BUILD PHASE
+          </span>
+
+          <strong id="buildTimer">
+            12.0s
+          </strong>
+
+        </div>
+
+
+        <div class="build-data">
+
+          DATA
+
+          <strong id="buildData">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="threat-preview">
+
+        <span id="nextWaveTitle">
+          WAVE 2
+        </span>
+
+        <strong id="nextWaveArchetype">
+          STANDARD ATTACK
+        </strong>
+
+        <div
+          id="threatPreviewList"
+          class="threat-preview-list"
+        ></div>
+
+      </div>
+
+
+      <div class="build-options">
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="turret"
+        >
+          <strong>AUTO TURRET</strong>
+          <span id="turretCost">70 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="firewall"
+        >
+          <strong>FIREWALL</strong>
+          <span id="firewallCost">55 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="slow"
+        >
+          <strong>SLOW FIELD</strong>
+          <span id="slowCost">90 DATA</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="build-option"
+          data-build="repair"
+        >
+          <strong>REPAIR NODE</strong>
+          <span id="repairCost">110 DATA</span>
+        </button>
+
+      </div>
+
+
+      <div class="build-actions">
+
+        <button
+          id="upgradeStructureBtn"
+          type="button"
+          disabled
+        >
+          UPGRADE SELECTED
+        </button>
+
+        <button
+          id="readyBtn"
+          class="primary-btn"
+          type="button"
+        >
+          READY
+        </button>
+
+      </div>
+
+
+      <p
+        id="buildHint"
+        class="build-hint"
+      >
+        Select a defense, then click the arena to place it.
+      </p>
+
+        </section>
+      
+        <button
+        id="buildToggleBtn"
+        class="build-toggle hidden"
+        type="button"
+      >
+        BUILD MENU
+        <span>B</span>
+      </button>
 
         <!-- =========================
              ENDING EFFECT
@@ -479,130 +612,7 @@
          KHÔNG CÒN NẰM TRÊN CANVAS
     ========================== -->
 
-    <aside
-      id="buildPanel"
-      class="build-panel hidden"
-    >
-
-      <div class="build-head">
-
-        <div>
-
-          <span class="build-kicker">
-            BUILD PHASE
-          </span>
-
-          <strong id="buildTimer">
-            12.0s
-          </strong>
-
-        </div>
-
-
-        <div class="build-data">
-
-          DATA
-
-          <strong id="buildData">
-            0
-          </strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="threat-preview">
-
-        <span id="nextWaveTitle">
-          WAVE 2
-        </span>
-
-        <strong id="nextWaveArchetype">
-          STANDARD ATTACK
-        </strong>
-
-        <div
-          id="threatPreviewList"
-          class="threat-preview-list"
-        ></div>
-
-      </div>
-
-
-      <div class="build-options">
-
-        <button
-          type="button"
-          class="build-option"
-          data-build="turret"
-        >
-          <strong>AUTO TURRET</strong>
-          <span id="turretCost">70 DATA</span>
-        </button>
-
-
-        <button
-          type="button"
-          class="build-option"
-          data-build="firewall"
-        >
-          <strong>FIREWALL</strong>
-          <span id="firewallCost">55 DATA</span>
-        </button>
-
-
-        <button
-          type="button"
-          class="build-option"
-          data-build="slow"
-        >
-          <strong>SLOW FIELD</strong>
-          <span id="slowCost">90 DATA</span>
-        </button>
-
-
-        <button
-          type="button"
-          class="build-option"
-          data-build="repair"
-        >
-          <strong>REPAIR NODE</strong>
-          <span id="repairCost">110 DATA</span>
-        </button>
-
-      </div>
-
-
-      <div class="build-actions">
-
-        <button
-          id="upgradeStructureBtn"
-          type="button"
-          disabled
-        >
-          UPGRADE SELECTED
-        </button>
-
-        <button
-          id="readyBtn"
-          class="primary-btn"
-          type="button"
-        >
-          READY
-        </button>
-
-      </div>
-
-
-      <p
-        id="buildHint"
-        class="build-hint"
-      >
-        Select a defense, then click the arena to place it.
-      </p>
-
-    </aside>
+    
 
   </div>
 

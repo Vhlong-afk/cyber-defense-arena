@@ -135,6 +135,11 @@ const upgradeStructureBtn =
 const readyBtn =
   document.querySelector('#readyBtn');
 
+const buildToggleBtn =
+  document.querySelector(
+    '#buildToggleBtn'
+  );
+
 
 const buildButtons =
   [
@@ -727,14 +732,28 @@ function setGameState(
     state;
 
 
-  gameLayout
-    .classList
-    .toggle(
-      'build-active',
+  if (
+    state !==
+    GAME_STATE.BUILD
+  ) {
 
-      state ===
-      GAME_STATE.BUILD
-    );
+    buildPanelOpen =
+      true;
+
+
+    buildPanel
+      .classList
+      .remove(
+        'placement-mode'
+      );
+
+
+    buildToggleBtn
+      .classList
+      .add(
+        'hidden'
+      );
+  }
 }
 
 
@@ -971,6 +990,9 @@ let selectedBuildType =
 let selectedStructureId =
   null;
 
+let buildPanelOpen =
+  true;
+
 let buildEndsAtReal =
   0;
 
@@ -981,6 +1003,12 @@ let nextEntityId =
 
 let endingStartedAtReal =
   0;
+
+let endingDeadlineReal =
+  0;
+
+let endingTimeoutId =
+  null;
 
 let endingReason =
   '';
@@ -1271,6 +1299,41 @@ window.addEventListener(
 
     ensureAudio();
 
+    if (
+      event.code ===
+        'KeyB' &&
+      gameState ===
+        GAME_STATE.BUILD
+    ) {
+
+      event.preventDefault();
+
+
+      setBuildPanelOpen(
+        !buildPanelOpen
+      );
+
+
+      return;
+    }
+
+
+    if (
+      event.code ===
+        'Enter' &&
+      gameState ===
+        GAME_STATE.BUILD
+    ) {
+
+      event.preventDefault();
+
+
+      startNextWaveFromBuild();
+
+
+      return;
+    }
+
 
     if (
       event.code ===
@@ -1280,19 +1343,25 @@ window.addEventListener(
       event.preventDefault();
 
 
-      if (
-        gameState ===
-          GAME_STATE.BUILD &&
-        (
-          selectedBuildType ||
-          selectedStructureId
-        )
-      ) {
+    if (
+      gameState ===
+        GAME_STATE.BUILD &&
+      (
+        selectedBuildType ||
+        selectedStructureId
+      )
+    ) {
 
-        clearBuildSelection();
+      clearBuildSelection();
 
-        return;
-      }
+
+      setBuildPanelOpen(
+        true
+      );
+
+
+      return;
+    }
 
 
       togglePause();
@@ -1460,6 +1529,11 @@ canvas.addEventListener(
     ) {
 
       clearBuildSelection();
+
+
+      setBuildPanelOpen(
+        true
+      );
     }
   }
 );
@@ -2043,6 +2117,144 @@ function respawnPlayer() {
   );
 }
 
+function drawRespawnStatus() {
+
+  if (
+    player.alive ||
+    gameState !==
+    GAME_STATE.PLAYING
+  ) {
+
+    return;
+  }
+
+
+  const remaining =
+    Math.max(
+      0,
+      player.respawnAt -
+      gameTime
+    );
+
+
+  const seconds =
+    remaining /
+    1000;
+
+
+  const progress =
+    clamp(
+
+      1 -
+      remaining /
+      CONFIG.player.respawnMs,
+
+      0,
+      1
+    );
+
+
+  const centerX =
+    canvas.width /
+    2;
+
+
+  const y =
+    canvas.height -
+    72;
+
+
+  ctx.save();
+
+
+  ctx.textAlign =
+    'center';
+
+
+  ctx.font =
+    'bold 22px monospace';
+
+
+  ctx.fillStyle =
+    '#b8f6ff';
+
+
+  ctx.shadowColor =
+    '#63e6ff';
+
+
+  ctx.shadowBlur =
+    14;
+
+
+  ctx.fillText(
+    `DEFENDER REBOOT ${seconds.toFixed(1)}s`,
+    centerX,
+    y
+  );
+
+
+  // Thanh countdown nền
+  const barWidth =
+    280;
+
+
+  const barHeight =
+    7;
+
+
+  const barX =
+    centerX -
+    barWidth /
+    2;
+
+
+  const barY =
+    y +
+    18;
+
+
+  ctx.shadowBlur =
+    0;
+
+
+  ctx.fillStyle =
+    'rgba(255,255,255,.12)';
+
+
+  ctx.fillRect(
+    barX,
+    barY,
+    barWidth,
+    barHeight
+  );
+
+
+  // Thanh tiến trình reboot
+  ctx.fillStyle =
+    '#63e6ff';
+
+
+  ctx.shadowColor =
+    '#63e6ff';
+
+
+  ctx.shadowBlur =
+    10;
+
+
+  ctx.fillRect(
+    barX,
+    barY,
+    barWidth *
+    progress,
+    barHeight
+  );
+
+
+  ctx.restore();
+}
+
 
 function drawPlayer() {
 
@@ -2066,6 +2278,21 @@ function drawPlayer() {
 
 
   if (
+    gameTime <
+    player.invulnerableUntil
+  ) {
+
+    ctx.globalAlpha =
+      .58 +
+      Math.sin(
+        performance.now() *
+        .03
+      ) *
+      .28;
+  }
+
+
+  if (
     player.shieldCharges >
     0
   ) {
@@ -2083,32 +2310,58 @@ function drawPlayer() {
 
 
     ctx.strokeStyle =
-      '#74c0fc';
+      'rgba(116,192,252,.9)';
 
 
     ctx.lineWidth =
       3;
 
 
+    ctx.shadowColor =
+      '#74c0fc';
+
+
+    ctx.shadowBlur =
+      16;
+
+
     ctx.stroke();
   }
 
 
-  if (
-    gameTime <
-    player.invulnerableUntil
-  ) {
-
-    ctx.globalAlpha =
-      .62 +
-      Math.sin(
-        performance.now() *
-        .03
-      ) *
-      .25;
-  }
+  // Outer cyber ring
+  ctx.beginPath();
 
 
+  ctx.arc(
+    0,
+    0,
+    player.radius + 6,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.strokeStyle =
+    'rgba(99,230,255,.32)';
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.shadowColor =
+    '#63e6ff';
+
+
+  ctx.shadowBlur =
+    12;
+
+
+  ctx.stroke();
+
+
+  // Gun
   ctx.fillStyle =
     '#8af3ff';
 
@@ -2121,6 +2374,19 @@ function drawPlayer() {
   );
 
 
+  ctx.fillStyle =
+    '#e2fcff';
+
+
+  ctx.fillRect(
+    26,
+    -3,
+    12,
+    6
+  );
+
+
+  // Body
   ctx.beginPath();
 
 
@@ -2139,7 +2405,12 @@ function drawPlayer() {
 
       ? '#ffffff'
 
-      : '#23c7e6';
+      : gameTime <
+        player.dashUntil
+
+        ? '#9bf6ff'
+
+        : '#23c7e6';
 
 
   ctx.shadowColor =
@@ -2147,12 +2418,13 @@ function drawPlayer() {
 
 
   ctx.shadowBlur =
-    18;
+    20;
 
 
   ctx.fill();
 
 
+  // Inner core
   ctx.beginPath();
 
 
@@ -2169,9 +2441,18 @@ function drawPlayer() {
     '#ecfdff';
 
 
+  ctx.shadowColor =
+    '#ffffff';
+
+
+  ctx.shadowBlur =
+    12;
+
+
   ctx.fill();
 
 
+  // Muzzle
   if (
     gameTime <
     muzzleFlashUntil
@@ -2187,20 +2468,20 @@ function drawPlayer() {
 
 
     ctx.lineTo(
-      50,
-      -7
+      52,
+      -8
     );
 
 
     ctx.lineTo(
-      46,
+      47,
       0
     );
 
 
     ctx.lineTo(
-      50,
-      7
+      52,
+      8
     );
 
 
@@ -2209,6 +2490,14 @@ function drawPlayer() {
 
     ctx.fillStyle =
       '#ffe066';
+
+
+    ctx.shadowColor =
+      '#ffe066';
+
+
+    ctx.shadowBlur =
+      22;
 
 
     ctx.fill();
@@ -2390,7 +2679,7 @@ function healCore(
 
 function drawCore() {
 
-  const visualTime =
+  const now =
     performance.now();
 
 
@@ -2408,19 +2697,23 @@ function drawCore() {
     0
   ) {
 
+    const ratio =
+      core.shield /
+      core.maxShield;
+
+
     ctx.beginPath();
 
 
     ctx.arc(
-
       0,
       0,
 
       core.radius +
       15 +
       Math.sin(
-        visualTime *
-        .004
+        now *
+        .005
       ) *
       3,
 
@@ -2430,36 +2723,62 @@ function drawCore() {
 
 
     ctx.strokeStyle =
-      'rgba(116,192,252,.6)';
+      `rgba(
+        116,
+        192,
+        252,
+        ${
+          .3 +
+          ratio *
+          .5
+        }
+      )`;
 
 
     ctx.lineWidth =
       4;
 
 
+    ctx.shadowColor =
+      '#74c0fc';
+
+
+    ctx.shadowBlur =
+      20;
+
+
     ctx.stroke();
   }
 
 
+  ctx.save();
+
+
   ctx.rotate(
-    visualTime *
-    .00025
+    now *
+    .00028
   );
 
 
   drawPolygon(
     0,
     0,
-    core.radius + 8,
+    core.radius + 10,
     6,
-    'rgba(99,230,255,.18)',
+    'rgba(99,230,255,.23)',
     true
   );
 
 
+  ctx.restore();
+
+
+  ctx.save();
+
+
   ctx.rotate(
-    -visualTime *
-    .0005
+    -now *
+    .00045
   );
 
 
@@ -2480,13 +2799,29 @@ function drawCore() {
   );
 
 
+  ctx.restore();
+
+
+  const pulse =
+    18 +
+    Math.sin(
+      now *
+      (
+        lastStandActive
+          ? .016
+          : .006
+      )
+    ) *
+    3;
+
+
   ctx.beginPath();
 
 
   ctx.arc(
     0,
     0,
-    18,
+    pulse,
     0,
     Math.PI * 2
   );
@@ -2505,7 +2840,28 @@ function drawCore() {
 
 
   ctx.shadowBlur =
-    24;
+    lastStandActive
+      ? 30
+      : 22;
+
+
+  ctx.fill();
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    0,
+    0,
+    7,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.fillStyle =
+    '#f4feff';
 
 
   ctx.fill();
@@ -3610,6 +3966,10 @@ function enterBuildState() {
       'hidden'
     );
 
+  setBuildPanelOpen(
+    true
+  );
+
 
   renderThreatPreview();
 
@@ -3658,6 +4018,9 @@ function queueEnemySpawn(
           .eliteChance ||
         0
       ),
+
+    createdAt:
+      gameTime,
 
     readyAt:
       gameTime +
@@ -5001,11 +5364,21 @@ function updateBoss(
   }
 
 
-  handleBossContact();
+handleBossContact();
 
 
-  boss.x =
-    clamp(
+if (
+  gameState !==
+    GAME_STATE.PLAYING ||
+  !boss
+) {
+
+  return;
+}
+
+
+boss.x =
+  clamp(
       boss.x,
       boss.radius,
       canvas.width -
@@ -5837,14 +6210,24 @@ function handleBossContact() {
     player.radius
   ) {
 
-    damagePlayer(
-      boss.damage
-    );
+damagePlayer(
+  boss.damage
+);
 
 
-    boss.contactCooldownUntil =
-      gameTime +
-      650;
+if (
+  gameState !==
+    GAME_STATE.PLAYING ||
+  !boss
+) {
+
+  return;
+}
+
+
+boss.contactCooldownUntil =
+  gameTime +
+  650;
 
 
     return;
@@ -5860,14 +6243,24 @@ function handleBossContact() {
     core.radius
   ) {
 
-    damageCore(
-      boss.damage
-    );
+damageCore(
+  boss.damage
+);
 
 
-    boss.contactCooldownUntil =
-      gameTime +
-      650;
+if (
+  gameState !==
+    GAME_STATE.PLAYING ||
+  !boss
+) {
+
+  return;
+}
+
+
+boss.contactCooldownUntil =
+  gameTime +
+  650;
 
 
     return;
@@ -6532,6 +6925,56 @@ function damageStructure(
 // ============================================================
 // BUILD PHASE
 // ============================================================
+function setBuildPanelOpen(
+  open
+) {
+
+  if (
+    gameState !==
+    GAME_STATE.BUILD
+  ) {
+
+    return;
+  }
+
+
+  buildPanelOpen =
+    open;
+
+
+  buildPanel
+    .classList
+    .toggle(
+      'placement-mode',
+      !open
+    );
+
+
+  buildToggleBtn
+    .classList
+    .toggle(
+      'hidden',
+      open
+    );
+}
+
+
+function enterPlacementMode() {
+
+  if (
+    gameState !==
+      GAME_STATE.BUILD ||
+    !selectedBuildType
+  ) {
+
+    return;
+  }
+
+
+  setBuildPanelOpen(
+    false
+  );
+}
 
 function handleBuildCanvasClick() {
 
@@ -7674,6 +8117,10 @@ function checkCombatCollisions() {
         bulletIndex
       ];
 
+    if (!bullet) {
+      continue;
+    }
+
 
     let consumed =
       false;
@@ -7694,6 +8141,10 @@ function checkCombatCollisions() {
         enemies[
           enemyIndex
         ];
+
+      if (!enemy) {
+        continue;
+      }
 
 
       if (
@@ -7791,6 +8242,14 @@ function checkCombatCollisions() {
         bullet
       );
 
+      if (
+        gameState !==
+        GAME_STATE.PLAYING
+      ) {
+
+        return;
+      }
+
 
       if (
         bullet.remainingPierce >
@@ -7832,6 +8291,11 @@ function checkCombatCollisions() {
       enemyProjectiles[i];
 
 
+    if (!projectile) {
+      continue;
+    }
+
+
     let hit =
       false;
 
@@ -7850,6 +8314,14 @@ function checkCombatCollisions() {
         projectile.damage
       );
 
+      if (
+        gameState !==
+        GAME_STATE.PLAYING
+      ) {
+
+        return;
+      }
+
 
       hit =
         true;
@@ -7866,6 +8338,14 @@ function checkCombatCollisions() {
       damageCore(
         projectile.damage
       );
+
+      if (
+        gameState !==
+        GAME_STATE.PLAYING
+      ) {
+
+        return;
+      }
 
 
       hit =
@@ -8304,6 +8784,12 @@ function spawnPickup(
       CONFIG.pickups
         .radius,
 
+    phase:
+      random(
+        0,
+        Math.PI * 2
+      ),
+
     expiresAt:
       gameTime +
       CONFIG.pickups
@@ -8606,7 +9092,11 @@ function addFloatingText(
 
     color,
 
-    lifeMs: 850
+    lifeMs:
+      850,
+
+    maxLifeMs:
+      850
   });
 }
 
@@ -8672,17 +9162,42 @@ function startEnding(
     performance.now();
 
 
+  endingDeadlineReal =
+    endingStartedAtReal +
+    CONFIG.ending.durationMs +
+    500;
+
+
   endingResultShown =
     false;
 
 
-  endingReasonText.textContent =
-    reason;
+  mouse.isDown =
+    false;
 
 
-  endingOverlay
+  waveState =
+    'ending';
+
+
+  selectedBuildType =
+    null;
+
+
+  selectedStructureId =
+    null;
+
+
+  pausePanel
     .classList
-    .remove(
+    .add(
+      'hidden'
+    );
+
+
+  upgradePanel
+    .classList
+    .add(
       'hidden'
     );
 
@@ -8694,16 +9209,43 @@ function startEnding(
     );
 
 
-  mouse.isDown =
-    false;
+  buildToggleBtn
+    .classList
+    .add(
+      'hidden'
+    );
 
 
-  enemyProjectiles =
-    [];
+  bossHud
+    .classList
+    .add(
+      'hidden'
+    );
 
 
-  bullets =
-    [];
+  endingOverlay
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  endingReasonText.textContent =
+    reason;
+
+
+/*
+  KHÔNG clear entity ở startEnding().
+
+  startEnding() có thể được gọi ngay giữa:
+  - checkCombatCollisions()
+  - updateBoss()
+  - updateEnemies()
+
+  Nếu xóa array/object ở đây thì vòng lặp hiện tại
+  vẫn tiếp tục và sẽ đọc phần tử undefined.
+  GAME_STATE.ENDING đã đủ để đóng băng gameplay.
+*/
 
 
   const target =
@@ -8728,7 +9270,7 @@ function startEnding(
     target.x,
     target.y,
     '#c77dff',
-    45,
+    50,
     5
   );
 
@@ -8744,6 +9286,40 @@ function startEnding(
     .05,
     35
   );
+
+
+  if (
+    endingTimeoutId !==
+    null
+  ) {
+
+    window.clearTimeout(
+      endingTimeoutId
+    );
+  }
+
+
+  // Failsafe:
+  // kể cả RAF ending có lỗi,
+  // Result Screen vẫn phải mở.
+  endingTimeoutId =
+    window.setTimeout(
+      () => {
+
+        if (
+          gameState ===
+          GAME_STATE.ENDING
+        ) {
+
+          showGameOver();
+        }
+
+      },
+
+      CONFIG.ending
+        .durationMs +
+      650
+    );
 }
 
 
@@ -8758,6 +9334,33 @@ function updateEnding(
   );
 
 
+  updateFloatingTexts(
+    dt *
+    .4
+  );
+
+
+  screenShake =
+    Math.max(
+      0,
+      screenShake -
+      18 *
+      dt
+    );
+
+
+  if (
+    timestamp >=
+    endingDeadlineReal
+  ) {
+
+    showGameOver();
+
+
+    return;
+  }
+
+
   const elapsed =
     timestamp -
     endingStartedAtReal;
@@ -8765,9 +9368,8 @@ function updateEnding(
 
   if (
     elapsed >=
-      CONFIG.ending
-        .durationMs &&
-    !endingResultShown
+    CONFIG.ending
+      .durationMs
   ) {
 
     showGameOver();
@@ -8776,9 +9378,29 @@ function updateEnding(
 
 
 function showGameOver() {
+  if (
+    endingResultShown
+  ) {
+
+    return;
+  }
 
   endingResultShown =
     true;
+
+  if (
+    endingTimeoutId !==
+    null
+  ) {
+
+    window.clearTimeout(
+      endingTimeoutId
+    );
+
+
+    endingTimeoutId =
+      null;
+  }
 
 
   setGameState(
@@ -8930,6 +9552,8 @@ function drawGame(
 
     drawCore();
 
+    drawSpawnWarnings();
+
     drawStructures();
 
     drawPickups();
@@ -8945,6 +9569,8 @@ function drawGame(
     drawBoss();
 
     drawPlayer();
+
+    drawRespawnStatus();
 
     drawParticles();
 
@@ -9040,6 +9666,176 @@ function drawGrid() {
     );
 
     ctx.stroke();
+  }
+
+
+  ctx.restore();
+}
+
+function drawSpawnWarnings() {
+
+  ctx.save();
+
+
+  for (
+    const pending
+    of pendingSpawns
+  ) {
+
+    const progress =
+      clamp(
+
+        (
+          gameTime -
+          pending.createdAt
+        ) /
+        CONFIG.waves
+          .spawnWarningMs,
+
+        0,
+        1
+      );
+
+
+    const radius =
+      32 -
+      progress *
+      14;
+
+
+    const pulse =
+      .65 +
+      Math.sin(
+        performance.now() *
+        .018
+      ) *
+      .25;
+
+
+    const color =
+      pending.elite
+
+        ? '#ffd43b'
+
+        : '#ff4d6d';
+
+
+    ctx.globalAlpha =
+      pulse;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      pending.warningX,
+      pending.warningY,
+      radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.strokeStyle =
+      color;
+
+
+    ctx.lineWidth =
+      3;
+
+
+    ctx.shadowColor =
+      color;
+
+
+    ctx.shadowBlur =
+      18;
+
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      pending.warningX,
+      pending.warningY,
+      5,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      color;
+
+
+    ctx.fill();
+  }
+
+
+  if (
+    pendingBossAt
+  ) {
+
+    const pulse =
+      48 +
+      Math.sin(
+        performance.now() *
+        .012
+      ) *
+      8;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      canvas.width / 2,
+      95,
+      pulse,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.strokeStyle =
+      '#ff4d6d';
+
+
+    ctx.lineWidth =
+      5;
+
+
+    ctx.shadowColor =
+      '#ff4d6d';
+
+
+    ctx.shadowBlur =
+      28;
+
+
+    ctx.stroke();
+
+
+    ctx.font =
+      'bold 17px monospace';
+
+
+    ctx.textAlign =
+      'center';
+
+
+    ctx.fillStyle =
+      '#ffb3c1';
+
+
+    ctx.fillText(
+      'BOSS SIGNAL',
+      canvas.width / 2,
+      101
+    );
   }
 
 
@@ -9203,7 +9999,33 @@ function drawEnemies() {
 
 
     ctx.restore();
+
+        if (
+            enemy.maxHp >
+            1
+          ) {
+
+            drawSmallHpBar(
+
+              enemy.x,
+
+              enemy.y -
+              enemy.radius -
+              11,
+
+              42,
+
+              enemy.hp /
+              enemy.maxHp,
+
+              CONFIG.enemies[
+                enemy.type
+              ].color
+            );
+          }
   }
+
+
 }
 
 
@@ -9397,11 +10219,78 @@ function drawStructures() {
 
 
     ctx.restore();
+      drawSmallHpBar(
+
+  structure.x,
+
+  structure.y -
+  structure.radius -
+  10,
+
+  40,
+
+  structure.hp /
+  structure.maxHp,
+
+  CONFIG.defenses[
+    structure.type
+  ].color
+);
+
+
+if (
+  structure.disabledUntil >
+  gameTime
+) {
+
+  ctx.save();
+
+
+  ctx.font =
+    'bold 10px monospace';
+
+
+  ctx.textAlign =
+    'center';
+
+
+  ctx.fillStyle =
+    '#ff8fab';
+
+
+  ctx.shadowColor =
+    '#e64980';
+
+
+  ctx.shadowBlur =
+    8;
+
+
+  ctx.fillText(
+    'ENCRYPTED',
+    structure.x,
+    structure.y -
+    structure.radius -
+    20
+  );
+
+
+  ctx.restore();
+}
   }
+
+
 }
 
 
 function drawBullets() {
+
+  ctx.save();
+
+
+  ctx.lineCap =
+    'round';
+
 
   for (
     const bullet
@@ -9433,11 +10322,51 @@ function drawBullets() {
 
         ? 3
 
-        : 4;
+        : bullet.remainingPierce >
+          0
+
+          ? 5
+
+          : 4;
+
+
+    ctx.shadowColor =
+      bullet.color;
+
+
+    ctx.shadowBlur =
+      bullet.owner ===
+      'turret'
+
+        ? 9
+
+        : 14;
 
 
     ctx.stroke();
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      bullet.x,
+      bullet.y,
+      bullet.radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      '#fffbe6';
+
+
+    ctx.fill();
   }
+
+
+  ctx.restore();
 }
 
 
@@ -9471,43 +10400,162 @@ function drawEnemyProjectiles() {
 
 function drawPickups() {
 
+  const now =
+    performance.now();
+
+
   for (
     const pickup
     of pickups
   ) {
 
+    const y =
+      pickup.y +
+      Math.sin(
+        now *
+        .004 +
+        pickup.phase
+      ) *
+      5;
+
+
+    let color =
+      '#74c0fc';
+
+
+    let label =
+      'S';
+
+
+    if (
+      pickup.type ===
+      'heal'
+    ) {
+
+      color =
+        '#69db7c';
+
+      label =
+        'H';
+
+    } else if (
+      pickup.type ===
+      'rapid'
+    ) {
+
+      color =
+        '#ffe066';
+
+      label =
+        'R';
+
+    } else if (
+      pickup.type ===
+      'core'
+    ) {
+
+      color =
+        '#c77dff';
+
+      label =
+        'C';
+    }
+
+
+    ctx.save();
+
+
+    ctx.translate(
+      pickup.x,
+      y
+    );
+
+
+    ctx.rotate(
+      now *
+      .001 +
+      pickup.phase
+    );
+
+
     ctx.beginPath();
 
 
-    ctx.arc(
-      pickup.x,
-      pickup.y,
-      pickup.radius,
+    ctx.moveTo(
       0,
-      Math.PI * 2
+      -pickup.radius
+    );
+
+
+    ctx.lineTo(
+      pickup.radius,
+      0
+    );
+
+
+    ctx.lineTo(
+      0,
+      pickup.radius
+    );
+
+
+    ctx.lineTo(
+      -pickup.radius,
+      0
+    );
+
+
+    ctx.closePath();
+
+
+    ctx.fillStyle =
+      color;
+
+
+    ctx.shadowColor =
+      color;
+
+
+    ctx.shadowBlur =
+      20;
+
+
+    ctx.fill();
+
+
+    ctx.rotate(
+      -(
+        now *
+        .001 +
+        pickup.phase
+      )
     );
 
 
     ctx.fillStyle =
-      pickup.type ===
-      'heal'
-
-        ? '#69db7c'
-
-        : pickup.type ===
-          'core'
-
-          ? '#c77dff'
-
-          : pickup.type ===
-            'rapid'
-
-            ? '#ffe066'
-
-            : '#74c0fc';
+      '#071018';
 
 
-    ctx.fill();
+    ctx.font =
+      'bold 11px monospace';
+
+
+    ctx.textAlign =
+      'center';
+
+
+    ctx.textBaseline =
+      'middle';
+
+
+    ctx.fillText(
+      label,
+      0,
+      1
+    );
+
+
+    ctx.restore();
   }
 }
 
@@ -9552,10 +10600,28 @@ function drawHazards() {
 
 function drawParticles() {
 
+  ctx.save();
+
+
   for (
     const particle
     of particles
   ) {
+
+    const alpha =
+      clamp(
+
+        particle.lifeMs /
+        particle.maxLifeMs,
+
+        0,
+        1
+      );
+
+
+    ctx.globalAlpha =
+      alpha;
+
 
     ctx.beginPath();
 
@@ -9563,7 +10629,11 @@ function drawParticles() {
     ctx.arc(
       particle.x,
       particle.y,
-      particle.size,
+
+      particle.size *
+      alpha +
+      .4,
+
       0,
       Math.PI * 2
     );
@@ -9573,8 +10643,19 @@ function drawParticles() {
       particle.color;
 
 
+    ctx.shadowColor =
+      particle.color;
+
+
+    ctx.shadowBlur =
+      10;
+
+
     ctx.fill();
   }
+
+
+  ctx.restore();
 }
 
 
@@ -9596,8 +10677,27 @@ function drawFloatingTexts() {
     of floatingTexts
   ) {
 
+    ctx.globalAlpha =
+      clamp(
+
+        item.lifeMs /
+        item.maxLifeMs,
+
+        0,
+        1
+      );
+
+
     ctx.fillStyle =
       item.color;
+
+
+    ctx.shadowColor =
+      item.color;
+
+
+    ctx.shadowBlur =
+      7;
 
 
     ctx.fillText(
@@ -9798,6 +10898,48 @@ function drawPlacementPreview() {
   ctx.fill();
 }
 
+function crosshairThreatDetected() {
+
+  for (
+    const enemy
+    of enemies
+  ) {
+
+    if (
+      distancePoint(
+        mouse.x,
+        mouse.y,
+        enemy.x,
+        enemy.y
+      ) <=
+      enemy.radius +
+      8
+    ) {
+
+      return true;
+    }
+  }
+
+
+  if (
+    boss &&
+    distancePoint(
+      mouse.x,
+      mouse.y,
+      boss.x,
+      boss.y
+    ) <=
+    boss.radius +
+    8
+  ) {
+
+    return true;
+  }
+
+
+  return false;
+}
+
 
 function drawCrosshair() {
 
@@ -9815,6 +10957,71 @@ function drawCrosshair() {
   }
 
 
+  let color =
+    '#9befff';
+
+
+  if (
+    gameState ===
+    GAME_STATE.BUILD &&
+    selectedBuildType
+  ) {
+
+    const valid =
+      canPlaceStructure(
+        selectedBuildType,
+        mouse.x,
+        mouse.y
+      ).ok &&
+      dataCurrency >=
+      defenseCost(
+        selectedBuildType
+      );
+
+
+    color =
+      valid
+
+        ? '#69db7c'
+
+        : '#ff6b6b';
+
+  } else if (
+    crosshairThreatDetected()
+  ) {
+
+    color =
+      '#ff8787';
+  }
+
+
+  ctx.save();
+
+
+  ctx.strokeStyle =
+    color;
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.shadowColor =
+    color;
+
+
+  ctx.shadowBlur =
+    10;
+
+
+  const gap =
+    6;
+
+
+  const length =
+    10;
+
+
   ctx.beginPath();
 
 
@@ -9827,15 +11034,76 @@ function drawCrosshair() {
   );
 
 
-  ctx.strokeStyle =
-    '#9befff';
+  ctx.stroke();
 
 
-  ctx.lineWidth =
-    2;
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    mouse.x -
+    gap -
+    length,
+    mouse.y
+  );
+
+
+  ctx.lineTo(
+    mouse.x -
+    gap,
+    mouse.y
+  );
+
+
+  ctx.moveTo(
+    mouse.x +
+    gap,
+    mouse.y
+  );
+
+
+  ctx.lineTo(
+    mouse.x +
+    gap +
+    length,
+    mouse.y
+  );
+
+
+  ctx.moveTo(
+    mouse.x,
+    mouse.y -
+    gap -
+    length
+  );
+
+
+  ctx.lineTo(
+    mouse.x,
+    mouse.y -
+    gap
+  );
+
+
+  ctx.moveTo(
+    mouse.x,
+    mouse.y +
+    gap
+  );
+
+
+  ctx.lineTo(
+    mouse.x,
+    mouse.y +
+    gap +
+    length
+  );
 
 
   ctx.stroke();
+
+
+  ctx.restore();
 }
 
 
@@ -9863,14 +11131,16 @@ function drawEndingGlitch(
   ctx.save();
 
 
+  // Nền đỏ tăng dần
   ctx.fillStyle =
     `rgba(
-      100,
+      80,
       0,
-      20,
+      14,
       ${
+        .06 +
         progress *
-        .25
+        .30
       }
     )`;
 
@@ -9883,41 +11153,65 @@ function drawEndingGlitch(
   );
 
 
+  // Các vạch glitch dài giống bản đầu
+  ctx.globalAlpha =
+    .18 +
+    progress *
+    .42;
+
+
   for (
     let i = 0;
-    i < 8;
+    i < 9;
     i++
   ) {
 
+    const y =
+      (
+        Math.sin(
+          timestamp *
+          .02 +
+          i *
+          7.1
+        ) *
+        .5 +
+        .5
+      ) *
+      canvas.height;
+
+
+    const height =
+      random(
+        2,
+        9
+      );
+
+
     ctx.fillStyle =
-      i % 2
+      i %
+      2
 
-        ? '#ff4d6d33'
+        ? '#ff4d6d'
 
-        : '#c77dff33';
+        : '#c77dff';
 
 
     ctx.fillRect(
 
       random(
-        0,
-        canvas.width
+        -50,
+        50
       ),
 
+      y,
+
+      canvas.width +
       random(
-        0,
-        canvas.height
+        -80,
+        120
       ),
 
-      random(
-        80,
-        400
-      ),
-
-      random(
-        2,
-        8
-      )
+      height
     );
   }
 
@@ -10041,35 +11335,83 @@ function updateHud() {
     `${comboStreak} streak`;
 
 
-  dashStatus.textContent =
-    gameTime >=
-    player.dashCooldownUntil
+  if (
+    !player.alive &&
+    player.lives >
+    0
+  ) {
 
-      ? 'DASH READY'
+    dashStatus.textContent =
+      `REBOOT ${Math.max(
+        0,
+        (
+          player.respawnAt -
+          gameTime
+        ) /
+        1000
+      ).toFixed(1)}s`;
 
-      : `DASH ${
-          (
+  } else {
+
+    dashStatus.textContent =
+      gameTime >=
+      player.dashCooldownUntil
+
+        ? 'DASH READY'
+
+        : `DASH ${
             (
-              player.dashCooldownUntil -
-              gameTime
-            ) /
-            1000
-          ).toFixed(1)
-        }s`;
+              (
+                player.dashCooldownUntil -
+                gameTime
+              ) /
+              1000
+            ).toFixed(1)
+          }s`;
+  }
+
+
+  const powerParts =
+    [];
+
+
+  if (
+    gameTime <
+    player.rapidFireUntil
+  ) {
+
+    powerParts.push(
+      `RAPID ${(
+        (
+          player.rapidFireUntil -
+          gameTime
+        ) /
+        1000
+      ).toFixed(1)}s`
+    );
+  }
+
+
+  if (
+    player.shieldCharges >
+    0
+  ) {
+
+    powerParts.push(
+      `P-SHIELD x${player.shieldCharges}`
+    );
+  }
 
 
   powerStatus.textContent =
-    gameTime <
-    player.rapidFireUntil
+    powerParts.length >
+    0
 
-      ? 'RAPID FIRE'
+      ? powerParts.join(
+          ' · '
+        )
 
-      : player.shieldCharges >
-        0
-
-        ? `PLAYER SHIELD x${player.shieldCharges}`
-
-        : 'NO POWER-UP';
+      : 'NO POWER-UP';
 
 
   if (
@@ -10177,7 +11519,6 @@ function updateHud() {
 // ============================================================
 // GAME LOOP
 // ============================================================
-
 function updateGame(
   dt
 ) {
@@ -10185,6 +11526,12 @@ function updateGame(
   updatePlayer(
     dt
   );
+
+
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) return;
 
 
   handleShooting();
@@ -10205,9 +11552,24 @@ function updateGame(
   );
 
 
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) return;
+
+
   updateBoss(
     dt
   );
+
+
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) {
+
+    return;
+  }
 
 
   updateEnemyProjectiles(
@@ -10216,6 +11578,12 @@ function updateGame(
 
 
   updateHazards();
+
+
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) return;
 
 
   updatePickups();
@@ -10237,7 +11605,22 @@ function updateGame(
   checkCombatCollisions();
 
 
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) {
+
+    return;
+  }
+
+
   updateWaveSystem();
+
+
+  if (
+    gameState !==
+    GAME_STATE.PLAYING
+  ) return;
 
 
   checkPendingLevelUp();
@@ -10333,6 +11716,41 @@ function gameLoop(
 // ============================================================
 
 function resetRun() {
+  if (
+    endingTimeoutId !==
+    null
+  ) {
+
+    window.clearTimeout(
+      endingTimeoutId
+    );
+
+
+    endingTimeoutId =
+      null;
+  }
+
+
+  endingDeadlineReal =
+    0;
+
+  endingStartedAtReal =
+    0;
+
+
+  lastFrameTimestamp =
+    performance.now();
+
+
+  for (
+    const key
+    of Object.keys(
+      keys
+    )
+  ) {
+
+    delete keys[key];
+  }
 
   score =
     0;
@@ -10511,6 +11929,8 @@ function resetRun() {
   core.lastDamageAt =
     -Infinity;
 
+  core.flashUntil =
+    0;
 
   player.maxHp =
     CONFIG.player
@@ -10529,6 +11949,17 @@ function resetRun() {
   player.alive =
     true;
 
+  player.respawnAt =
+    0;
+
+  player.hurtFlashUntil =
+    0;
+
+  
+  player.angle =
+    -Math.PI /
+    2;
+
 
   player.x =
     core.x;
@@ -10542,9 +11973,18 @@ function resetRun() {
   player.invulnerableUntil =
     0;
 
+  player.dashUntil =
+    0;
 
   player.dashCooldownUntil =
     0;
+
+  player.dashX =
+    0;
+
+
+  player.dashY =
+    -1;
 
 
   player.shieldCharges =
@@ -10600,6 +12040,57 @@ function resetRun() {
       'hidden'
     );
 
+  lastShotAt =
+    -Infinity;
+
+
+  muzzleFlashUntil =
+    0;
+
+
+  screenShake =
+    0;
+
+
+  waveBannerUntil =
+    0;
+
+
+  waveClearUntil =
+    0;
+
+
+  waveClearMessage =
+    '';
+
+
+  comboExpiresAt =
+    0;
+
+
+  selectedBuildType =
+    null;
+
+
+  selectedStructureId =
+    null;
+
+
+  buildPanelOpen =
+    true;
+
+  buildToggleBtn
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  bossHud
+    .classList
+    .add(
+      'hidden'
+    );
 
   currentWavePlan =
     generateWavePlan(
@@ -10702,6 +12193,15 @@ function distance(
   a,
   b
 ) {
+
+  if (
+    !a ||
+    !b
+  ) {
+
+    return Infinity;
+  }
+
 
   return Math.hypot(
     a.x - b.x,
@@ -10854,6 +12354,63 @@ function formatTime(
         '0'
       )
   );
+}
+
+function drawSmallHpBar(
+  x,
+  y,
+  width,
+  ratio,
+  color
+) {
+
+  ctx.save();
+
+
+  ctx.fillStyle =
+    'rgba(0,0,0,.65)';
+
+
+  ctx.fillRect(
+    x -
+    width /
+    2,
+    y,
+    width,
+    5
+  );
+
+
+  ctx.fillStyle =
+    color;
+
+
+  ctx.shadowColor =
+    color;
+
+
+  ctx.shadowBlur =
+    5;
+
+
+  ctx.fillRect(
+    x -
+    width /
+    2,
+    y,
+
+    width *
+    clamp(
+      ratio,
+      0,
+      1
+    ),
+
+    5
+  );
+
+
+  ctx.restore();
 }
 
 
@@ -11020,6 +12577,30 @@ function drawStarShape(
 // ============================================================
 // EVENTS
 // ============================================================
+
+buildPanel.addEventListener(
+  'mouseleave',
+  () => {
+
+    if (
+      selectedBuildType
+    ) {
+
+      enterPlacementMode();
+    }
+  }
+);
+
+
+buildToggleBtn.addEventListener(
+  'click',
+  () => {
+
+    setBuildPanelOpen(
+      true
+    );
+  }
+);
 
 startBtn.addEventListener(
   'click',
